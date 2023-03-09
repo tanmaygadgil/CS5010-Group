@@ -79,9 +79,9 @@ public class ControllerScriptFile implements Controller {
    */
   private String callModel(String[] commandArgs) {
 
-    switch (commandArgs[0]) {
-      case "load" -> {
-        // Load an image from the specified path and refer it to henceforth in the program by the given image name.
+    // Handle unknown command.
+    switch (commandArgs[0]) {// Load an image from the specified path and refer it to henceforth in the program by the given image name.
+      case "load":
         try {
           this.model.load(commandArgs[1], commandArgs[2]);
           return "Image loaded";
@@ -89,20 +89,18 @@ public class ControllerScriptFile implements Controller {
 
           return "Unable to load Image";
         }
-      }
-      case "save" -> {
-        // Save the image with the given name to the specified path which should include the name of the file.
+// Save the image with the given name to the specified path which should include the name of the file.
+      case "save":
         try {
           this.model.save(commandArgs[1], commandArgs[2]);
           return "Image saved successfully";
         } catch (IOException e) {
           return "Unable to save Image";
         }
-      }
-      case "greyscale" -> {
-        // Create a greyscale image with the specified component of the image with the given name,
-        // and refer to it henceforth in the program by the given destination name.
-        // Get the right component from the enum
+// Create a greyscale image with the specified component of the image with the given name,
+// and refer to it henceforth in the program by the given destination name.
+// Get the right component from the enum
+      case "greyscale":
         ImageComponents comp;
         if (commandArgs[1] == "red-component") {
           comp = ImageComponents.RED;
@@ -125,59 +123,48 @@ public class ControllerScriptFile implements Controller {
         } catch (Exception e) {
           return "Could not convert Image to Greyscale";
         }
-      }
-      case "horizontal-flip" -> {
-        // Flip an image horizontally to create a new image, referred to henceforth by the given destination name.
+// Flip an image horizontally to create a new image, referred to henceforth by the given destination name.
+      case "horizontal-flip":
         try {
           this.model.flip(Axes.HORIZONTAL, commandArgs[1], commandArgs[2]);
           return "horizontal flip successful";
         } catch (Exception e) {
           return "Horizontal flip unsuccessful";
         }
-      }
-      case "vertical-flip" -> {
-        // Flip an image vertically to create a new image, referred to henceforth by the given destination name.
-        try{
+// Flip an image vertically to create a new image, referred to henceforth by the given destination name.
+      case "vertical-flip":
+        try {
           this.model.flip(Axes.VERTICAL, commandArgs[1], commandArgs[2]);
           return "vertical flip successful";
-        }catch (Exception e){
+        } catch (Exception e) {
           return "Vertical flip unsuccessful";
         }
-
-      }
-      case "brighten" -> {
-
-        // Brighten the image by the given increment to create a new image, referred to henceforth by the given destination name.
+// Brighten the image by the given increment to create a new image, referred to henceforth by the given destination name.
+      case "brighten":
         try {
           this.model.brighten(Integer.parseInt(commandArgs[1]), commandArgs[2], commandArgs[3]);
           return "brighten successful";
-        } catch (Exception e){
+        } catch (Exception e) {
           return "Brighten unsuccessful";
         }
-      }
-      case "rgb-split" -> {
-        // Split the given image into three greyscale images containing its red, green and blue components respectively.
+// Split the given image into three greyscale images containing its red, green and blue components respectively.
+      case "rgb-split":
         try {
           this.model.rgbSplit(commandArgs[1], commandArgs[2], commandArgs[3], commandArgs[4]);
           return "RGB-split successful";
-        }catch (Exception e){
+        } catch (Exception e) {
           return "RGB - split unsuccessful";
         }
-      }
-      case "rgb-combine" -> {
-
-        // Combine the three greyscale images into a single image that gets its red, green and blue components from the three images respectively.
+// Combine the three greyscale images into a single image that gets its red, green and blue components from the three images respectively.
+      case "rgb-combine":
         try {
           this.model.rgbCombine(commandArgs[1], commandArgs[2], commandArgs[3], commandArgs[4]);
           return "RGB-combine successful";
-        } catch (Exception e){
+        } catch (Exception e) {
           return "RGB - combine unsuccessful";
         }
-      }
-      default -> {
+      default:
         return "Invalid Command";
-      }
-      // Handle unknown command.
     }
 
   }

@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class ModelPPM implements Model {
 
-  private HashMap<String, int[][][]> imageMap;
+  private final HashMap<String, int[][][]> imageMap;
 
   public ModelPPM(){
     this.imageMap = new HashMap<>();
