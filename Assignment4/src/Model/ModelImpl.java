@@ -18,7 +18,7 @@ public class ModelImpl implements Model {
 
   @Override
   public void save(String filePath, String imageName) throws IOException {
-    FileOutputStream fout = new FileOutputStream("test.txt");
+    FileOutputStream fout = new FileOutputStream(filePath);
 
     int[][][] image = hashMap.get(imageName);
     int width = image[0][0].length;
