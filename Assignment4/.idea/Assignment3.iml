@@ -18,6 +18,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit4">
         <CLASSES>
@@ -28,5 +29,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+
   </component>
 </module>
