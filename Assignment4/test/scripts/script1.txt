@@ -1,0 +1,5 @@
+#load koala.ppm and call it 'koala'
+load images/koala.ppm koala
+
+#brighten koala by adding 10
+brighten 10 koala koala-brighter 

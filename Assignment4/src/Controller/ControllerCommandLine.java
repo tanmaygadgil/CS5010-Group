@@ -2,65 +2,48 @@ package Controller;
 
 import Model.Model;
 import View.View;
+import Model.ImageComponents;
+import Model.Axes;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import Model.ImageComponents;
-import Model.Axes;
 
-public class ControllerScriptFile implements Controller {
+public class ControllerCommandLine implements Controller {
 
   private final Model model;
   private final View view;
 
-  public ControllerScriptFile(Model model, View view) {
+  public ControllerCommandLine(Model model, View view) {
     this.model = model;
     this.view = view;
   }
-
   @Override
   public void run() throws IOException {
-    //Run a loop to extract the file from the view
-//    while (true) {
-    //get the file path
-    String filepath = this.view.getInput();
-    System.out.println(filepath);
+    while(true){
+      String command = this.view.getInput();
+      System.out.println(command);
 
-    this.parseAndCall(filepath);
-
-//    }
+      this.parseAndCall(command);
+    }
   }
 
   /**
    * A function which acts as a facilitator to parse the input file and call the model functions
    *
-   * @param filepath The location of the textfile to be parsed
+   * @param command The location of the textfile to be parsed
    * @throws IOException Thrown if file does not exist
    */
-  private void parseAndCall(String filepath) throws IOException {
-    BufferedReader reader;
+  private void parseAndCall(String command) throws IOException {
 
-    //red the script file
-    reader = new BufferedReader(new FileReader(filepath));
-    String line = reader.readLine();
-
-    //parse till all lines are checked
-    while (line != null) {
-      //parse a single line
-      String[] args = this.parseCommand(line);
-      String res = null;
-      if (args != null) {
-        //if command is valid and not a command send to model
-        res = this.callModel(args);
-      }
-      //print state to the view
-      this.view.renderOutput(res);
-      //get the next line
-      line = reader.readLine();
+    //parse a single line
+    String[] args = this.parseCommand(command);
+    String res = null;
+    if (args!=null) {
+      res = callModel(args);
     }
+    this.view.renderOutput(res);
   }
-
   private String[] parseCommand(String command) {
     if (command == null){
       return null;
