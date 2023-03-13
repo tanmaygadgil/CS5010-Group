@@ -50,7 +50,13 @@ public class ModelPPM implements Model {
     for (int i = 0; i < image.length; i++) {
       for (int j = 0; j < height; j++) {
         for (int k = 0; k < width; k++) {
-          image[i][j][k] = image[i][j][k] + increment;
+          if(image[i][j][k] + increment > 255) {
+            image[i][j][k] = 255;
+          } else if (image[i][j][k] < 0) {
+            image[i][j][k] = 0;
+          } else {
+            image[i][j][k] = image[i][j][k] + increment;
+          }
         }
       }
     }
