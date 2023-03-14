@@ -2,6 +2,7 @@ package Model;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
@@ -112,6 +113,19 @@ public class ModelTest {
     assertEquals(imageHori, image);
   }
 
+  @Test
+  public void testImageUtilGreyScale() throws IOException {
+    int[][][] image = new int[1][3][4];
+    for(int i = 0; i < 3; i++){
+      for(int j = 1; j <= 4; j++) {
+        image[0][i][j-1] = 4*i+j;
+      }
+    }
 
+    model.loadGreyScale("test/Model/greyImage.ppm", "greyImage");
+    model.save("test/Model/greyImageSave.ppm", "greyImage");
+    int[][][] imageGreyScale = ImageUtil.readPPMGreyScale("test/Model/greyImageSave.ppm");
+
+  }
 
 }

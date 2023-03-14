@@ -34,6 +34,13 @@ public class ModelPPM implements Model {
     this.imageMap.put(destImage, image);
   }
 
+  @Override
+  public void loadGreyScale(String filePath, String destImage){
+    int[][][] image = ImageUtil.readPPMGreyScale(filePath);
+    this.height = image[0].length;
+    this.width = image[0][0].length;
+    this.imageMap.put(destImage, image);
+  }
 
   @Override
   public void save(String filePath, String imageName) throws IOException {

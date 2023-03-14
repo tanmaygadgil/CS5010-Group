@@ -12,6 +12,12 @@ public class ModelPPMMock implements Model {
   }
 
   @Override
+  public void loadGreyScale(String filePath, String destImage) throws FileNotFoundException {
+    System.out.printf("In function load with arguments %s, %s%n", filePath,
+        destImage);
+  }
+
+  @Override
   public void save(String filePath, String imageName) throws IOException {
     System.out.printf("In function save with arguments %s, %s%n", filePath,
         imageName);
