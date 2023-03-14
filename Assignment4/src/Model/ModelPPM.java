@@ -5,16 +5,25 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 
-
+/**
+ * The ModelPPM class represents a PPM image file and provides functionality for
+ * loading, saving, and modifying the image. The image is stored as a HashMap where the key is a
+ * String representing the image name and the value is a three-dimensional array of integers
+ * representing the red, green and blue pixels.
+ */
 public class ModelPPM implements Model {
 
   private final HashMap<String, int[][][]> imageMap;
   private int width;
   private int height;
 
+  /**
+   * Initializes the imageMap.
+   */
   public ModelPPM() {
     this.imageMap = new HashMap<>();
   }
+
 
   @Override
   public void load(String filePath, String destImage) throws FileNotFoundException {
@@ -24,6 +33,7 @@ public class ModelPPM implements Model {
     this.width = image[0][0].length;
     this.imageMap.put(destImage, image);
   }
+
 
   @Override
   public void save(String filePath, String imageName) throws IOException {
@@ -64,6 +74,7 @@ public class ModelPPM implements Model {
     imageMap.put(destImage, image);
   }
 
+
   @Override
   public void flip(Axes axis, String imageName, String destImage) {
     int[][][] image = this.imageMap.get(imageName);
@@ -78,7 +89,9 @@ public class ModelPPM implements Model {
         image[i] = flipVertical(image[i]);
       }
       imageMap.put(destImage, image);
-    } //else throw error?
+    } else {
+      throw new IllegalArgumentException("Flip Axis not supported");
+    }
   }
 
   private int[][] flipVertical(int[][] image) {

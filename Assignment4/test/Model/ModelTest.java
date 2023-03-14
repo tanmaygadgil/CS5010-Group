@@ -59,8 +59,19 @@ public class ModelTest {
 
   @Test
   public void testFlipVertical() throws IOException {
+
+    /*
+      1 1 1 1
+      2 2 2 2
+      3 3 3 3
+
+      3 3 3 3
+      2 2 2 2
+      1 1 1 1
+     */
     String path = "test/Model/testImageAscendingRows.ppm";
     int[][][] image = new int[3][3][4];
+    //generating correct answer
     for (int i = 3; i >= 1; i--) {
       for (int j = 3; j >= 1; j--) {
         for (int k = 4; k >= 1; k--) {
@@ -74,7 +85,7 @@ public class ModelTest {
         "testImageAscendingRowsVertFlip");
     model.save("test/Model/testImageAscendingRowsVertFlip.ppm",
         "testImageAscendingRowsVertFlip");
-    int[][][] imageVert = ImageUtil.readPPM("test/Model/testImageVert.ppm");
+    int[][][] imageVert = ImageUtil.readPPM("test/Model/testImageAscendingRowsVertFlip.ppm");
 
     assertEquals(imageVert, image);
   }
