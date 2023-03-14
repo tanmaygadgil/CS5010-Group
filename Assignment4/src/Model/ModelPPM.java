@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
-
 /**
  * The ModelPPM class represents a PPM image file and provides functionality for
  * loading, saving, and modifying the image. The image is stored as a HashMap where the key is a
@@ -69,7 +68,7 @@ public class ModelPPM implements Model {
         for (int k = 0; k < width; k++) {
           if(image[i][j][k] + increment > 255) {
             image[i][j][k] = 255;
-          } else if (image[i][j][k] < 0) {
+          } else if (image[i][j][k] + increment < 0) {
             image[i][j][k] = 0;
           } else {
             image[i][j][k] = image[i][j][k] + increment;
