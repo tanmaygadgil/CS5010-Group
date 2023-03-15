@@ -20,17 +20,6 @@ public interface Model {
   void load(String filePath, String destImage) throws FileNotFoundException;
 
   /**
-   * Reads an image file from the specified filePath, converts it to
-   * a three-dimensional array of integers, and stores it in the imageMap with the
-   * specified destImage name.
-   *
-   * @param filePath path of image to read.
-   * @param destImage name of the new image to store.
-   * @throws FileNotFoundException if file does not exist.
-   */
-  void loadGreyScale(String filePath, String destImage) throws FileNotFoundException;
-
-  /**
    * Writes the specified image to the specified filePath in PPM format.
    *
    * @param filePath path to save the image file to.

@@ -29,13 +29,7 @@ public class ModelTest {
     assertEquals(imageOriginal[0].length, imageSaved[0].length);
     assertEquals(imageOriginal[0][0].length, imageSaved[0][0].length);
 
-    for (int i = 0; i < imageSaved.length; i++) {
-      for (int j = 0; j < imageSaved[0].length; j++) {
-        for (int k = 0; k < imageSaved[0][0].length; k++) {
-          assertEquals(imageOriginal[i][j][k], imageSaved[i][j][k]);
-        }
-      }
-    }
+    assertEquals(imageOriginal, imageSaved);
   }
 
   @Test
@@ -56,20 +50,12 @@ public class ModelTest {
         }
       }
     }
+
   }
 
   @Test
   public void testFlipVertical() throws IOException {
 
-    /*
-      1 1 1 1
-      2 2 2 2
-      3 3 3 3
-
-      3 3 3 3
-      2 2 2 2
-      1 1 1 1
-     */
     String path = "test/Model/testImageAscendingRows.ppm";
     int[][][] image = new int[3][3][4];
     //generating correct answer
@@ -122,10 +108,9 @@ public class ModelTest {
       }
     }
 
-    model.loadGreyScale("test/Model/greyImage.ppm", "greyImage");
+    model.load("test/Model/greyImage.ppm", "greyImage");
     model.save("test/Model/greyImageSave.ppm", "greyImage");
-    int[][][] imageGreyScale = ImageUtil.readPPMGreyScale("test/Model/greyImageSave.ppm");
-
+    int[][][] imageGreyScale = ImageUtil.readPPM("test/Model/greyImageSave.ppm");
   }
 
 }

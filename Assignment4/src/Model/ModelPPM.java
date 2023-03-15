@@ -34,20 +34,16 @@ public class ModelPPM implements Model {
   }
 
   @Override
-  public void loadGreyScale(String filePath, String destImage){
-    int[][][] image = ImageUtil.readPPMGreyScale(filePath);
-    this.height = image[0].length;
-    this.width = image[0][0].length;
-    this.imageMap.put(destImage, image);
-  }
-
-  @Override
   public void save(String filePath, String imageName) throws IOException {
     FileOutputStream fout = new FileOutputStream(filePath);
 
     int[][][] image = this.imageMap.get(imageName);
 
-    fout.write("P3\n".getBytes());
+    if(image.length == 3) {
+      fout.write("P3\n".getBytes());
+    } else if (image.length == 1) {
+      fout.write("P2\n".getBytes());
+    }
     fout.write(String.format("%d %d\n255\n", width, height).getBytes());
 
     for (int i = 0; i < height; i++) { //rows
@@ -57,7 +53,6 @@ public class ModelPPM implements Model {
         }
       }
     }
-
   }
 
   @Override
