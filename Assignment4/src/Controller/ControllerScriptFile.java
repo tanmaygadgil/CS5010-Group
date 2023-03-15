@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import Model.ImageComponents;
 import Model.Axes;
+import java.util.Arrays;
 
 public class ControllerScriptFile implements Controller {
 
@@ -85,11 +86,13 @@ public class ControllerScriptFile implements Controller {
    * @return A string with a success/failure message
    */
   private String callModel(String[] commandArgs) {
-
+//    System.out.println(Arrays.toString(commandArgs));
     // Handle unknown command.
-    switch (commandArgs[0]) {// Load an image from the specified path and refer it to henceforth in the program by the given image name.
+    switch (commandArgs[0]) {
+      // Load an image from the specified path and refer it to henceforth in the program by the given image name.
       case "load":
         try {
+//          System.out.println(commandArgs[1]);
           this.model.load(commandArgs[1], commandArgs[2]);
           return "Image loaded";
         } catch (FileNotFoundException e) {

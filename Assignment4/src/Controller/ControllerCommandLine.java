@@ -8,21 +8,31 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class ControllerCommandLine implements Controller {
 
   private final Model model;
   private final View view;
 
+  private InputStream in;
+
+  private OutputStream out;
+
   public ControllerCommandLine(Model model, View view) {
     this.model = model;
     this.view = view;
   }
+
   @Override
   public void run() throws IOException {
-    while(true){
+    while (true) {
       String command = this.view.getInput();
-      System.out.println(command);
+      if (command.strip().equals("exit")) {
+        break;
+      }
+//      System.out.println(command);
 
       this.parseAndCall(command);
     }
@@ -39,16 +49,17 @@ public class ControllerCommandLine implements Controller {
     //parse a single line
     String[] args = this.parseCommand(command);
     String res = null;
-    if (args!=null) {
+    if (args != null) {
       res = callModel(args);
     }
     this.view.renderOutput(res);
   }
+
   private String[] parseCommand(String command) {
-    if (command == null){
+    if (command == null) {
       return null;
     }
-    if (command.length() == 0){
+    if (command.length() == 0) {
       return null;
     }
     if (command.charAt(0) == '#') {
@@ -78,6 +89,8 @@ public class ControllerCommandLine implements Controller {
         } catch (FileNotFoundException e) {
 
           return "Unable to load Image";
+        } catch (Exception e) {
+          return "Load command misformatted";
         }
 // Save the image with the given name to the specified path which should include the name of the file.
       case "save":
@@ -86,28 +99,31 @@ public class ControllerCommandLine implements Controller {
           return "Image saved successfully";
         } catch (IOException e) {
           return "Unable to save Image";
+        } catch (Exception e) {
+          return "Save Unsuccessful";
         }
 // Create a greyscale image with the specified component of the image with the given name,
 // and refer to it henceforth in the program by the given destination name.
 // Get the right component from the enum
       case "greyscale":
-        ImageComponents comp;
-        if (commandArgs[1] == "red-component") {
-          comp = ImageComponents.RED;
-        } else if (commandArgs[1].equals("green-component")) {
-          comp = ImageComponents.GREEN;
-        } else if (commandArgs[1].equals("blue-component")) {
-          comp = ImageComponents.BLUE;
-        } else if (commandArgs[1].equals("luma-component")) {
-          comp = ImageComponents.LUMA;
-        } else if (commandArgs[1].equals("value-component")) {
-          comp = ImageComponents.VALUE;
-        } else if (commandArgs[1].equals("intensity-component")) {
-          comp = ImageComponents.INTENSITY;
-        } else {
-          return "Invalid image component";
-        }
         try {
+          ImageComponents comp;
+          if (commandArgs[1] == "red-component") {
+            comp = ImageComponents.RED;
+          } else if (commandArgs[1].equals("green-component")) {
+            comp = ImageComponents.GREEN;
+          } else if (commandArgs[1].equals("blue-component")) {
+            comp = ImageComponents.BLUE;
+          } else if (commandArgs[1].equals("luma-component")) {
+            comp = ImageComponents.LUMA;
+          } else if (commandArgs[1].equals("value-component")) {
+            comp = ImageComponents.VALUE;
+          } else if (commandArgs[1].equals("intensity-component")) {
+            comp = ImageComponents.INTENSITY;
+          } else {
+            return "Invalid image component";
+          }
+
           this.model.greyscale(comp, commandArgs[2], commandArgs[3]);
           return "conversion to greyscale successful";
         } catch (Exception e) {

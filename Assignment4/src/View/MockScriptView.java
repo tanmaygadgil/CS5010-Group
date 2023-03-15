@@ -1,13 +1,21 @@
 package View;
 
+import java.io.InputStream;
+import java.util.Scanner;
+
 public class MockScriptView implements View {
-  private final String filepath;
-  public MockScriptView(String filepath){
-    this.filepath = filepath;
+
+  private final Scanner scanner;
+
+  //  private InputStream in;
+  public MockScriptView(Scanner scanner){
+
+    this.scanner = scanner;
+//    this.in = in;
   }
   @Override
   public String getInput() {
-    return filepath;
+    return this.scanner.nextLine();
   }
 
   @Override
