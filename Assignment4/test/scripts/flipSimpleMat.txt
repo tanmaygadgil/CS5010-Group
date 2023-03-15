@@ -1,0 +1,7 @@
+#load
+load test/Integration/incMatRGB.txt incmat
+
+#flip vertically
+vertical-flip incmat incmat-vertical
+
+save test/Integration/incmat-vertical.txt incmat-vertical

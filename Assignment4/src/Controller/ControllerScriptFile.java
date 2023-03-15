@@ -42,7 +42,7 @@ public class ControllerScriptFile implements Controller {
   private void parseAndCall(String filepath) throws IOException {
     BufferedReader reader;
 
-    //red the script file
+    //read the script file
     reader = new BufferedReader(new FileReader(filepath));
     String line = reader.readLine();
 
@@ -56,7 +56,9 @@ public class ControllerScriptFile implements Controller {
         res = this.callModel(args);
       }
       //print state to the view
-      this.view.renderOutput(res);
+      if(res != null) {
+        this.view.renderOutput(res);
+      }
       //get the next line
       line = reader.readLine();
     }
