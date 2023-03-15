@@ -17,7 +17,7 @@ Run these sample scripts for the following use cases
 
 #### Running in script mode
 
-```java
+```shell
 java Main.java -s <filename>
 ```
 
