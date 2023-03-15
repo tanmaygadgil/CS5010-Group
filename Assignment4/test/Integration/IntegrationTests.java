@@ -19,45 +19,6 @@ import org.junit.Test;
 
 public class IntegrationTests {
 
-  private void save(String filePath, int[][][] image) throws IOException {
-    FileOutputStream fout = new FileOutputStream(filePath);
-
-    if(image.length == 3) {
-      fout.write("P3\n".getBytes());
-    } else if (image.length == 1) {
-      fout.write("P2\n".getBytes());
-    }
-
-    int width = image[0][0].length;
-    int height = image[0].length;
-
-    fout.write(String.format("%d %d\n255\n", width, height).getBytes());
-
-    for (int i = 0; i < height; i++) { //rows
-      for (int j = 0; j < width; j++) { //cols
-        for(int k = 0; k < image.length; k++) {
-          fout.write((new Integer(image[k][i][j]).toString() + "\n").getBytes());
-        }
-      }
-    }
-  }
-
-  private void createIncMat() throws IOException {
-    int[][][] image = new int[3][3][4];
-    int width = image[0][0].length;
-    int height = image[0].length;
-
-    for(int i = 0; i < height; i++) {
-      for(int j = 1; j <= width; j++) {
-        for(int k = 0; k < image.length; k++) {
-          image[k][i][j-1] = width * i + j;
-        }
-      }
-    }
-
-    this.save("test/Integration/incMatRGB.txt", image);
-  }
-
   @Test
   public void testScriptVertical() throws IOException {
     //vertical flip the image and save it
@@ -72,31 +33,107 @@ public class IntegrationTests {
     c.run();
 
     //create the expected mat
-    int[][][] image = new int[3][3][4];
-    //generating correct answer
-    for(int i = 3; i >= 1; i--) {//rows
-      for(int j = 1; j <= 4; j++) {//cols
-        for(int k = 0; k < 3; k++) {//channels
-          image[k][i-1][j-1] = 4 * (3-i) + j;
-        }
-        System.out.println(4*(3-i)+j);
-      }
-    }
+    int[][][] image = {{{9, 10, 11, 12}, {5, 6, 7, 8}, {1, 2, 3, 4}},
+        {{9, 10, 11, 12}, {5, 6, 7, 8}, {1, 2, 3, 4}},
+        {{9, 10, 11, 12}, {5, 6, 7, 8}, {1, 2, 3, 4}}};
 
     int[][][] vertFlip = ImageUtil.readPPM("test/Integration/incmat-vertical.txt");
     assertEquals(image, vertFlip);
   }
 
-  public void testSimpleCommandLine() throws IOException{
+  @Test
+  public void testSimpleCommandLine() throws IOException {
     Model m = new ModelPPM();
     View v = new TextInputView("command");
     Controller c = new ControllerScriptFile(m, v);
 
-    String input = "test/scripts/script1.txt";
+    String input = "test/scripts/flipSimpleMat.txt";
     InputStream inputStream = new ByteArrayInputStream(input.getBytes());
     System.setIn(inputStream);
 
     c.run();
+
+    //create the expected mat
+    int[][][] image = {{{9, 10, 11, 12}, {5, 6, 7, 8}, {1, 2, 3, 4}},
+        {{9, 10, 11, 12}, {5, 6, 7, 8}, {1, 2, 3, 4}},
+        {{9, 10, 11, 12}, {5, 6, 7, 8}, {1, 2, 3, 4}}};
+
+    int[][][] vertFlip = ImageUtil.readPPM("test/Integration/incmat-vertical.txt");
+    assertEquals(image, vertFlip);
+  }
+
+  @Test
+  public void testScript2() throws IOException {
+    Model m = new ModelPPM();
+    View v = new TextInputView("command");
+    Controller c = new ControllerScriptFile(m, v);
+
+    String input = "test/scripts/script2ForSimpleMat.txt";
+    InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+    System.setIn(inputStream);
+
+    c.run();
+
+    int[][][] expected = {{{72, 71, 70, 69}, {68, 67, 66, 65}, {64, 63, 62, 61}},
+        {{22, 21, 20, 19}, {18, 17, 16, 15}, {14, 13, 12, 11}},
+        {{22, 21, 20, 19}, {18, 17, 16, 15}, {14, 13, 12, 11}}};
+
+    int[][][] result = ImageUtil.readPPM("test/Integration/incmat-red-tint.txt");
+    assertEquals(expected, result);
+  }
+
+  @Test
+  public void createGreyScaleImagesFromScript() throws IOException {
+    Model m = new ModelPPM();
+    View v = new TextInputView("command");
+    Controller c = new ControllerScriptFile(m, v);
+
+    String input = "test/scripts/greyScaleScript.txt";
+    InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+    System.setIn(inputStream);
+
+    c.run();
+
+    int[][][] original = ImageUtil.readPPM("test/Integration/inctensor.txt");
+
+    //red
+    int[][][] actual = ImageUtil.readPPM("test/Integration/inctensor-red.txt");
+    assertEquals(original[0], actual[0]);
+    //green
+    actual = ImageUtil.readPPM("test/Integration/inctensor-green.txt");
+    assertEquals(original[1], actual[0]);
+    //blue
+    actual = ImageUtil.readPPM("test/Integration/inctensor-blue.txt");
+    assertEquals(original[2], actual[0]);
+    //value
+    actual = ImageUtil.readPPM("test/Integration/inctensor-value.txt");
+    int[][][] expected = new int[1][3][4];
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 4; j++) {
+        expected[0][i][j] = Math.max(Math.max(original[0][i][j], original[1][i][j]),
+            original[2][i][j]);
+      }
+    }
+    assertEquals(expected, actual);
+    //intensity
+    actual = ImageUtil.readPPM("test/Integration/inctensor-intensity.txt");
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 4; j++) {
+        expected[0][i][j] =
+            (original[0][i][j] + original[1][i][j] + original[2][i][j]) / original.length;
+      }
+    }
+    assertEquals(expected, actual);
+    //luma
+    actual = ImageUtil.readPPM("test/Integration/inctensor-luma.txt");
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 4; j++) {
+        expected[0][i][j] =
+            (int) (0.2126 * original[0][i][j] + 0.7152 * original[1][i][j]
+                + 0.0722 * original[2][i][j]);
+      }
+    }
+    assertEquals(expected, actual);
   }
 
 }
