@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -12,13 +13,13 @@ import org.junit.Assert;
 public class ViewScriptFileTest {
 
   @org.junit.Test
-  public void getInput() {
-    String input = "testpath";
+  public void testGetInput() throws IOException {
+    String input = "test/scripts/script1.txt";
     InputStream inputStream = new ByteArrayInputStream(input.getBytes());
     System.setIn(inputStream);
-    View clv = new ViewScriptFile();
+    View clv = new TextInputView("script");
     String filepath = clv.getInput();
-    assertEquals("testpath", filepath);
+    assertEquals("test/scripts/script1.txt", filepath);
   }
 
   @org.junit.Test
