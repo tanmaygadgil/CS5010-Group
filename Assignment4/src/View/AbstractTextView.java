@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public abstract class AbstarctTextView implements View {
+public abstract class AbstractTextView implements View {
 
   @Override
   public abstract String getInput();

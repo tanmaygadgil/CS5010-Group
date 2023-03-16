@@ -12,6 +12,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TextInputViewTest {
+
   @org.junit.Test
   public void testScriptGetInput() throws IOException {
     String input = "test/scripts/script1.txt";

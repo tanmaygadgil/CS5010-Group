@@ -11,11 +11,12 @@ import java.util.Scanner;
 public class MockScriptView implements View {
 
   private final Scanner scanner;
-  private final String  filename;
+  private final String filename;
   private String mode = "command";
   private StringGenerator commandGenerator = null;
+
   //  private InputStream in;
-  public MockScriptView(Scanner scanner){
+  public MockScriptView(Scanner scanner) {
 
     this.scanner = scanner;
 //    this.in = in;
@@ -31,13 +32,14 @@ public class MockScriptView implements View {
     this.commandGenerator = new StringGenerator(loadFile(filename));
 //    this.in = in;
   }
+
   @Override
   public String getInput() {
-    switch (this.mode){
+    switch (this.mode) {
       case "command":
         return this.scanner.nextLine();
       case "script":
-        if (this.commandGenerator.hasNext()){
+        if (this.commandGenerator.hasNext()) {
           return this.commandGenerator.next();
         } else {
           return "exit";
@@ -50,6 +52,7 @@ public class MockScriptView implements View {
   public void renderOutput(String inputString) {
     System.out.println(inputString);
   }
+
   private ArrayList<String> loadFile(String fileName) throws IOException {
     BufferedReader reader = new BufferedReader(new FileReader(fileName));
     ArrayList<String> commandArgs = new ArrayList<String>();
@@ -84,6 +87,7 @@ public class MockScriptView implements View {
     }
     return command;
   }
+
   private class StringGenerator implements Iterator<String> {
 
     private ArrayList<String> stringList;

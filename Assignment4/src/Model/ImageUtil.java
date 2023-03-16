@@ -44,10 +44,10 @@ public class ImageUtil {
       System.out.println("Invalid PPM file: plain RAW file should begin with P3");
     }
     int channels = 0;
-    if(token.equals("P3")) {
+    if (token.equals("P3")) {
       channels = 3;
     }
-    if(token.equals("P2")) {
+    if (token.equals("P2")) {
       channels = 1;
     }
 
@@ -63,7 +63,7 @@ public class ImageUtil {
     return image;
   }
 
-  private static int[][][] readValues(Scanner sc, int channels, int height, int width){
+  private static int[][][] readValues(Scanner sc, int channels, int height, int width) {
     int[][][] image = new int[channels][height][width];
 
     for (int i = 0; i < height; i++) {

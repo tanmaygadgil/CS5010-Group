@@ -1,15 +1,9 @@
 package View;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Scanner;
 
-public class TextInputView extends AbstarctTextView {
+public class TextInputView extends AbstractTextView {
 
   private final String mode;
   private Scanner scanner = new Scanner(System.in);

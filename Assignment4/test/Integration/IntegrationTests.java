@@ -3,7 +3,6 @@ package Integration;
 import static org.junit.Assert.assertEquals;
 
 import Model.ImageUtil;
-import Controller.ControllerScriptFile;
 import Controller.Controller;
 import Model.Model;
 import View.View;
@@ -22,9 +21,8 @@ public class IntegrationTests {
     //vertical flip the image and save it
     Model m = new ModelPPM();
     String input = "test/scripts/flipSimpleMat.txt";
-    View v = new TextInputView("script",input );
+    View v = new TextInputView("script", input);
     Controller c = new ControllerCommandLine(m, v);
-
 
     InputStream inputStream = new ByteArrayInputStream(input.getBytes());
     System.setIn(inputStream);
@@ -44,9 +42,8 @@ public class IntegrationTests {
   public void testSimpleCommandLine() throws IOException {
     String input = "test/scripts/flipSimpleMat.txt";
     Model m = new ModelPPM();
-    View v = new TextInputView("script",input );
+    View v = new TextInputView("script", input);
     Controller c = new ControllerCommandLine(m, v);
-
 
     InputStream inputStream = new ByteArrayInputStream(input.getBytes());
     System.setIn(inputStream);
@@ -66,9 +63,8 @@ public class IntegrationTests {
   public void testScript2() throws IOException {
     Model m = new ModelPPM();
     String input = "test/scripts/script2ForSimpleMat.txt";
-    View v = new TextInputView("script",input );
+    View v = new TextInputView("script", input);
     Controller c = new ControllerCommandLine(m, v);
-
 
     InputStream inputStream = new ByteArrayInputStream(input.getBytes());
     System.setIn(inputStream);
@@ -87,9 +83,8 @@ public class IntegrationTests {
   public void createGreyScaleImagesFromScript() throws IOException {
     Model m = new ModelPPM();
     String input = "test/scripts/greyScaleScript.txt";
-    View v = new TextInputView("script",input );
+    View v = new TextInputView("script", input);
     Controller c = new ControllerCommandLine(m, v);
-
 
     InputStream inputStream = new ByteArrayInputStream(input.getBytes());
     System.setIn(inputStream);
@@ -130,9 +125,8 @@ public class IntegrationTests {
     actual = ImageUtil.readPPM("test/Integration/inctensor-luma.txt");
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 4; j++) {
-        expected[0][i][j] =
-            (int) (0.2126 * original[0][i][j] + 0.7152 * original[1][i][j]
-                + 0.0722 * original[2][i][j]);
+        expected[0][i][j] = (int) (0.2126 * original[0][i][j] + 0.7152 * original[1][i][j]
+            + 0.0722 * original[2][i][j]);
       }
     }
     assertEquals(expected, actual);

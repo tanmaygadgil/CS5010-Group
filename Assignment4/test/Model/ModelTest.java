@@ -68,10 +68,8 @@ public class ModelTest {
     }
 
     model.load(path, "testImageAscendingRows");
-    model.flip(Axes.VERTICAL, "testImageAscendingRows",
-        "testImageAscendingRowsVertFlip");
-    model.save("test/Model/testImageAscendingRowsVertFlip.ppm",
-        "testImageAscendingRowsVertFlip");
+    model.flip(Axes.VERTICAL, "testImageAscendingRows", "testImageAscendingRowsVertFlip");
+    model.save("test/Model/testImageAscendingRowsVertFlip.ppm", "testImageAscendingRowsVertFlip");
     int[][][] imageVert = ImageUtil.readPPM("test/Model/testImageAscendingRowsVertFlip.ppm");
 
     assertEquals(imageVert, image);
@@ -90,10 +88,8 @@ public class ModelTest {
     }
 
     model.load(path, "testImageAscendingCols");
-    model.flip(Axes.HORIZONTAL, "testImageAscendingCols",
-        "testImageAscendingColsHoriFlip");
-    model.save("test/Model/testImageAscendingColsHoriFlip.ppm",
-        "testImageAscendingColsHoriFlip");
+    model.flip(Axes.HORIZONTAL, "testImageAscendingCols", "testImageAscendingColsHoriFlip");
+    model.save("test/Model/testImageAscendingColsHoriFlip.ppm", "testImageAscendingColsHoriFlip");
     int[][][] imageHori = ImageUtil.readPPM("test/Model/testImageAscendingColsHoriFlip.ppm");
 
     assertEquals(imageHori, image);
@@ -121,8 +117,7 @@ public class ModelTest {
     model.greyscale(ImageComponents.RED, "testImage", "testImageGreyscaledRed");
     model.save("test/Model/testImageGreyscaledRed.ppm", "testImageGreyscaledRed");
 
-    int[][][] expectedImage = ImageUtil.readPPM(
-        "test/Model/expectedImageGreyscaledRed.ppm");
+    int[][][] expectedImage = ImageUtil.readPPM("test/Model/expectedImageGreyscaledRed.ppm");
     int[][][] grayScaledImage = ImageUtil.readPPM("test/Model/testImageGreyscaleRed.ppm");
     assertEquals(expectedImage, grayScaledImage);
 
@@ -134,15 +129,11 @@ public class ModelTest {
     String path = "test/Model/testImage.ppm";
 
     model.load(path, "testImage");
-    model.greyscale(ImageComponents.GREEN, "testImage",
-        "testImageGreyscaledGreen");
-    model.save("test/Model/testImageGreyscaledGreen.ppm",
-        "testImageGreyscaledGreen");
+    model.greyscale(ImageComponents.GREEN, "testImage", "testImageGreyscaledGreen");
+    model.save("test/Model/testImageGreyscaledGreen.ppm", "testImageGreyscaledGreen");
 
-    int[][][] expectedImage = ImageUtil.readPPM(
-        "test/Model/expectedImageGreyscaledGreen.ppm");
-    int[][][] grayScaledImage = ImageUtil.readPPM(
-        "test/Model/testImageGreyscaleGreen.ppm");
+    int[][][] expectedImage = ImageUtil.readPPM("test/Model/expectedImageGreyscaledGreen.ppm");
+    int[][][] grayScaledImage = ImageUtil.readPPM("test/Model/testImageGreyscaleGreen.ppm");
 
     assertEquals(expectedImage, grayScaledImage);
 
@@ -154,15 +145,11 @@ public class ModelTest {
     String path = "test/Model/testImage.ppm";
 
     model.load(path, "testImage");
-    model.greyscale(ImageComponents.BLUE, "testImage",
-        "testImageGreyscaledBlue");
-    model.save("test/Model/testImageGreyscaledBlue.ppm",
-        "testImageGreyscaledBlue");
+    model.greyscale(ImageComponents.BLUE, "testImage", "testImageGreyscaledBlue");
+    model.save("test/Model/testImageGreyscaledBlue.ppm", "testImageGreyscaledBlue");
 
-    int[][][] expectedImage = ImageUtil.readPPM(
-        "test/Model/expectedImageGreyscaledBlue.ppm");
-    int[][][] grayScaledImage = ImageUtil.readPPM(
-        "test/Model/testImageGreyscaleBlue.ppm");
+    int[][][] expectedImage = ImageUtil.readPPM("test/Model/expectedImageGreyscaledBlue.ppm");
+    int[][][] grayScaledImage = ImageUtil.readPPM("test/Model/testImageGreyscaleBlue.ppm");
 
     assertEquals(expectedImage, grayScaledImage);
 
@@ -174,15 +161,11 @@ public class ModelTest {
     String path = "test/Model/testImage.ppm";
 
     model.load(path, "testImage");
-    model.greyscale(ImageComponents.LUMA, "testImage",
-        "testImageGreyscaledLuma");
-    model.save("test/Model/testImageGreyscaledLuma.ppm",
-        "testImageGreyscaledLuma");
+    model.greyscale(ImageComponents.LUMA, "testImage", "testImageGreyscaledLuma");
+    model.save("test/Model/testImageGreyscaledLuma.ppm", "testImageGreyscaledLuma");
 
-    int[][][] expectedImage = ImageUtil.readPPM(
-        "test/Model/expectedImageGreyscaledLuma.ppm");
-    int[][][] grayScaledImage = ImageUtil.readPPM(
-        "test/Model/testImageGreyscaleLuma.ppm");
+    int[][][] expectedImage = ImageUtil.readPPM("test/Model/expectedImageGreyscaledLuma.ppm");
+    int[][][] grayScaledImage = ImageUtil.readPPM("test/Model/testImageGreyscaleLuma.ppm");
 
     assertEquals(expectedImage, grayScaledImage);
 
@@ -191,19 +174,15 @@ public class ModelTest {
   // Value
 
   @Test
-  public void testGreyscaleValue() throws IOException{
+  public void testGreyscaleValue() throws IOException {
     String path = "test/Model/testImage.ppm";
 
     model.load(path, "testImage");
-    model.greyscale(ImageComponents.VALUE, "testImage",
-        "testImageGreyscaledValue");
-    model.save("test/Model/testImageGreyscaledValue.ppm",
-        "testImageGreyscaledValue");
+    model.greyscale(ImageComponents.VALUE, "testImage", "testImageGreyscaledValue");
+    model.save("test/Model/testImageGreyscaledValue.ppm", "testImageGreyscaledValue");
 
-    int[][][] expectedImage = ImageUtil.readPPM(
-        "test/Model/expectedImageGreyscaledValue.ppm");
-    int[][][] grayScaledImage = ImageUtil.readPPM(
-        "test/Model/testImageGreyscaleValue.ppm");
+    int[][][] expectedImage = ImageUtil.readPPM("test/Model/expectedImageGreyscaledValue.ppm");
+    int[][][] grayScaledImage = ImageUtil.readPPM("test/Model/testImageGreyscaleValue.ppm");
 
     assertEquals(expectedImage, grayScaledImage);
 
@@ -217,15 +196,11 @@ public class ModelTest {
     String path = "test/Model/testImage.ppm";
 
     model.load(path, "testImage");
-    model.greyscale(ImageComponents.INTENSITY, "testImage",
-        "testImageGreyscaledIntensity");
-    model.save("test/Model/testImageGreyscaledIntensity.ppm",
-        "testImageGreyscaledIntensity");
+    model.greyscale(ImageComponents.INTENSITY, "testImage", "testImageGreyscaledIntensity");
+    model.save("test/Model/testImageGreyscaledIntensity.ppm", "testImageGreyscaledIntensity");
 
-    int[][][] expectedImage = ImageUtil.readPPM(
-        "test/Model/expectedImageGreyscaledIntensity.ppm");
-    int[][][] grayScaledImage = ImageUtil.readPPM(
-        "test/Model/testImageGreyscaleIntensity.ppm");
+    int[][][] expectedImage = ImageUtil.readPPM("test/Model/expectedImageGreyscaledIntensity.ppm");
+    int[][][] grayScaledImage = ImageUtil.readPPM("test/Model/testImageGreyscaleIntensity.ppm");
 
     assertEquals(expectedImage, grayScaledImage);
 
@@ -236,10 +211,8 @@ public class ModelTest {
     String path = "test/Model/testImage.ppm";
     model.load(path, "testImage");
 
-    model.rgbSplit("testImage", "testImageRedSplit",
-        "testImageGreenSplit", "testImageBlueSplit");
-    model.rgbCombine("testImageCombine", "testImageRedSplit",
-        "testImageGreenSplit",
+    model.rgbSplit("testImage", "testImageRedSplit", "testImageGreenSplit", "testImageBlueSplit");
+    model.rgbCombine("testImageCombine", "testImageRedSplit", "testImageGreenSplit",
         "testImageBlueSplit");
     model.save("test/Model/combinedImage.ppm", "combinedImage");
 
@@ -251,7 +224,7 @@ public class ModelTest {
   }
 
   @Test
-  public void testRgbCombine() throws IOException{
+  public void testRgbCombine() throws IOException {
 
     String pathRed = "test/Model/testImageRedSplit.ppm";
     String pathGreen = "test/Model/testImageGreenSplit.ppm";
@@ -261,8 +234,7 @@ public class ModelTest {
     model.load(pathGreen, "ImageGreenSplit");
     model.load(pathBlue, "ImageBlueSplit");
 
-    model.rgbCombine("testImageCombine", "ImageRedSplit",
-        "ImageGreenSplit", "ImageBlueSplit");
+    model.rgbCombine("testImageCombine", "ImageRedSplit", "ImageGreenSplit", "ImageBlueSplit");
     model.save("test/Model/testImageCombine.ppm", "testImageCombine");
 
     String pathCombinedImage = "test/Model/testImageCombine.ppm";

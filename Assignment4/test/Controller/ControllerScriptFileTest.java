@@ -1,11 +1,11 @@
 package Controller;
+
 import static junit.framework.TestCase.assertEquals;
 
 import View.MockScriptView;
 import Model.ModelPPMMock;
 import Model.Model;
 import Model.MockModel;
-import View.ViewScriptFile;
 import View.View;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -23,12 +23,14 @@ public class ControllerScriptFileTest {
   private View v;
   private Model m;
   private Controller c;
+
   @Before
-  public void init(){
+  public void init() {
 
   }
+
   @Test
-  public void initTest(){
+  public void initTest() {
     String input = "\"scripts/script1\"";
     System.setIn(new ByteArrayInputStream(input.getBytes()));
     Scanner scanner = new Scanner(new StringReader(input));
@@ -59,7 +61,7 @@ public class ControllerScriptFileTest {
   }
 
   @Test
-  public void testLongScript(){
+  public void testLongScript() {
     //has one instance of all the given commands
     String input = "test/scripts/script2.txt";
     System.setIn(new ByteArrayInputStream(input.getBytes()));

@@ -13,15 +13,13 @@ public class ModelPPMMock implements MockModel {
 
   @Override
   public void load(String filePath, String destImage) throws FileNotFoundException {
-    this.log.append(String.format("In function load with arguments %s, %s\n",
-        filePath, destImage));
+    this.log.append(String.format("In function load with arguments %s, %s\n", filePath, destImage));
 
   }
 
   @Override
   public void save(String filePath, String imageName) throws IOException {
-    this.log.append(String.format("In function save with arguments %s, %s\n", filePath,
-        imageName));
+    this.log.append(String.format("In function save with arguments %s, %s\n", filePath, imageName));
   }
 
   @Override
@@ -35,9 +33,7 @@ public class ModelPPMMock implements MockModel {
   public void rgbSplit(String imageName, String DestImageRed, String DestImageGreen,
       String DestImageBlue) {
     this.log.append(String.format("In function rgbSplit with arguments %s, %s, %s, %s\n", imageName,
-        DestImageRed,
-        DestImageGreen,
-        DestImageBlue));
+        DestImageRed, DestImageGreen, DestImageBlue));
   }
 
   @Override
@@ -45,8 +41,7 @@ public class ModelPPMMock implements MockModel {
       String DestImageBlue) {
     this.log.append(
         String.format("In function rgbCombine with arguments %s, %s, %s, %s\n", DestImage,
-            DestImageRed, DestImageGreen,
-            DestImageBlue));
+            DestImageRed, DestImageGreen, DestImageBlue));
   }
 
   @Override

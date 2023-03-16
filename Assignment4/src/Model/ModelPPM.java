@@ -4,11 +4,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
+
 /**
- * The ModelPPM class represents a PPM image file and provides functionality for
- * loading, saving, and modifying the image. The image is stored as a HashMap where the key is a
- * String representing the image name and the value is a three-dimensional array of integers
- * representing the red, green and blue pixels.
+ * The ModelPPM class represents a PPM image file and provides functionality for loading, saving,
+ * and modifying the image. The image is stored as a HashMap where the key is a String representing
+ * the image name and the value is a three-dimensional array of integers representing the red, green
+ * and blue pixels.
  */
 public class ModelPPM implements Model {
 
@@ -39,7 +40,7 @@ public class ModelPPM implements Model {
 
     int[][][] image = this.imageMap.get(imageName);
 
-    if(image.length == 3) {
+    if (image.length == 3) {
       fout.write("P3\n".getBytes());
     } else if (image.length == 1) {
       fout.write("P2\n".getBytes());
@@ -48,7 +49,7 @@ public class ModelPPM implements Model {
 
     for (int i = 0; i < height; i++) { //rows
       for (int j = 0; j < width; j++) { //cols
-        for(int k = 0; k < image.length; k++) {
+        for (int k = 0; k < image.length; k++) {
           fout.write((new Integer(image[k][i][j]).toString() + "\n").getBytes());
         }
       }
@@ -61,7 +62,7 @@ public class ModelPPM implements Model {
     for (int i = 0; i < image.length; i++) {
       for (int j = 0; j < height; j++) {
         for (int k = 0; k < width; k++) {
-          if(image[i][j][k] + increment > 255) {
+          if (image[i][j][k] + increment > 255) {
             image[i][j][k] = 255;
           } else if (image[i][j][k] + increment < 0) {
             image[i][j][k] = 0;
@@ -213,9 +214,9 @@ public class ModelPPM implements Model {
   @Override
   public void rgbSplit(String imageName, String destImageRed, String destImageGreen,
       String destImageBlue) {
-      imageMap.put(destImageRed, getRed(imageName));
-      imageMap.put(destImageGreen, getGreen(imageName));
-      imageMap.put(destImageBlue, getBlue(imageName));
+    imageMap.put(destImageRed, getRed(imageName));
+    imageMap.put(destImageGreen, getGreen(imageName));
+    imageMap.put(destImageBlue, getBlue(imageName));
   }
 
   @Override
