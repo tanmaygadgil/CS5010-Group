@@ -36,11 +36,13 @@ public class TextInputView extends AbstractTextView {
    */
   public TextInputView() {
     this.mode = "command";
+    System.out.println("Please insert your commands here: \n");
   }
 
   @Override
   public String getInput() {
     Scanner in;
+
     if (this.mode.equals("script")) {
       String command;
       if (this.commandGenerator.hasNext()) {
@@ -51,7 +53,7 @@ public class TextInputView extends AbstractTextView {
       return command;
     }
     if (this.mode.equals("command")) {
-      return this.scanner.nextLine();
+      return this.scanner.nextLine().strip();
     }
 
     return null;
