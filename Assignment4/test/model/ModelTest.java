@@ -34,6 +34,15 @@ public class ModelTest {
     assertEquals(imageOriginal, imageSaved);
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testSaveException() throws IOException {
+    Model model = new ModelPPM();
+
+    model.load("test/Model/testImage.ppm", "testImage");
+    model.save("test/Model/testSaveImage.ppm", "asdf");
+
+  }
+
   @Test
   public void testBrighten() throws IOException {
     String path = "test/Model/testImage.ppm";
@@ -55,9 +64,19 @@ public class ModelTest {
 
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testBrightenException() throws IOException {
+    String path = "test/Model/testImage.ppm";
+    int[][][] image = ImageUtil.readPPM(path);
+    int increment = 10;
+
+    model.load(path, "testImage");
+    model.brighten(increment, "asdf", "testImageBrighten");
+
+  }
+
   @Test
   public void testFlipVertical() throws IOException {
-
     String path = "test/Model/testImageAscendingRows.ppm";
     int[][][] image = new int[3][3][4];
     //generating correct answer
@@ -75,6 +94,23 @@ public class ModelTest {
     int[][][] imageVert = ImageUtil.readPPM("test/Model/testImageAscendingRowsVertFlip.ppm");
 
     assertEquals(imageVert, image);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testFlipVerticalException() throws IOException {
+    String path = "test/Model/testImageAscendingRows.ppm";
+    int[][][] image = new int[3][3][4];
+    //generating correct answer
+    for (int i = 3; i >= 1; i--) {
+      for (int j = 3; j >= 1; j--) {
+        for (int k = 4; k >= 1; k--) {
+          image[3 - i][3 - j][4 - k] = j;
+        }
+      }
+    }
+
+    model.load(path, "testImageAscendingRows");
+    model.flip(Axes.VERTICAL, "asdf", "testImageAscendingRowsVertFlip");
   }
 
   @Test
@@ -97,6 +133,22 @@ public class ModelTest {
     assertEquals(imageHori, image);
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testFlipHorizontalException() throws IOException {
+    String path = "test/Model/testImageAscendingCols.ppm";
+    int[][][] image = new int[3][3][4];
+    for (int i = 3; i >= 1; i--) {
+      for (int j = 3; j >= 1; j--) {
+        for (int k = 4; k >= 1; k--) {
+          image[3 - i][3 - j][4 - k] = k;
+        }
+      }
+    }
+
+    model.load(path, "testImageAscendingCols");
+    model.flip(Axes.HORIZONTAL, "asdf", "testImageAscendingColsHoriFlip");
+  }
+
   @Test
   public void testGreyscaleRed() throws IOException {
     String path = "test/Model/testImage.ppm";
@@ -108,6 +160,15 @@ public class ModelTest {
     int[][][] expectedImage = ImageUtil.readPPM("test/Model/expectedImageGreyscaledRed.ppm");
     int[][][] grayScaledImage = ImageUtil.readPPM("test/Model/testImageGreyscaleRed.ppm");
     assertEquals(expectedImage, grayScaledImage);
+
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testGreyscaleRedException() throws IOException {
+    String path = "test/Model/testImage.ppm";
+
+    model.load(path, "testImage");
+    model.greyscale(ImageComponents.RED, "asdf", "testImageGreyscaledRed");
 
   }
 
@@ -127,6 +188,14 @@ public class ModelTest {
 
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testGreyscaleGreenException() throws IOException {
+    String path = "test/Model/testImage.ppm";
+
+    model.load(path, "testImage");
+    model.greyscale(ImageComponents.GREEN, "asdf", "testImageGreyscaledGreen");
+  }
+
   @Test
   public void testGreyscaleBlue() throws IOException {
 
@@ -143,6 +212,15 @@ public class ModelTest {
 
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testGreyscaleBlueException() throws IOException {
+
+    String path = "test/Model/testImage.ppm";
+
+    model.load(path, "testImage");
+    model.greyscale(ImageComponents.BLUE, "asdf", "testImageGreyscaledBlue");
+  }
+
   @Test
   public void testGreyscaleLuma() throws IOException {
 
@@ -156,10 +234,16 @@ public class ModelTest {
     int[][][] grayScaledImage = ImageUtil.readPPM("test/Model/testImageGreyscaleLuma.ppm");
 
     assertEquals(expectedImage, grayScaledImage);
-
   }
 
-  // Value
+  @Test(expected = IllegalArgumentException.class)
+  public void testGreyscaleLumaException() throws IOException {
+
+    String path = "test/Model/testImage.ppm";
+
+    model.load(path, "testImage");
+    model.greyscale(ImageComponents.LUMA, "asdf", "testImageGreyscaledLuma");
+  }
 
   @Test
   public void testGreyscaleValue() throws IOException {
@@ -176,7 +260,13 @@ public class ModelTest {
 
   }
 
-  // Intensity
+  @Test(expected = IllegalArgumentException.class)
+  public void testGreyscaleValueException() throws IOException {
+    String path = "test/Model/testImage.ppm";
+
+    model.load(path, "testImage");
+    model.greyscale(ImageComponents.VALUE, "asdf", "testImageGreyscaledValue");
+  }
 
   @Test
   public void testGreyscaleIntensity() throws IOException {
@@ -194,6 +284,15 @@ public class ModelTest {
 
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testGreyscaleIntensityException() throws IOException {
+
+    String path = "test/Model/testImage.ppm";
+
+    model.load(path, "testImage");
+    model.greyscale(ImageComponents.INTENSITY, "asdf", "testImageGreyscaledIntensity");
+  }
+
   @Test
   public void testRgbSplit() throws IOException {
     String path = "test/Model/testImage.ppm";
@@ -202,13 +301,23 @@ public class ModelTest {
     model.rgbSplit("testImage", "testImageRedSplit", "testImageGreenSplit", "testImageBlueSplit");
     model.rgbCombine("testImageCombine", "testImageRedSplit", "testImageGreenSplit",
         "testImageBlueSplit");
-    model.save("test/Model/combinedImage.ppm", "combinedImage");
+    model.save("test/Model/combinedImage.ppm", "testImageCombine");
 
     String pathCombinedImage = "test/Model/combinedImage.ppm";
     int[][][] combinedImage = ImageUtil.readPPM(pathCombinedImage);
     int[][][] originalImage = ImageUtil.readPPM(path);
 
     assertEquals(combinedImage, originalImage);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testRgbSplitException() throws IOException {
+    String path = "test/Model/testImage.ppm";
+    model.load(path, "testImage");
+
+    model.rgbSplit("asdf", "testImageRedSplit", "testImageGreenSplit", "testImageBlueSplit");
+    model.rgbCombine("testImageCombine", "testImageRedSplit", "testImageGreenSplit",
+        "testImageBlueSplit");
   }
 
   @Test
@@ -234,4 +343,48 @@ public class ModelTest {
     assertEquals(combinedImage, originalImage);
 
   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testRgbCombineExceptionRed() throws IOException {
+
+    String pathRed = "test/Model/testImageRedSplit.ppm";
+    String pathGreen = "test/Model/testImageGreenSplit.ppm";
+    String pathBlue = "test/Model/testImageBlueSplit.ppm";
+
+    model.load(pathRed, "ImageRedSplit");
+    model.load(pathGreen, "ImageGreenSplit");
+    model.load(pathBlue, "ImageBlueSplit");
+
+    model.rgbCombine("testImageCombine", "asdf", "ImageGreenSplit", "ImageBlueSplit");
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testRgbCombineExceptionGreen() throws IOException {
+
+    String pathRed = "test/Model/testImageRedSplit.ppm";
+    String pathGreen = "test/Model/testImageGreenSplit.ppm";
+    String pathBlue = "test/Model/testImageBlueSplit.ppm";
+
+    model.load(pathRed, "ImageRedSplit");
+    model.load(pathGreen, "ImageGreenSplit");
+    model.load(pathBlue, "ImageBlueSplit");
+
+    model.rgbCombine("testImageCombine", "ImageRedSplit", "asdf", "ImageBlueSplit");
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testRgbCombineExceptionBlue() throws IOException {
+
+    String pathRed = "test/Model/testImageRedSplit.ppm";
+    String pathGreen = "test/Model/testImageGreenSplit.ppm";
+    String pathBlue = "test/Model/testImageBlueSplit.ppm";
+
+    model.load(pathRed, "ImageRedSplit");
+    model.load(pathGreen, "ImageGreenSplit");
+    model.load(pathBlue, "ImageBlueSplit");
+
+    model.rgbCombine("testImageCombine", "ImageRedSplit", "ImageGreenSplit", "asdf");
+  }
+
+
 }

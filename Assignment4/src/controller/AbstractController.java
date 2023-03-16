@@ -148,7 +148,6 @@ public abstract class AbstractController implements Controller {
           this.model.rgbSplit(commandArgs[1], commandArgs[2], commandArgs[3], commandArgs[4]);
           return "RGB-split successful";
         } catch (Exception e) {
-          e.printStackTrace();
           return "RGB - split unsuccessful";
         }
         // Combine the three greyscale images into a single image that gets its red, green and blue
@@ -158,7 +157,6 @@ public abstract class AbstractController implements Controller {
           this.model.rgbCombine(commandArgs[1], commandArgs[2], commandArgs[3], commandArgs[4]);
           return "RGB-combine successful";
         } catch (Exception e) {
-          e.printStackTrace();
           return "RGB - combine unsuccessful";
         }
       default:

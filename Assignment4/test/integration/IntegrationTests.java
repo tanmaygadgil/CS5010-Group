@@ -2,6 +2,8 @@ package integration;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import model.ImageUtil;
 import controller.Controller;
 import model.Model;
@@ -43,13 +45,16 @@ public class IntegrationTests {
 
   @Test
   public void testSimpleCommandLine() throws IOException {
-    String input = "test/scripts/flipSimpleMat.txt";
-    Model m = new ModelPPM();
-    View v = new TextInputView("script", input);
-    Controller c = new ControllerCommandLine(m, v);
+    String input =
+        "load test/integration/incMatRGB.txt incmat\n" + "vertical-flip incmat incmat-vertical\n"
+            + "save test/integration/incmat-vertical.txt incmat-vertical\n" + "exit\n";
 
     InputStream inputStream = new ByteArrayInputStream(input.getBytes());
     System.setIn(inputStream);
+
+    Model m = new ModelPPM();
+    View v = new TextInputView();
+    Controller c = new ControllerCommandLine(m, v);
 
     c.run();
 
@@ -58,7 +63,7 @@ public class IntegrationTests {
         {{9, 10, 11, 12}, {5, 6, 7, 8}, {1, 2, 3, 4}},
         {{9, 10, 11, 12}, {5, 6, 7, 8}, {1, 2, 3, 4}}};
 
-    int[][][] vertFlip = ImageUtil.readPPM("test/Integration/incmat-vertical.txt");
+    int[][][] vertFlip = ImageUtil.readPPM("test/integration/incmat-vertical.txt");
     assertEquals(image, vertFlip);
   }
 

@@ -27,7 +27,7 @@ public class ModelPPM implements Model {
 
   @Override
   public void load(String filePath, String destImage) throws FileNotFoundException {
-    //size = (3, 768, 1024)
+    //size = (3, height, width)
     int[][][] image = ImageUtil.readPPM(filePath);
     this.height = image[0].length;
     this.width = image[0][0].length;
@@ -36,6 +36,9 @@ public class ModelPPM implements Model {
 
   @Override
   public void save(String filePath, String imageName) throws IOException {
+    if (!imageMap.containsKey(imageName)) {
+      throw new IllegalArgumentException("Image name not found in hashmap");
+    }
     FileOutputStream fout = new FileOutputStream(filePath);
 
     int[][][] image = this.imageMap.get(imageName);
@@ -58,6 +61,9 @@ public class ModelPPM implements Model {
 
   @Override
   public void brighten(int increment, String imageName, String destImage) {
+    if (!imageMap.containsKey(imageName)) {
+      throw new IllegalArgumentException("Image name not found in hashmap");
+    }
     int[][][] image = imageMap.get(imageName);
     for (int i = 0; i < image.length; i++) {
       for (int j = 0; j < height; j++) {
@@ -79,6 +85,9 @@ public class ModelPPM implements Model {
 
   @Override
   public void flip(Axes axis, String imageName, String destImage) {
+    if (!imageMap.containsKey(imageName)) {
+      throw new IllegalArgumentException("Image name not found in hashmap");
+    }
     int[][][] image = this.imageMap.get(imageName);
 
     if (axis == Axes.HORIZONTAL) {
@@ -119,6 +128,9 @@ public class ModelPPM implements Model {
 
   @Override
   public void greyscale(ImageComponents rGB, String imageName, String destImage) {
+    if (!imageMap.containsKey(imageName)) {
+      throw new IllegalArgumentException("Image name not found in hashmap");
+    }
     int[][][] greyscale = new int[1][height][width];
 
     switch (rGB) {
@@ -214,6 +226,9 @@ public class ModelPPM implements Model {
   @Override
   public void rgbSplit(String imageName, String destImageRed, String destImageGreen,
       String destImageBlue) {
+    if (!imageMap.containsKey(imageName)) {
+      throw new IllegalArgumentException("Image name not found in hashmap");
+    }
     imageMap.put(destImageRed, getRed(imageName));
     imageMap.put(destImageGreen, getGreen(imageName));
     imageMap.put(destImageBlue, getBlue(imageName));
@@ -222,6 +237,10 @@ public class ModelPPM implements Model {
   @Override
   public void rgbCombine(String destImage, String destImageRed, String destImageGreen,
       String destImageBlue) {
+    if (!imageMap.containsKey(destImageRed) || !imageMap.containsKey(destImageGreen)
+        || !imageMap.containsKey(destImageBlue)) {
+      throw new IllegalArgumentException("Image name not found in hashmap");
+    }
     int[][][] image = new int[3][height][width];
     image[0] = imageMap.get(destImageRed)[0];
     image[1] = imageMap.get(destImageGreen)[0];
