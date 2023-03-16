@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="-40.0" y="-14.5">view.View</node>
+    <node x="-79.0" y="48.5">view.AbstractTextView</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="view.AbstractTextView" target="view.View" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="1.5" showDependencies="false" x="10.0" y="70.0" />
+  <SelectedNodes>
+    <node>view.AbstractTextView</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
