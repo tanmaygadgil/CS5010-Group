@@ -1,5 +1,5 @@
 #load
-load test/Integration/inctensor.txt inctensor
+load test/integration/inctensor.txt inctensor
 
 #rgb split calls greyscale for r, g, b, so it suffices to use this function
 rgb-split inctensor inctensor-red inctensor-green inctensor-blue
@@ -14,9 +14,9 @@ greyscale value-component inctensor inctensor-value
 greyscale intensity-component inctensor inctensor-intensity
 
 #save all files
-save test/Integration/inctensor-red.txt inctensor-red
-save test/Integration/inctensor-green.txt inctensor-green
-save test/Integration/inctensor-blue.txt inctensor-blue
-save test/Integration/inctensor-luma.txt inctensor-luma
-save test/Integration/inctensor-value.txt inctensor-value
-save test/Integration/inctensor-intensity.txt inctensor-intensity
+save test/integration/inctensor-red.txt inctensor-red
+save test/integration/inctensor-green.txt inctensor-green
+save test/integration/inctensor-blue.txt inctensor-blue
+save test/integration/inctensor-luma.txt inctensor-luma
+save test/integration/inctensor-value.txt inctensor-value
+save test/integration/inctensor-intensity.txt inctensor-intensity
