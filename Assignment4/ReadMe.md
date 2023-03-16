@@ -8,9 +8,10 @@
 
 ## Overview
 
-This is an application that aims to accept user commands either via command line
+This is an image processing application that aims to accept user commands either via command line
 or by script to perform operations on a PPM image. The design is written as an MVC application.
-Details of each component are described below. 
+Details of each component are described below. This version of the application can only handle PPM 
+images but can be extended for other formats in the future. 
 
 At a high level this is how the application functions:
 
@@ -18,7 +19,7 @@ At a high level this is how the application functions:
 
 ## Class and Interface Definitions
 
-### Model:
+### Model
 
 ![Model](diagrams/model.png)
 
@@ -65,28 +66,27 @@ In model module we have the following classes:
 - **ImageUtil:** This class contains utility methods to read a PPM image from file and simply
   print its contents.
 
-### View:
-
-![View](./diagrams/view.png)
-
-The view is the part of the program that shows results to the user.
-
-- **Controller:**
-- **AbstractController:**
-- **ControllerCommandLine:**
-- **ControllerScriptFile:**
-
-### Controller:
+### Controller
 
 ![Controller](./diagrams/controller.png)
 
+
+The view is the part of the program that shows results to the user.
+
+- **Controller:** The given code represents an interface called "Controller" in the "controller" package of a Java application. The purpose of this interface is to provide a common contract for any class that wants to act as a controller in the Model-View-Controller (MVC) architecture.
+The interface has one method called "run()" which takes no arguments and returns void. This method is used to execute inputs from the view in a loop.
+- **AbstractController:** This class is an abstract controller that implements the Controller interface. It provides a set of methods that all controllers need, such as parsing commands, calling the model, and rendering the output to the view.
+- **ControllerCommandLine:** This class represents the command line implementation of the controller interface. It allows users to run commands through a model using a command line interface, and has a function called "parseAndCall" which parses input files and calls model functions.
+
+### View
+
+![View](./diagrams/view.png)
+
 The controller takes inputs from the user and tells the model what to do and the view what to show.
 
-- **View:**
-- **ViewScriptFile:**
-- **MockScriptFile:**
-- **TextInputView:**
-- **CommandLineView:**
+- **View:** This is an interface for a view in a software system, which defines the two methods: getInput() to get input in a specific format and renderOutput() to output a string depending on the implementation.
+- **MockScriptView:**  This is a Java class named "MockScriptView" that implements the "View" interface. It is a mock model of the view that is used for testing. It can read from a file and simulate user input, depending on the specified mode.
+- **TextInputView:** The TextInputView class is a subclass of AbstractTextView and provides a command-line interface for user input. It has two modes, "command" and "script", with the former taking input directly from the user and the latter executing commands from a file in sequence until the end of the file or the command "exit" is reached.
 
 ## Commands
 
