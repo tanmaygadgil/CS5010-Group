@@ -6,6 +6,16 @@
 - Seung Hun Lee
 - Javad MoeinNajafabadi
 
+## Overview
+
+This is an application that aims to accept user commands either via command line
+or by script to perform operations on a PPM image. The design is written as an MVC application.
+Details of each component are described below. 
+
+At a high level this is how the application functions:
+
+![src](diagrams/src.png)
+
 ## Class and Interface Definitions
 
 ### Model:
@@ -57,6 +67,8 @@ In model module we have the following classes:
 
 ### View:
 
+![View](./diagrams/view.png)
+
 The view is the part of the program that shows results to the user.
 
 - **Controller:**
@@ -66,9 +78,7 @@ The view is the part of the program that shows results to the user.
 
 ### Controller:
 
-![Controller](diagrams/controller.png)
-
-![View](diagrams/view.png)
+![Controller](./diagrams/controller.png)
 
 The controller takes inputs from the user and tells the model what to do and the view what to show.
 
@@ -93,7 +103,6 @@ Here is a list of accepted commands for both the command mode and the script mod
 7. rgb-split <image-name> <dest-image-name-red> <dest-image-name-green> <dest-image-name-blue>
 8. rgb-combine <image-name> <red-image> <green-image> <blue-image>
 
-
 The main script of this application is run using the Main.java class found in the src/ folder
 
 The first step is to compile the classes to ensure that they run in the terminal
@@ -101,7 +110,7 @@ To compile the code
 
 #### Before running the script:
 
-1. First be in the [src/](./src/) directory
+1. First be in the [src/](src) directory
     ```shell
    cd src/
    ```
@@ -150,6 +159,7 @@ Run these sample scripts for the following use cases
 #### Running in command mode
 
 First execute
+
 ```shell
 >>> cd src/
 >>> java Main.java

@@ -3,7 +3,7 @@ package model;
 /**
  * Possible axes to flip and image.
  */
-public abstract enum Axes implements Model {
+public enum Axes {
   HORIZONTAL,
 
   VERTICAL
