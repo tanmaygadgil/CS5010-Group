@@ -1,5 +1,5 @@
 #load incmat.txt and call it 'incmat'
-load test/Integration/incMatRGB.txt incmat
+load test/integration/incMatRGB.txt incmat
 
 
 #brighten incmat by adding 10
@@ -21,4 +21,4 @@ brighten 50 incmat-red incmat-red
 rgb-combine incmat-red-tint incmat-red incmat-green incmat-blue
 
 #save the image into incmat-red-tint
-save test/Integration/incmat-red-tint.txt incmat-red-tint
+save test/integration/incmat-red-tint.txt incmat-red-tint
