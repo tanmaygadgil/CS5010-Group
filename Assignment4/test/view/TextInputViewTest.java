@@ -26,7 +26,7 @@ public class TextInputViewTest {
 
   @Test
   public void testCommandModeInput() {
-    String input = "rgb-combine koala koala-red koala-green\nexit";
+    String input = "rgb-combine koala koala-red koala-green\nsave test/view/a.txt\nexit";
     String outputString = "rgb-combine koala koala-red koala-green";
     InputStream inputStream = new ByteArrayInputStream(input.getBytes());
     System.setIn(inputStream);

@@ -1,6 +1,7 @@
 package view;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.Scanner;
 
 /**
@@ -51,8 +52,7 @@ public class TextInputView extends AbstractTextView {
       return command;
     }
     if (this.mode.equals("command")) {
-      in = new Scanner(System.in);
-      return in.nextLine();
+      return this.scanner.nextLine();
     }
 
     return null;
