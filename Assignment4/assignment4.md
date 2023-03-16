@@ -10,6 +10,8 @@
 
 ### Model:
 
+![Model](diagrams/model.png)
+
 The model implements the actual functionalities offered by the program.
 In model module we have the following classes:
 
@@ -66,6 +68,7 @@ The view is the part of the program that shows results to the user.
 
 ![Controller](diagrams/controller.png)
 
+![View](diagrams/view.png)
 
 The controller takes inputs from the user and tells the model what to do and the view what to show.
 
