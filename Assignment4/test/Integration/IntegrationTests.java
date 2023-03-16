@@ -9,10 +9,8 @@ import Model.Model;
 import View.View;
 import Model.ModelPPM;
 import View.TextInputView;
-import View.ViewScriptFile;
+import Controller.ControllerCommandLine;
 import java.io.ByteArrayInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import org.junit.Test;
@@ -23,10 +21,11 @@ public class IntegrationTests {
   public void testScriptVertical() throws IOException {
     //vertical flip the image and save it
     Model m = new ModelPPM();
-    View v = new TextInputView("script");
-    Controller c = new ControllerScriptFile(m, v);
-
     String input = "test/scripts/flipSimpleMat.txt";
+    View v = new TextInputView("script",input );
+    Controller c = new ControllerCommandLine(m, v);
+
+
     InputStream inputStream = new ByteArrayInputStream(input.getBytes());
     System.setIn(inputStream);
 
@@ -43,11 +42,12 @@ public class IntegrationTests {
 
   @Test
   public void testSimpleCommandLine() throws IOException {
-    Model m = new ModelPPM();
-    View v = new TextInputView("command");
-    Controller c = new ControllerScriptFile(m, v);
-
     String input = "test/scripts/flipSimpleMat.txt";
+    Model m = new ModelPPM();
+    View v = new TextInputView("script",input );
+    Controller c = new ControllerCommandLine(m, v);
+
+
     InputStream inputStream = new ByteArrayInputStream(input.getBytes());
     System.setIn(inputStream);
 
@@ -65,10 +65,11 @@ public class IntegrationTests {
   @Test
   public void testScript2() throws IOException {
     Model m = new ModelPPM();
-    View v = new TextInputView("command");
-    Controller c = new ControllerScriptFile(m, v);
-
     String input = "test/scripts/script2ForSimpleMat.txt";
+    View v = new TextInputView("script",input );
+    Controller c = new ControllerCommandLine(m, v);
+
+
     InputStream inputStream = new ByteArrayInputStream(input.getBytes());
     System.setIn(inputStream);
 
@@ -85,10 +86,11 @@ public class IntegrationTests {
   @Test
   public void createGreyScaleImagesFromScript() throws IOException {
     Model m = new ModelPPM();
-    View v = new TextInputView("command");
-    Controller c = new ControllerScriptFile(m, v);
-
     String input = "test/scripts/greyScaleScript.txt";
+    View v = new TextInputView("script",input );
+    Controller c = new ControllerCommandLine(m, v);
+
+
     InputStream inputStream = new ByteArrayInputStream(input.getBytes());
     System.setIn(inputStream);
 

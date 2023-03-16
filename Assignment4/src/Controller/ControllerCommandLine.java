@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class ControllerCommandLine extends AbstractController implements Controller {
+
   private InputStream in;
 
   private OutputStream out;
@@ -24,6 +25,7 @@ public class ControllerCommandLine extends AbstractController implements Control
   public void run() throws IOException {
     while (true) {
       String command = this.view.getInput();
+
       if (command.strip().equals("exit")) {
         break;
       }

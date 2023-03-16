@@ -1,4 +1,5 @@
 #load
+#load test/Integration/incMatRGB.txt incmat
 load test/Integration/incMatRGB.txt incmat
 
 #flip vertically

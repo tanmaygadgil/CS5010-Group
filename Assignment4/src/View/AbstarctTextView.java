@@ -3,54 +3,18 @@ package View;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Scanner;
 
-public class MockScriptView implements View {
-
-  private final Scanner scanner;
-  private final String  filename;
-  private String mode = "command";
-  private StringGenerator commandGenerator = null;
-  //  private InputStream in;
-  public MockScriptView(Scanner scanner){
-
-    this.scanner = scanner;
-//    this.in = in;
-    filename = null;
-  }
-
-  public MockScriptView(Scanner scanner, String filename) throws IOException {
-
-    this.scanner = scanner;
-    this.filename = filename;
-    this.mode = "script";
-
-    this.commandGenerator = new StringGenerator(loadFile(filename));
-//    this.in = in;
-  }
-  @Override
-  public String getInput() {
-    switch (this.mode){
-      case "command":
-        return this.scanner.nextLine();
-      case "script":
-        if (this.commandGenerator.hasNext()){
-          return this.commandGenerator.next();
-        } else {
-          return "exit";
-        }
-    }
-    return "exit";
-  }
+public abstract class AbstarctTextView implements View {
 
   @Override
-  public void renderOutput(String inputString) {
-    System.out.println(inputString);
-  }
-  private ArrayList<String> loadFile(String fileName) throws IOException {
+  public abstract String getInput();
+
+  @Override
+  public abstract void renderOutput(String inputString);
+
+  ArrayList<String> loadFile(String fileName) throws IOException {
     BufferedReader reader = new BufferedReader(new FileReader(fileName));
     ArrayList<String> commandArgs = new ArrayList<String>();
     String line = reader.readLine();
@@ -70,7 +34,7 @@ public class MockScriptView implements View {
    * @param command Helper function to ignore comments and empty lines
    * @return a parsed string
    */
-  private String extractCommand(String command) {
+  String extractCommand(String command) {
     if (command == null) {
       return null;
     }
@@ -84,7 +48,8 @@ public class MockScriptView implements View {
     }
     return command;
   }
-  private class StringGenerator implements Iterator<String> {
+
+  class StringGenerator implements Iterator<String> {
 
     private ArrayList<String> stringList;
     private int index;
