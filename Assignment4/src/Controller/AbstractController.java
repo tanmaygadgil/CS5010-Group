@@ -66,7 +66,10 @@ abstract public class AbstractController implements Controller {
           return "Image loaded";
         } catch (FileNotFoundException e) {
 
-          return "Unable to load Image";
+          return "Unable to find Image";
+        }catch (Exception e){
+          e.printStackTrace();
+          return "Unable to load file";
         }
 // Save the image with the given name to the specified path which should include the name of the file.
       case "save":
@@ -74,6 +77,9 @@ abstract public class AbstractController implements Controller {
           this.model.save(commandArgs[1], commandArgs[2]);
           return "Image saved successfully";
         } catch (IOException e) {
+          return "Unable to save Image";
+        } catch (Exception e){
+          e.printStackTrace();
           return "Unable to save Image";
         }
 // Create a greyscale image with the specified component of the image with the given name,
@@ -108,6 +114,7 @@ abstract public class AbstractController implements Controller {
           this.model.flip(Axes.HORIZONTAL, commandArgs[1], commandArgs[2]);
           return "horizontal flip successful";
         } catch (Exception e) {
+          e.printStackTrace();
           return "Horizontal flip unsuccessful";
         }
 // Flip an image vertically to create a new image, referred to henceforth by the given destination name.
@@ -116,6 +123,7 @@ abstract public class AbstractController implements Controller {
           this.model.flip(Axes.VERTICAL, commandArgs[1], commandArgs[2]);
           return "vertical flip successful";
         } catch (Exception e) {
+          e.printStackTrace();
           return "Vertical flip unsuccessful";
         }
 // Brighten the image by the given increment to create a new image, referred to henceforth by the given destination name.
@@ -124,6 +132,7 @@ abstract public class AbstractController implements Controller {
           this.model.brighten(Integer.parseInt(commandArgs[1]), commandArgs[2], commandArgs[3]);
           return "brighten successful";
         } catch (Exception e) {
+          e.printStackTrace();
           return "Brighten unsuccessful";
         }
 // Split the given image into three greyscale images containing its red, green and blue components respectively.
@@ -132,6 +141,7 @@ abstract public class AbstractController implements Controller {
           this.model.rgbSplit(commandArgs[1], commandArgs[2], commandArgs[3], commandArgs[4]);
           return "RGB-split successful";
         } catch (Exception e) {
+          e.printStackTrace();
           return "RGB - split unsuccessful";
         }
 // Combine the three greyscale images into a single image that gets its red, green and blue components from the three images respectively.
@@ -140,6 +150,7 @@ abstract public class AbstractController implements Controller {
           this.model.rgbCombine(commandArgs[1], commandArgs[2], commandArgs[3], commandArgs[4]);
           return "RGB-combine successful";
         } catch (Exception e) {
+          e.printStackTrace();
           return "RGB - combine unsuccessful";
         }
       default:

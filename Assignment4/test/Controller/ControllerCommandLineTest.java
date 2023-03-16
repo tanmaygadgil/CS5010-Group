@@ -1,5 +1,6 @@
 package Controller;
 
+import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.*;
 
 import View.MockScriptView;
@@ -78,7 +79,7 @@ public class ControllerCommandLineTest {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream));
     String input = "load images/koala.ppm\nexit";
-    String outputString = "Load command misformatted\r\n";
+    String outputString = "Unable to load file\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
     MockModel m = new ModelPPMMock();
@@ -99,7 +100,7 @@ public class ControllerCommandLineTest {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream));
     String input = "save images/koala.ppm\nexit";
-    String outputString = "Save Unsuccessful\r\n";
+    String outputString = "Unable to save Image\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
     MockModel m = new ModelPPMMock();
@@ -264,7 +265,7 @@ public class ControllerCommandLineTest {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream));
     String input = "load hh\nrgb-combine koala koala-red koala-green koala-blue\nexit";
-    String outputString = "Load command misformatted\r\n"
+    String outputString = "Unable to load file\r\n"
         + "RGB-combine successful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
@@ -280,6 +281,68 @@ public class ControllerCommandLineTest {
 //    System.out.println(outputStream.toString());
     assertEquals(outputStream.toString(), outputString);
   }
+  @Test
+  public void testSimpleInput(){
+    String input = "test/scripts/script1.txt";
+//    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//    System.setOut(new PrintStream(outputStream));
+    System.setIn(new ByteArrayInputStream(input.getBytes()));
+    Scanner scanner = new Scanner(new StringReader(input));
+    String scriptString = "In function load with arguments images/koala.ppm, koala\n"
+        + "In function flip with arguments VERTICAL, koala, koala-vertical\n"
+        + "In function save with arguments test/Integration/koala-vertical.ppm, koala-vertical\n";
 
+    View v = null;
+    try {
+      v = new MockScriptView(scanner, input);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+    MockModel m = new ModelPPMMock();
+    Controller c = new ControllerCommandLine(m, v);
+    try {
+      c.run();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+    assertEquals(scriptString, m.getLog());
+  }
+
+  @Test
+  public void testLongScript(){
+    //has one instance of all the given commands
+    String input = "test/scripts/script2.txt";
+    System.setIn(new ByteArrayInputStream(input.getBytes()));
+    Scanner scanner = new Scanner(new StringReader(input));
+
+    String scriptOutput = "In function load with arguments images/koala.ppm, koala\n"
+        + "In function brighten with arguments 10, koala, koala-brighter\n"
+        + "In function flip with arguments VERTICAL, koala, koala-vertical\n"
+        + "In function flip with arguments HORIZONTAL, koala-vertical, koala-vertical-horizontal\n"
+        + "In function greyscale with arguments VALUE, koala, koala-greyscale\n"
+        + "In function save with arguments images/koala-brighter.ppm, koala-brighter\n"
+        + "In function save with arguments images/koala-gs.ppm, koala-greyscale\n"
+        + "In function load with arguments images/upper.ppm, koala\n"
+        + "In function rgbSplit with arguments koala, koala-red, koala-green, koala-blue\n"
+        + "In function brighten with arguments 50, koala-red, koala-red\n"
+        + "In function rgbCombine with arguments koala-red-tint, koala-red, koala-green, koala-blue\n"
+        + "In function save with arguments images/koala-red-tint.ppm, koala-red-tint\n";
+    View v = null;
+    try {
+      v = new MockScriptView(scanner, input);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+    MockModel m = new ModelPPMMock();
+    Controller c = new ControllerCommandLine(m, v);
+
+    try {
+      c.run();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+//    System.out.println(m.getLog());
+    assertEquals(scriptOutput, m.getLog());
+  }
 
 }

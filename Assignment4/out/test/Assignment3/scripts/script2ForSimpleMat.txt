@@ -1,6 +1,7 @@
 #load incmat.txt and call it 'incmat'
 load test/Integration/incMatRGB.txt incmat
 
+
 #brighten incmat by adding 10
 brighten 10 incmat incmat-brighter
 
