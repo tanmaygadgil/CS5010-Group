@@ -2,8 +2,6 @@ package integration;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import model.ImageUtil;
 import controller.Controller;
 import model.Model;
