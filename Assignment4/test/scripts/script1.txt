@@ -5,4 +5,4 @@ load images/koala.ppm koala
 vertical-flip koala koala-vertical
 
 #save the brightened koala
-save test/Integration/koala-vertical.ppm koala-vertical
+save test/integration/koala-vertical.ppm koala-vertical
