@@ -6,18 +6,25 @@ import model.Model;
 
 public class GreyScale implements ImageProcessingCommand {
 
-  ImageComponents rGB;
+  ImageComponents component;
   String imageName;
   String destImage;
 
-  public GreyScale(ImageComponents rGB, String imageName, String destImage){
-    this.rGB = rGB;
+  public GreyScale(String component, String imageName, String destImage){
+    ImageComponents comp;
+    String input = component;
+    input = input.substring(0, input.indexOf("-")).toUpperCase();
+    try {
+      this.component = ImageComponents.valueOf(input);
+    } catch (Exception e) {
+      throw new IllegalArgumentException();
+    }
     this.imageName = imageName;
     this.destImage = destImage;
   }
 
   @Override
   public void run(Model m) {
-    m.greyscale(rGB, imageName, destImage);
+    m.greyscale(component, imageName, destImage);
   }
 }

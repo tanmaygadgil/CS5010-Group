@@ -150,7 +150,7 @@ public class ControllerCommandLineTest {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream));
     String input = "greyscale no-component koala\nexit";
-    String outputString = "Invalid image component\r\n";
+    String outputString = "greyscale unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
     MockModel m = new ModelPPMMock();
