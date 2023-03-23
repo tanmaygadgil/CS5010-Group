@@ -43,8 +43,8 @@ public class TextInputViewTest {
     View clv = new TextInputView();
     clv.renderOutput("This is a test String");
 
-    String expecteOutput = "This is a test String";
-    assertEquals(expecteOutput, outputStream.toString().strip());
+    String expectedOutput = "This is a test String";
+    assertEquals(expectedOutput, outputStream.toString().strip());
   }
 
 }

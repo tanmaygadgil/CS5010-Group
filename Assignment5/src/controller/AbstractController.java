@@ -1,6 +1,15 @@
 package controller;
 
+import controller.commands.Brighten;
+import controller.commands.Flip;
+import controller.commands.GreyScale;
+import controller.commands.Load;
+import java.util.Map;
+import java.util.function.Function;
 import model.Model;
+import controller.commands.RGBCombine;
+import controller.commands.RGBSplit;
+import controller.commands.Save;
 import view.View;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -58,111 +67,80 @@ public abstract class AbstractController implements Controller {
    * @return A string with a success/failure message.
    */
   protected String callModel(String[] commandArgs) {
+    ImageProcessingCommand cmd = null;
     // Handle unknown command.
-    switch (commandArgs[0]) {
-      // Load an image from the specified path and refer it to henceforth in the program by the
-      // given image name.
-      case "load":
-        try {
-          this.model.load(commandArgs[1], commandArgs[2]);
-          return "Image loaded";
-        } catch (FileNotFoundException e) {
-
-          return "Unable to find Image";
-        } catch (Exception e) {
-          e.printStackTrace();
-          return "Unable to load file";
-        }
+    try {
+      switch (commandArgs[0]) {
+        // Load an image from the specified path and refer it to henceforth in the program by the
+        // given image name.
+        case "load":
+          cmd = new Load(commandArgs[1], commandArgs[2]);
+          break;
         // Save the image with the given name to the specified path which should include the name of
         //the file.
-      case "save":
-        try {
-          this.model.save(commandArgs[1], commandArgs[2]);
-          return "Image saved successfully";
-        } catch (IOException e) {
-          return "Unable to save Image";
-        } catch (Exception e) {
-          e.printStackTrace();
-          return "Unable to save Image";
-        }
+        case "save":
+          cmd = new Save(commandArgs[1], commandArgs[2]);
+          break;
         // Create a greyscale image with the specified component of the image with the given name,
         // and refer to it henceforth in the program by the given destination name.
         // Get the right component from the enum
-      case "greyscale":
-        ImageComponents comp;
-        if (commandArgs[1].equals("red-component")) {
-          comp = ImageComponents.RED;
-        } else if (commandArgs[1].equals("green-component")) {
-          comp = ImageComponents.GREEN;
-        } else if (commandArgs[1].equals("blue-component")) {
-          comp = ImageComponents.BLUE;
-        } else if (commandArgs[1].equals("luma-component")) {
-          comp = ImageComponents.LUMA;
-        } else if (commandArgs[1].equals("value-component")) {
-          comp = ImageComponents.VALUE;
-        } else if (commandArgs[1].equals("intensity-component")) {
-          comp = ImageComponents.INTENSITY;
-        } else {
-          return "Invalid image component";
-        }
-        try {
-          this.model.greyscale(comp, commandArgs[2], commandArgs[3]);
-          return "conversion to greyscale successful";
-        } catch (Exception e) {
-          return "Could not convert Image to Greyscale";
-        }
+        case "greyscale":
+          ImageComponents comp;
+          String input = commandArgs[1];
+          input = input.substring(0, input.indexOf("-")).toUpperCase();
+          try {
+            comp = ImageComponents.valueOf(input);
+          } catch (Exception e) {
+            return "Invalid image component";
+          }
+          cmd = new GreyScale(comp, commandArgs[2], commandArgs[3]);
+          break;
         // Flip an image horizontally to create a new image, referred to henceforth by the
         // given destination name.
-      case "horizontal-flip":
-        try {
-          this.model.flip(Axes.HORIZONTAL, commandArgs[1], commandArgs[2]);
-          return "horizontal flip successful";
-        } catch (Exception e) {
-          e.printStackTrace();
-          return "Horizontal flip unsuccessful";
-        }
+        case "horizontal-flip":
+          cmd = new Flip(Axes.HORIZONTAL, commandArgs[1], commandArgs[2]);
+          break;
         // Flip an image vertically to create a new image, referred to henceforth by the
         // given destination name.
-      case "vertical-flip":
-        try {
-          this.model.flip(Axes.VERTICAL, commandArgs[1], commandArgs[2]);
-          return "vertical flip successful";
-        } catch (Exception e) {
-          e.printStackTrace();
-          return "Vertical flip unsuccessful";
-        }
+        case "vertical-flip":
+          cmd = new Flip(Axes.VERTICAL, commandArgs[1], commandArgs[2]);
+          break;
         // Brighten the image by the given increment to create a new image, referred to henceforth
         // by the given destination name.
-      case "brighten":
-        try {
-          this.model.brighten(Integer.parseInt(commandArgs[1]), commandArgs[2], commandArgs[3]);
-          return "brighten successful";
-        } catch (Exception e) {
-          e.printStackTrace();
-          return "Brighten unsuccessful";
-        }
+        case "brighten":
+          cmd = new Brighten(Integer.parseInt(commandArgs[1]), commandArgs[2], commandArgs[3]);
+          break;
         // Split the given image into three greyscale images containing its red, green and blue
         // components respectively.
-      case "rgb-split":
-        try {
-          this.model.rgbSplit(commandArgs[1], commandArgs[2], commandArgs[3], commandArgs[4]);
-          return "RGB-split successful";
-        } catch (Exception e) {
-          return "RGB - split unsuccessful";
-        }
+        case "rgb-split":
+          cmd = new RGBSplit(commandArgs[1], commandArgs[2], commandArgs[3], commandArgs[4]);
+          break;
         // Combine the three greyscale images into a single image that gets its red, green and blue
         // components from the three images respectively.
-      case "rgb-combine":
-        try {
-          this.model.rgbCombine(commandArgs[1], commandArgs[2], commandArgs[3], commandArgs[4]);
-          return "RGB-combine successful";
-        } catch (Exception e) {
-          return "RGB - combine unsuccessful";
-        }
-      default:
-        return "Invalid Command";
-    }
+        case "rgb-combine":
+          cmd = new RGBCombine(commandArgs[1], commandArgs[2], commandArgs[3], commandArgs[4]);
+          break;
+        default:
+          cmd = null;
+          break;
+      }
 
+      if (cmd != null) {
+        cmd.run(model);
+        return commandArgs[0] + " successful";
+      } else {
+        return "Invalid Command";
+      }
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+      return "Unable to find Image";
+    } catch (IOException e) {
+      e.printStackTrace();
+      return "Unable to save Image";
+    } catch (Exception e) {
+      e.printStackTrace();
+      return commandArgs[0] + " unsuccessful";
+    }
   }
 
 }

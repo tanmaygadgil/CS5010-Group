@@ -59,7 +59,7 @@ public class ControllerCommandLineTest {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream));
     String input = "load images/koala.ppm\nexit";
-    String outputString = "Unable to load file\r\n";
+    String outputString = "load unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
     MockModel m = new ModelPPMMock();
@@ -78,7 +78,7 @@ public class ControllerCommandLineTest {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream));
     String input = "save images/koala.ppm\nexit";
-    String outputString = "Unable to save Image\r\n";
+    String outputString = "save unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
     MockModel m = new ModelPPMMock();
@@ -96,7 +96,7 @@ public class ControllerCommandLineTest {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream));
     String input = "vertical-flip koala\nexit";
-    String outputString = "Vertical flip unsuccessful\r\n";
+    String outputString = "vertical-flip unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
     MockModel m = new ModelPPMMock();
@@ -114,7 +114,7 @@ public class ControllerCommandLineTest {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream));
     String input = "horizontal-flip koala\nexit";
-    String outputString = "Horizontal flip unsuccessful\r\n";
+    String outputString = "horizontal-flip unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
     MockModel m = new ModelPPMMock();
@@ -132,7 +132,7 @@ public class ControllerCommandLineTest {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream));
     String input = "greyscale value-component koala\nexit";
-    String outputString = "Could not convert Image to Greyscale\r\n";
+    String outputString = "greyscale unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
     MockModel m = new ModelPPMMock();
@@ -168,7 +168,7 @@ public class ControllerCommandLineTest {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream));
     String input = "brighten str koala-red koala-red\nexit";
-    String outputString = "Brighten unsuccessful\r\n";
+    String outputString = "brighten unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
     MockModel m = new ModelPPMMock();
@@ -186,7 +186,7 @@ public class ControllerCommandLineTest {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream));
     String input = "rgb-split koala koala-red koala-green\nexit";
-    String outputString = "RGB - split unsuccessful\r\n";
+    String outputString = "rgb-split unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
     MockModel m = new ModelPPMMock();
@@ -204,7 +204,7 @@ public class ControllerCommandLineTest {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream));
     String input = "rgb-combine koala koala-red koala-green\nexit";
-    String outputString = "RGB - combine unsuccessful\r\n";
+    String outputString = "rgb-combine unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
     MockModel m = new ModelPPMMock();
@@ -223,7 +223,7 @@ public class ControllerCommandLineTest {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream));
     String input = "load hh\nrgb-combine koala koala-red koala-green koala-blue\nexit";
-    String outputString = "Unable to load file\r\n" + "RGB-combine successful\r\n";
+    String outputString = "load unsuccessful\r\n" + "rgb-combine successful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
     MockModel m = new ModelPPMMock();
