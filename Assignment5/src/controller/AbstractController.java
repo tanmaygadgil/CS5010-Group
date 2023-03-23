@@ -76,7 +76,7 @@ public abstract class AbstractController implements Controller {
   /**
    * A function which holds the switch logic to call the model.
    *
-   * @param commandArgs A list of strings associated with the commands from teh script file.
+   * @param commandArgs A list of strings associated with the commands from the script file.
    * @return A string with a success/failure message.
    */
   protected String callModel(String[] commandArgs) throws IOException {
