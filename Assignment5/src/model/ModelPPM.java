@@ -24,7 +24,6 @@ public class ModelPPM implements Model {
     this.imageMap = new HashMap<>();
   }
 
-
   @Override
   public void load(String filePath, String destImage) throws FileNotFoundException {
     //size = (3, height, width)
