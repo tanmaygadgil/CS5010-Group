@@ -2,6 +2,8 @@ package model;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * This interface represents possible actions to be done on a PPM file.
@@ -12,20 +14,22 @@ public interface Model {
    * Reads an image file from the specified filePath, converts it to a three-dimensional array of
    * integers, and stores it in the imageMap with the specified destImage name.
    *
-   * @param filePath  path of image to read.
+   * @param in  path of image to read.
    * @param destImage name of the new image to store.
+   * @param format The file format to be saved or read
    * @throws FileNotFoundException if file does not exist.
    */
-  void load(String filePath, String destImage) throws FileNotFoundException;
+  void load(InputStream in, String destImage, String format) throws FileNotFoundException;
 
   /**
    * Writes the specified image to the specified filePath in PPM format.
    *
-   * @param filePath  path to save the image file to.
+   * @param out  path to save the image file to.
    * @param imageName name of the image to save.
+   * @param format The file format to be saved or read
    * @throws IOException if there is an error writing the file.
    */
-  void save(String filePath, String imageName) throws IOException;
+  void save(OutputStream out, String imageName, String format) throws IOException;
 
   /**
    * Convert an image to greyscale based on the imagecomponent given.
