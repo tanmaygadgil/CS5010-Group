@@ -1,63 +1,23 @@
 package model;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
+import model.loaders.ConventionalImageLoader;
+import model.loaders.PPMImageLoader;
+import model.savers.ConventionalImageSaver;
+import model.savers.PPMImageSaver;
 
-/**
- * The ModelPPM class represents a PPM image file and provides functionality for loading, saving,
- * and modifying the image. The image is stored as a HashMap where the key is a String representing
- * the image name and the value is a three-dimensional array of integers representing the red, green
- * and blue pixels.
- */
-public class ModelPPM implements Model {
+public class ModelImpl implements Model {
+  final HashMap<String, int[][][]> imageMap;
+  int width;
+  int height;
 
-  private final HashMap<String, int[][][]> imageMap;
-  private int width;
-  private int height;
-
-  /**
-   * Initializes the imageMap.
-   */
-  public ModelPPM() {
+  public ModelImpl() {
     this.imageMap = new HashMap<>();
   }
-
-  @Override
-  public void load(String filePath, String destImage) throws FileNotFoundException {
-    //size = (3, height, width)
-    int[][][] image = ImageUtil.readPPM(filePath);
-    this.height = image[0].length;
-    this.width = image[0][0].length;
-    this.imageMap.put(destImage, image);
-  }
-
-  @Override
-  public void save(String filePath, String imageName) throws IOException {
-    if (!imageMap.containsKey(imageName)) {
-      throw new IllegalArgumentException("Image name not found in hashmap");
-    }
-    FileOutputStream fout = new FileOutputStream(filePath);
-
-    int[][][] image = this.imageMap.get(imageName);
-
-    if (image.length == 3) {
-      fout.write("P3\n".getBytes());
-    } else if (image.length == 1) {
-      fout.write("P2\n".getBytes());
-    }
-    fout.write(String.format("%d %d\n255\n", width, height).getBytes());
-
-    for (int i = 0; i < height; i++) { //rows
-      for (int j = 0; j < width; j++) { //cols
-        for (int k = 0; k < image.length; k++) {
-          fout.write((new Integer(image[k][i][j]).toString() + "\n").getBytes());
-        }
-      }
-    }
-  }
-
   @Override
   public void brighten(int increment, String imageName, String destImage) {
     if (!imageMap.containsKey(imageName)) {
@@ -123,6 +83,53 @@ public class ModelPPM implements Model {
     }
 
     return image;
+  }
+
+  @Override
+  public void load(InputStream in, String destImage, String format) throws FileNotFoundException {
+    int[][][] image = null;
+    if (format.equals("ppm")){
+        ImageLoader loader = new PPMImageLoader();
+      try {
+        image = loader.load(in);
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+
+    } else {
+      ImageLoader loader = new ConventionalImageLoader(format);
+      try {
+        image = loader.load(in);
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    }
+
+    if(image == null){
+      throw new FileNotFoundException();
+    }
+
+    this.height = image[0].length;
+    this.width = image[0][0].length;
+    this.imageMap.put(destImage, image);
+
+  }
+
+  @Override
+  public void save(OutputStream out, String imageName, String format) throws IOException {
+    if (!imageMap.containsKey(imageName)) {
+      throw new IllegalArgumentException("Image name not found in hashmap");
+    }
+    int[][][] image = this.imageMap.get(imageName);
+    ImageSaver saver;
+    if (format.equals("ppm")){
+      saver = new PPMImageSaver();
+    }else {
+      saver = new ConventionalImageSaver(format);
+    }
+    saver.save(image, out);
+
+
   }
 
   @Override
@@ -247,5 +254,4 @@ public class ModelPPM implements Model {
 
     imageMap.put(destImage, image);
   }
-
 }

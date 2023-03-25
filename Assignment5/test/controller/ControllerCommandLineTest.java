@@ -2,9 +2,9 @@ package controller;
 
 import static junit.framework.TestCase.assertEquals;
 
+import model.MockModelImpl;
 import view.MockScriptView;
 import model.MockModel;
-import model.ModelPPMMock;
 import view.View;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -41,7 +41,7 @@ public class ControllerCommandLineTest {
         + "koala-blue\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
-    MockModel m = new ModelPPMMock();
+    MockModel m = new MockModelImpl();
     Controller c = new ControllerCommandLine(m, v);
     try {
       c.run();
@@ -62,7 +62,7 @@ public class ControllerCommandLineTest {
     String outputString = "load unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
-    MockModel m = new ModelPPMMock();
+    MockModel m = new MockModelImpl();
     Controller c = new ControllerCommandLine(m, v);
     try {
       c.run();
@@ -81,7 +81,7 @@ public class ControllerCommandLineTest {
     String outputString = "save unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
-    MockModel m = new ModelPPMMock();
+    MockModel m = new MockModelImpl();
     Controller c = new ControllerCommandLine(m, v);
     try {
       c.run();
@@ -99,7 +99,7 @@ public class ControllerCommandLineTest {
     String outputString = "vertical-flip unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
-    MockModel m = new ModelPPMMock();
+    MockModel m = new MockModelImpl();
     Controller c = new ControllerCommandLine(m, v);
     try {
       c.run();
@@ -117,7 +117,7 @@ public class ControllerCommandLineTest {
     String outputString = "horizontal-flip unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
-    MockModel m = new ModelPPMMock();
+    MockModel m = new MockModelImpl();
     Controller c = new ControllerCommandLine(m, v);
     try {
       c.run();
@@ -135,7 +135,7 @@ public class ControllerCommandLineTest {
     String outputString = "greyscale unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
-    MockModel m = new ModelPPMMock();
+    MockModel m = new MockModelImpl();
     Controller c = new ControllerCommandLine(m, v);
     try {
       c.run();
@@ -153,7 +153,7 @@ public class ControllerCommandLineTest {
     String outputString = "greyscale unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
-    MockModel m = new ModelPPMMock();
+    MockModel m = new MockModelImpl();
     Controller c = new ControllerCommandLine(m, v);
     try {
       c.run();
@@ -171,7 +171,7 @@ public class ControllerCommandLineTest {
     String outputString = "brighten unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
-    MockModel m = new ModelPPMMock();
+    MockModel m = new MockModelImpl();
     Controller c = new ControllerCommandLine(m, v);
     try {
       c.run();
@@ -189,7 +189,7 @@ public class ControllerCommandLineTest {
     String outputString = "rgb-split unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
-    MockModel m = new ModelPPMMock();
+    MockModel m = new MockModelImpl();
     Controller c = new ControllerCommandLine(m, v);
     try {
       c.run();
@@ -207,7 +207,7 @@ public class ControllerCommandLineTest {
     String outputString = "rgb-combine unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
-    MockModel m = new ModelPPMMock();
+    MockModel m = new MockModelImpl();
     Controller c = new ControllerCommandLine(m, v);
     try {
       c.run();
@@ -226,7 +226,7 @@ public class ControllerCommandLineTest {
     String outputString = "load unsuccessful\r\n" + "rgb-combine successful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
-    MockModel m = new ModelPPMMock();
+    MockModel m = new MockModelImpl();
     Controller c = new ControllerCommandLine(m, v);
     try {
       c.run();
@@ -251,7 +251,7 @@ public class ControllerCommandLineTest {
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
-    MockModel m = new ModelPPMMock();
+    MockModel m = new MockModelImpl();
     Controller c = new ControllerCommandLine(m, v);
     try {
       c.run();
@@ -287,7 +287,7 @@ public class ControllerCommandLineTest {
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
-    MockModel m = new ModelPPMMock();
+    MockModel m = new MockModelImpl();
     Controller c = new ControllerCommandLine(m, v);
 
     try {

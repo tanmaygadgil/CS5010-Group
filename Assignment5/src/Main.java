@@ -1,7 +1,7 @@
 import controller.Controller;
 import controller.ControllerCommandLine;
 import model.Model;
-import model.ModelPPM;
+import model.ModelImpl;
 import view.View;
 import view.TextInputView;
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class Main {
       view = new TextInputView();
     }
 
-    Model model = new ModelPPM();
+    Model model = new ModelImpl();
     Controller controller = new ControllerCommandLine(model, view);
 
     controller.run();
