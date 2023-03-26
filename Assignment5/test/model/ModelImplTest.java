@@ -2,16 +2,23 @@ package model;
 
 import static org.junit.Assert.assertEquals;
 
+import controller.ImageIOHandler;
+import controller.ImageIOHandlerImpl;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
+import model.Filters.GaussianBlur;
+import model.Filters.ImageFilter;
+import model.Filters.Sharpening;
+import model.loaders.ConventionalImageLoader;
+import model.loaders.PPMImageLoader;
 import org.junit.Test;
 
 public class ModelImplTest {
-
 
 
   @Test
@@ -48,22 +55,55 @@ public class ModelImplTest {
       throw new RuntimeException(e);
     }
 
-
-
     try {
       m.load(in, "testPNGImage", "png");
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     }
-    try{
+    try {
       m.save(out, "testPNGImage", "png");
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
 
   }
-  @Test
-  public void loadPNG(){
 
+  @Test
+  public void loadPNG() {
+
+  }
+
+  @Test
+  public void testGaussianBlur() throws IOException {
+    ImageFilter blur = new GaussianBlur();
+
+    ImageLoader loader = new PPMImageLoader();
+    InputStream in = new FileInputStream("test/model/testImage.ppm");
+    int[][][] image = loader.load(in);
+
+    int[][][] filteredImage = blur.filter(image);
+
+    assertEquals(
+        "[[[0, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]], "
+            + "[[1, 1, 1, 1], [1, 2, 2, 1], [1, 1, 1, 1]], "
+            + "[[1, 2, 2, 1], [2, 3, 3, 2], [1, 2, 2, 1]]]",
+        Arrays.deepToString(filteredImage));
+  }
+
+  @Test
+  public void testSharpening() throws IOException {
+    ImageFilter blur = new Sharpening();
+
+    ImageLoader loader = new PPMImageLoader();
+    InputStream in = new FileInputStream("test/model/testImage.ppm");
+    int[][][] image = loader.load(in);
+
+    int[][][] filteredImage = blur.filter(image);
+
+    assertEquals(
+        "[[[1, 1, 1, 1], [1, 2, 2, 2], [1, 2, 2, 1]],"
+            + " [[2, 3, 3, 2], [3, 5, 5, 4], [3, 4, 4, 3]],"
+            + " [[3, 4, 4, 3], [5, 7, 8, 6], [4, 6, 6, 4]]]",
+        Arrays.deepToString(filteredImage));
   }
 }

@@ -1,5 +1,7 @@
 package model;
 
+import model.Filters.ImageFilter;
+
 /**
  * An enhanced model package which can call encapsulated operations like
  * 1. Colour Transformations
