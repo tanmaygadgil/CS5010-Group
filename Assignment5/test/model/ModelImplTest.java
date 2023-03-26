@@ -91,6 +91,24 @@ public class ModelImplTest {
   }
 
   @Test
+  public void testCallFilterGaussianBlur() throws IOException {
+    ModelV2 model = new ModelV2Impl();
+    InputStream in = new FileInputStream("test/model/testImage.ppm");
+    OutputStream out = new FileOutputStream("test/model/blurredImage.ppm");
+    model.load(in, "testImage", "ppm");
+    model.callFilter(new GaussianBlur(), "testImage", "blurredImage");
+    model.save(out, "blurredImage", "ppm");
+
+    ImageLoader loader = new PPMImageLoader();
+    int[][][] filteredImage = loader.load(new FileInputStream("test/model/blurredImage.ppm"));
+    assertEquals(
+        "[[[0, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]], "
+            + "[[1, 1, 1, 1], [1, 2, 2, 1], [1, 1, 1, 1]], "
+            + "[[1, 2, 2, 1], [2, 3, 3, 2], [1, 2, 2, 1]]]",
+        Arrays.deepToString(filteredImage));
+  }
+
+  @Test
   public void testSharpening() throws IOException {
     ImageFilter blur = new Sharpening();
 
@@ -100,6 +118,24 @@ public class ModelImplTest {
 
     int[][][] filteredImage = blur.filter(image);
 
+    assertEquals(
+        "[[[1, 1, 1, 1], [1, 2, 2, 2], [1, 2, 2, 1]],"
+            + " [[2, 3, 3, 2], [3, 5, 5, 4], [3, 4, 4, 3]],"
+            + " [[3, 4, 4, 3], [5, 7, 8, 6], [4, 6, 6, 4]]]",
+        Arrays.deepToString(filteredImage));
+  }
+
+  @Test
+  public void testCallFilterSharpening() throws IOException {
+    ModelV2 model = new ModelV2Impl();
+    InputStream in = new FileInputStream("test/model/testImage.ppm");
+    OutputStream out = new FileOutputStream("test/model/sharpenedImage.ppm");
+    model.load(in, "testImage", "ppm");
+    model.callFilter(new Sharpening(), "testImage", "sharpenedImage");
+    model.save(out, "sharpenedImage", "ppm");
+
+    ImageLoader loader = new PPMImageLoader();
+    int[][][] filteredImage = loader.load(new FileInputStream("test/model/sharpenedImage.ppm"));
     assertEquals(
         "[[[1, 1, 1, 1], [1, 2, 2, 2], [1, 2, 2, 1]],"
             + " [[2, 3, 3, 2], [3, 5, 5, 4], [3, 4, 4, 3]],"

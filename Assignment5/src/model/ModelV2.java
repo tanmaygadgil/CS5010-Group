@@ -1,5 +1,6 @@
 package model;
 
+import javax.swing.event.TableColumnModelListener;
 import model.Filters.ImageFilter;
 
 /**
@@ -8,7 +9,7 @@ import model.Filters.ImageFilter;
  * 2. Filters
  * 3. Other operations
  */
-public interface ModelV2 {
+public interface ModelV2 extends Model {
 
   void callFilter(ImageFilter filter, String imagename, String destname);
 

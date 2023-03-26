@@ -9,7 +9,6 @@ public class ModelV2Impl extends ModelImpl implements ModelV2 {
   }
   @Override
   public void callFilter(ImageFilter filter, String imagename, String destname) {
-
     int[][][] image = this.imageMap.get(imagename);
     if (image != null) {
       image = filter.filter(image);
