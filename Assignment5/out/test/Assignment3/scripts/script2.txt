@@ -20,7 +20,7 @@ save images/koala-brighter.ppm koala-brighter
 save images/koala-gs.ppm koala-greyscale
 
 #overwrite koala with another file
-load images/upper.ppm koala
+#load images/upper.ppm koala
 
 #give the koala a red tint
 rgb-split koala koala-red koala-green koala-blue

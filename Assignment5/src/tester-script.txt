@@ -1,0 +1,11 @@
+load src/1887.jpg test
+gaussian-blur test testblur
+sharpen test testsharp
+sepia test testsepia
+greyscale test testgrey
+dither test testdither
+save src/sharp1887.jpg testsharp
+save src/blur1887.jpg testblur
+save src/sepia1887.jpg testsepia
+save src/grey1887.jpg testgrey
+save src/dither1887.jpg testdither
