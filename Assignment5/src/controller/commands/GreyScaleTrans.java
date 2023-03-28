@@ -1,6 +1,6 @@
 package controller.commands;
 
-import controller.ImageProcessingCommand;
+import controller.commands.ImageProcessingCommand;
 import java.io.IOException;
 import model.ImageTransforms;
 import model.ModelV2;

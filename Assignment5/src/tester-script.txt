@@ -1,11 +1,11 @@
-load src/1887.jpg test
+load src/manhattan-small.png test
 gaussian-blur test testblur
 sharpen test testsharp
 sepia test testsepia
 greyscale test testgrey
 dither test testdither
-save src/sharp1887.jpg testsharp
-save src/blur1887.jpg testblur
-save src/sepia1887.jpg testsepia
-save src/grey1887.jpg testgrey
-save src/dither1887.jpg testdither
+save src/sharpmanhattan-small.jpg testsharp
+save src/blurmanhattan-small.jpg testblur
+save src/sepiamanhattan-small.jpg testsepia
+save src/greymanhattan-small.jpg testgrey
+save src/dithermanhattan-small.jpg testdither

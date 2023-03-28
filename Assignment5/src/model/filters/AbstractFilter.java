@@ -27,15 +27,17 @@ public abstract class AbstractFilter implements ImageFilter{
           continue;
         }
         out += image[row + i][col + j] * kernel[i][j];
-        if (out > 255) {
-          out = 255;
-        } else if (out < 0) {
-          out = 0;
-        }
       }
     }
 
-    return (int) out;
+    if (out > 255) {
+      out = 255;
+    }
+    if (out < 0) {
+      out = 0;
+    }
+
+    return ((int) out);
   }
 
   protected int[][] convEntireImage(int[][] image, double[][] kernel){

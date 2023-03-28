@@ -6,6 +6,7 @@ import controller.commands.Dither;
 import controller.commands.Flip;
 import controller.commands.GreyScale;
 import controller.commands.GreyScaleTrans;
+import controller.commands.ImageProcessingCommand;
 import controller.commands.Load;
 import controller.commands.Sepia;
 import controller.commands.Sharpen;
@@ -50,7 +51,6 @@ public abstract class AbstractController implements Controller {
     knownCommands.put("sepia", s -> new Sepia(s[1], s[2]));
     knownCommands.put("gaussian-blur", s -> new BlurGaussian(s[1], s[2]));
     knownCommands.put("sharpen", s -> new Sharpen(s[1], s[2]));
-
   }
 
   protected String[] parseCommand(String command) {

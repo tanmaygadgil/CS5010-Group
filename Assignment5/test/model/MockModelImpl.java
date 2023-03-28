@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import model.Filters.ImageFilter;
+import model.filters.ImageFilter;
 import model.operations.ImageOperations;
 
 public class MockModelImpl implements MockModel {

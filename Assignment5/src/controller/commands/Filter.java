@@ -18,9 +18,7 @@ public class Filter implements ImageProcessingCommand {
   }
 
   @Override
-  public void run(Model m) throws IOException {
-    if(m instanceof ModelV2) {
-      ((ModelV2) m).callFilter(this.filter, this.imageName, this.destName);
-    }
+  public void run(ModelV2 m) throws IOException {
+    m.callFilter(filter, imageName, destName);
   }
 }

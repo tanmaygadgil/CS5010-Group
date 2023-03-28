@@ -1,6 +1,6 @@
 package model;
 
-import model.Filters.ImageFilter;
+import model.filters.ImageFilter;
 import model.operations.ImageOperations;
 
 /**

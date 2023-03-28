@@ -1,26 +1,24 @@
 package controller.commands;
 
-import controller.ImageProcessingCommand;
 import java.io.IOException;
-import model.Filters.ImageFilter;
-import model.Filters.Sharpening;
+import model.filters.ImageFilter;
+import model.filters.Sharpening;
 import model.ModelV2;
 
 public class Sharpen implements ImageProcessingCommand {
 
-  private String imagename;
-  private String destimage;
+  private String imageName;
+  private String destImage;
 
-  public Sharpen(String imagename, String destimage){
-    this.imagename = imagename;
-    this.destimage = destimage;
-
+  public Sharpen(String imageName, String destImage) {
+    this.imageName = imageName;
+    this.destImage = destImage;
   }
 
   @Override
   public void run(ModelV2 m) throws IOException {
     ImageFilter sharpen = new Sharpening();
-    System.out.println(this.destimage);
-    m.callFilter(sharpen, this.imagename,this.destimage);
+    System.out.println(this.destImage);
+    m.callFilter(sharpen, this.imageName, this.destImage);
   }
 }

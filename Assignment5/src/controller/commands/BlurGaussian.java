@@ -1,10 +1,8 @@
 package controller.commands;
 
-import controller.ImageProcessingCommand;
 import java.io.IOException;
-import model.Filters.GaussianBlur;
-import model.Filters.ImageFilter;
-import model.Filters.Sharpening;
+import model.filters.GaussianBlur;
+import model.filters.ImageFilter;
 import model.ModelV2;
 
 public class BlurGaussian implements ImageProcessingCommand {

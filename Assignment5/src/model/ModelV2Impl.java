@@ -1,6 +1,6 @@
 package model;
 
-import model.Filters.ImageFilter;
+import model.filters.ImageFilter;
 import model.operations.ImageOperations;
 
 public class ModelV2Impl extends ModelImpl implements ModelV2 {
@@ -9,11 +9,11 @@ public class ModelV2Impl extends ModelImpl implements ModelV2 {
     super();
   }
   @Override
-  public void callFilter(ImageFilter filter, String imagename, String destname) {
-    int[][][] image = this.imageMap.get(imagename);
+  public void callFilter(ImageFilter filter, String imageName, String destName) {
+    int[][][] image = this.imageMap.get(imageName);
     if (image != null) {
       image = filter.filter(image);
-      this.imageMap.put(destname, image);
+      this.imageMap.put(destName, image);
     } else {
       throw new IllegalStateException("Image does not exist in map");
     }

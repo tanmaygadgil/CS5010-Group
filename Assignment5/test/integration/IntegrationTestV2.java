@@ -98,4 +98,20 @@ public class IntegrationTestV2 {
         + " [[3, 4, 4, 3], [5, 7, 8, 6], [4, 6, 6, 4]]]", Arrays.deepToString(filteredImage));
   }
 
+  @Test
+  public void testScript() throws IOException {
+    ModelV2 m = new ModelV2Impl();
+    String input = "src/tester-script.txt";
+    View v = new TextInputView("script", input);
+    Controller c = new ControllerCommandLine(m, v);
+    InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+    System.setIn(inputStream);
+
+    c.run();
+
+    //ImageLoader loader = new PPMImageLoader();
+    //int[][][] filteredImage = loader.load(new FileInputStream("test/integration/blurredImage.ppm"));
+
+  }
+
 }
