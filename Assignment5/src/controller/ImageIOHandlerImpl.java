@@ -19,6 +19,12 @@ public class ImageIOHandlerImpl implements ImageIOHandler {
   }
 
   public static String parseFormat(String filename) {
+//    if (filename == null | !filename.contains(".")) {
+//      throw new IllegalArgumentException();
+//    }
+//
+//    String[] split = filename.split(".");
+//    return split[split.length - 1];
     if (filename == null) {
       return null;
     }

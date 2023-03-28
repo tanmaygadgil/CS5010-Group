@@ -4,6 +4,7 @@ import controller.ImageIOHandlerImpl;
 import java.io.IOException;
 import java.io.OutputStream;
 import model.Model;
+import model.ModelV2;
 
 public class Save implements ImageProcessingCommand {
   String filePath;
@@ -14,7 +15,7 @@ public class Save implements ImageProcessingCommand {
     this.imageName = imageName;
   }
   @Override
-  public void run(Model m) throws IOException {
+  public void run(ModelV2 m) throws IOException {
     OutputStream out = ImageIOHandlerImpl.getSaver(this.filePath);
     String format = ImageIOHandlerImpl.parseFormat(this.filePath);
     m.save(out, this.imageName, format);

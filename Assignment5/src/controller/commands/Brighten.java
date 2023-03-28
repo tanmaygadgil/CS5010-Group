@@ -1,6 +1,7 @@
 package controller.commands;
 
 import model.Model;
+import model.ModelV2;
 
 public class Brighten implements ImageProcessingCommand {
 
@@ -15,7 +16,7 @@ public class Brighten implements ImageProcessingCommand {
   }
 
   @Override
-  public void run(Model m) {
+  public void run(ModelV2 m) {
     m.brighten(increment, imageName, destImage);
   }
 }

@@ -1,6 +1,7 @@
 package controller.commands;
 
 import model.Model;
+import model.ModelV2;
 
 public class RGBCombine implements ImageProcessingCommand {
 
@@ -17,7 +18,7 @@ public class RGBCombine implements ImageProcessingCommand {
   }
 
   @Override
-  public void run(Model m) {
+  public void run(ModelV2 m) {
     m.rgbCombine(destImage, destImageRed, destImageGreen, destImageBlue);
   }
 }

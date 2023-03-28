@@ -254,4 +254,8 @@ public class ModelImpl implements Model {
 
     imageMap.put(destImage, image);
   }
+
+  private boolean isGrey(int[][][] image){
+    return image.length == 1;
+  }
 }

@@ -1,20 +1,22 @@
 package controller;
 
-import controller.commands.Filter;
+import controller.commands.BlurGaussian;
 import controller.commands.Brighten;
+import controller.commands.Dither;
 import controller.commands.Flip;
 import controller.commands.GreyScale;
-import controller.commands.ImageProcessingCommand;
+import controller.commands.GreyScaleTrans;
 import controller.commands.Load;
+import controller.commands.Sepia;
+import controller.commands.Sharpen;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-import model.filters.GaussianBlur;
 import model.Model;
 import controller.commands.RGBCombine;
 import controller.commands.RGBSplit;
 import controller.commands.Save;
-import model.filters.Sharpening;
+import model.ModelV2;
 import view.View;
 import java.io.IOException;
 import model.Axes;
@@ -24,11 +26,11 @@ import model.Axes;
  */
 public abstract class AbstractController implements Controller {
 
-  protected final Model model;
+  protected final ModelV2 model;
   protected final View view;
   protected final Map<String, Function<String[], ImageProcessingCommand>> knownCommands;
 
-  public AbstractController(Model model, View view) {
+  public AbstractController(ModelV2 model, View view) {
     this.model = model;
     this.view = view;
     this.knownCommands = new HashMap<>();
@@ -41,11 +43,14 @@ public abstract class AbstractController implements Controller {
     knownCommands.put("brighten", s -> new Brighten(Integer.parseInt(s[1]), s[2], s[3]));
     knownCommands.put("horizontal-flip", s -> new Flip(Axes.HORIZONTAL, s[1], s[2]));
     knownCommands.put("vertical-flip", s -> new Flip(Axes.VERTICAL, s[1], s[2]));
-    knownCommands.put("greyscale", s -> new GreyScale(s[1], s[2], s[3]));
+    knownCommands.put("greyscale", s -> new GreyScaleTrans(s[1], s[2]));
     knownCommands.put("rgb-split", s -> new RGBSplit(s[1], s[2], s[3], s[4]));
     knownCommands.put("rgb-combine", s -> new RGBCombine(s[1], s[2], s[3], s[4]));
-    knownCommands.put("blur", s -> new Filter(new GaussianBlur(), s[1], s[2]));
-    knownCommands.put("sharpen", s -> new Filter(new Sharpening(), s[1], s[2]));
+    knownCommands.put("dither", s -> new Dither(s[1], s[2]));
+    knownCommands.put("sepia", s -> new Sepia(s[1], s[2]));
+    knownCommands.put("gaussian-blur", s -> new BlurGaussian(s[1], s[2]));
+    knownCommands.put("sharpen", s -> new Sharpen(s[1], s[2]));
+
   }
 
   protected String[] parseCommand(String command) {
@@ -97,6 +102,7 @@ public abstract class AbstractController implements Controller {
         c.run(model);
         return commandArgs[0] + " successful";
       } catch(Exception e) {
+        e.printStackTrace();
         return commandArgs[0] + " unsuccessful";
       }
     }
