@@ -12,7 +12,6 @@ public class SepiaTransform implements model.ImageTransforms {
 
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
-
         sepiaImage[0][i][j] = (int) (0.393 * image[0][i][j] + 0.769 * image[1][i][j]
             + 0.189 * image[2][i][j]);
 
