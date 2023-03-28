@@ -29,12 +29,12 @@ public class ControllerCommandLineTest {
         + "save images/koala-gs.ppm koala-greyscale\n"
         + "rgb-split koala koala-red koala-green koala-blue\n" + "brighten 50 koala-red koala-red\n"
         + "rgb-combine koala-red-tint koala-red koala-green koala-blue\n" + "exit\n";
-    String outputString = "In function load with arguments images/koala.ppm, koala\n"
+    String outputString = "In function load with arguments koala, ppm\n"
         + "In function brighten with arguments 10, koala, koala-brighter\n"
         + "In function flip with arguments VERTICAL, koala, koala-vertical\n"
         + "In function flip with arguments HORIZONTAL, koala-vertical, koala-vertical-horizontal\n"
         + "In function greyscale with arguments RED, koala, koala-greyscale\n"
-        + "In function save with arguments images/koala-gs.ppm, koala-greyscale\n"
+        + "In function save with arguments koala-greyscale, ppm\n"
         + "In function rgbSplit with arguments koala, koala-red, koala-green, koala-blue\n"
         + "In function brighten with arguments 50, koala-red, koala-red\n"
         + "In function rgbCombine with arguments koala-red-tint, koala-red, koala-green, "
@@ -51,6 +51,7 @@ public class ControllerCommandLineTest {
     System.out.println(m.getLog());
     System.setOut(new PrintStream(outputStream));
     assertEquals(m.getLog(), outputString);
+//    System.out.println(m.getLog());
   }
 
   //testing exceptions and incorrect number of arguments
@@ -241,9 +242,9 @@ public class ControllerCommandLineTest {
     String input = "test/scripts/script1.txt";
     System.setIn(new ByteArrayInputStream(input.getBytes()));
     Scanner scanner = new Scanner(new StringReader(input));
-    String scriptString = "In function load with arguments images/koala.ppm, koala\n"
+    String scriptString = "In function load with arguments koala, ppm\n"
         + "In function flip with arguments VERTICAL, koala, koala-vertical\n"
-        + "In function save with arguments test/integration/koala-vertical.ppm, koala-vertical\n";
+        + "In function save with arguments koala-vertical, ppm\n";
 
     View v = null;
     try {
@@ -268,19 +269,17 @@ public class ControllerCommandLineTest {
     System.setIn(new ByteArrayInputStream(input.getBytes()));
     Scanner scanner = new Scanner(new StringReader(input));
 
-    String scriptOutput = "In function load with arguments images/koala.ppm, koala\n"
+    String scriptOutput = "In function load with arguments koala, ppm\n"
         + "In function brighten with arguments 10, koala, koala-brighter\n"
         + "In function flip with arguments VERTICAL, koala, koala-vertical\n"
         + "In function flip with arguments HORIZONTAL, koala-vertical, koala-vertical-horizontal\n"
         + "In function greyscale with arguments VALUE, koala, koala-greyscale\n"
-        + "In function save with arguments images/koala-brighter.ppm, koala-brighter\n"
-        + "In function save with arguments images/koala-gs.ppm, koala-greyscale\n"
-        + "In function load with arguments images/upper.ppm, koala\n"
+        + "In function save with arguments koala-brighter, ppm\n"
+        + "In function save with arguments koala-greyscale, ppm\n"
         + "In function rgbSplit with arguments koala, koala-red, koala-green, koala-blue\n"
         + "In function brighten with arguments 50, koala-red, koala-red\n"
-        + "In function rgbCombine with arguments koala-red-tint, koala-red, koala-green, "
-        + "koala-blue\n"
-        + "In function save with arguments images/koala-red-tint.ppm, koala-red-tint\n";
+        + "In function rgbCombine with arguments koala-red-tint, koala-red, koala-green, koala-blue\n"
+        + "In function save with arguments koala-red-tint, ppm\n";
     View v = null;
     try {
       v = new MockScriptView(scanner, input);
