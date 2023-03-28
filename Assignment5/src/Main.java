@@ -2,6 +2,8 @@ import controller.Controller;
 import controller.ControllerCommandLine;
 import model.Model;
 import model.ModelImpl;
+import model.ModelV2;
+import model.ModelV2Impl;
 import view.View;
 import view.TextInputView;
 import java.io.IOException;
@@ -40,7 +42,7 @@ public class Main {
       view = new TextInputView();
     }
 
-    Model model = new ModelImpl();
+    ModelV2 model = new ModelV2Impl();
     Controller controller = new ControllerCommandLine(model, view);
 
     controller.run();

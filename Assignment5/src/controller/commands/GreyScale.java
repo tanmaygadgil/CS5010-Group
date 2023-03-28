@@ -3,6 +3,7 @@ package controller.commands;
 import controller.ImageProcessingCommand;
 import model.ImageComponents;
 import model.Model;
+import model.ModelV2;
 
 public class GreyScale implements ImageProcessingCommand {
 
@@ -24,7 +25,7 @@ public class GreyScale implements ImageProcessingCommand {
   }
 
   @Override
-  public void run(Model m) {
+  public void run(ModelV2 m) {
     m.greyscale(component, imageName, destImage);
   }
 }

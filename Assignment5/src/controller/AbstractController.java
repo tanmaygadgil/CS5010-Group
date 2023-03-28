@@ -1,6 +1,7 @@
 package controller;
 
 import controller.commands.Brighten;
+import controller.commands.Dither;
 import controller.commands.Flip;
 import controller.commands.GreyScale;
 import controller.commands.Load;
@@ -11,6 +12,7 @@ import model.Model;
 import controller.commands.RGBCombine;
 import controller.commands.RGBSplit;
 import controller.commands.Save;
+import model.ModelV2;
 import view.View;
 import java.io.IOException;
 import model.Axes;
@@ -20,11 +22,11 @@ import model.Axes;
  */
 public abstract class AbstractController implements Controller {
 
-  protected final Model model;
+  protected final ModelV2 model;
   protected final View view;
   protected final Map<String, Function<String[], ImageProcessingCommand>> knownCommands;
 
-  public AbstractController(Model model, View view) {
+  public AbstractController(ModelV2 model, View view) {
     this.model = model;
     this.view = view;
     this.knownCommands = new HashMap<>();
@@ -40,6 +42,7 @@ public abstract class AbstractController implements Controller {
     knownCommands.put("greyscale", s -> new GreyScale(s[1], s[2], s[3]));
     knownCommands.put("rgb-split", s -> new RGBSplit(s[1], s[2], s[3], s[4]));
     knownCommands.put("rgb-combine", s -> new RGBCombine(s[1], s[2], s[3], s[4]));
+    knownCommands.put("dither", s -> new Dither(s[1], s[2]));
   }
 
   protected String[] parseCommand(String command) {
@@ -91,6 +94,7 @@ public abstract class AbstractController implements Controller {
         c.run(model);
         return commandArgs[0] + " successful";
       } catch(Exception e) {
+        e.printStackTrace();
         return commandArgs[0] + " unsuccessful";
       }
     }

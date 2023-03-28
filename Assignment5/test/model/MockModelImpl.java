@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import model.Filters.ImageFilter;
+import model.operations.ImageOperations;
 
 public class MockModelImpl implements MockModel {
 
@@ -47,5 +49,20 @@ public class MockModelImpl implements MockModel {
   @Override
   public String getLog() {
     return null;
+  }
+
+  @Override
+  public void callFilter(ImageFilter filter, String imagename, String destname) {
+
+  }
+
+  @Override
+  public void callTransform(ImageTransforms transform, String imagename, String destname) {
+
+  }
+
+  @Override
+  public void callOperation(ImageOperations ops, String imagename, String destname) {
+
   }
 }

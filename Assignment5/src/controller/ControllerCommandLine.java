@@ -1,6 +1,7 @@
 package controller;
 
 import model.Model;
+import model.ModelV2;
 import view.View;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,7 +23,7 @@ public class ControllerCommandLine extends AbstractController implements Control
    * @param model model to run commands through.
    * @param view  view to show outputs.
    */
-  public ControllerCommandLine(Model model, View view) {
+  public ControllerCommandLine(ModelV2 model, View view) {
     super(model, view);
   }
 

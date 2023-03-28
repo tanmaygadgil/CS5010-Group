@@ -1,4 +1,4 @@
-package model;
+package model.operations;
 
 /**
  * An interface to define the behaviour of image operations.
