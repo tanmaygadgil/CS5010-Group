@@ -3,6 +3,7 @@ package controller.commands;
 import controller.ImageProcessingCommand;
 import model.Axes;
 import model.Model;
+import model.ModelV2;
 
 public class Flip implements ImageProcessingCommand {
 
@@ -16,7 +17,7 @@ public class Flip implements ImageProcessingCommand {
   }
 
   @Override
-  public void run(Model m) {
+  public void run(ModelV2 m) {
     m.flip(axes, imageName, destImage);
   }
 }

@@ -1,6 +1,7 @@
 package model;
 
 import model.Filters.ImageFilter;
+import model.operations.ImageOperations;
 
 public class ModelV2Impl extends ModelImpl implements ModelV2 {
 

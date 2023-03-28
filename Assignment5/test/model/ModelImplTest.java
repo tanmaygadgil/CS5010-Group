@@ -16,6 +16,8 @@ import model.Filters.ImageFilter;
 import model.Filters.Sharpening;
 import model.loaders.ConventionalImageLoader;
 import model.loaders.PPMImageLoader;
+import model.operations.ImageOperations;
+import model.operations.ditherGreyscaleOperation;
 import org.junit.Test;
 
 public class ModelImplTest {
@@ -141,5 +143,29 @@ public class ModelImplTest {
             + " [[2, 3, 3, 2], [3, 5, 5, 4], [3, 4, 4, 3]],"
             + " [[3, 4, 4, 3], [5, 7, 8, 6], [4, 6, 6, 4]]]",
         Arrays.deepToString(filteredImage));
+  }
+
+  @Test
+  public void testGreyscale() throws IOException {
+    ModelV2 m = new ModelV2Impl();
+    InputStream in = new FileInputStream("test/model/greenland_grid_velo.bmp");
+    OutputStream out = new FileOutputStream("test/model/greenland_grid_velo_grey.bmp");
+
+    m.load(in, "testImage", "bmp");
+    m.greyscale(ImageComponents.BLUE, "testImage", "grey");
+    m.save(out, "grey", "bmp");
+
+  }
+
+  @Test
+  public void testDither() throws IOException {
+    ModelV2 m = new ModelV2Impl();
+    InputStream in = new FileInputStream("test/model/greenland_grid_velo.bmp");
+    OutputStream out = new FileOutputStream("test/model/greenland_grid_velo_grey.ppm");
+    ImageOperations dither = new ditherGreyscaleOperation();
+    m.load(in, "testImage", "bmp");
+    m.callOperation(dither, "testImage", "dither");
+    m.save(out, "dither", "bmp");
+
   }
 }
