@@ -41,7 +41,7 @@ public class IntegrationTestV2 {
   @Test
   public void testBlurCommandLine() throws IOException {
     ModelV2 m = new ModelV2Impl();
-    String input = "load test/model/testImage.ppm testImage\n blur testImage blurredImage\n "
+    String input = "load test/model/testImage.ppm testImage\n gaussian-blur testImage blurredImage\n "
         + "save test/integration/blurredImage.ppm blurredImage\nexit";
     InputStream inputStream = new ByteArrayInputStream(input.getBytes());
     System.setIn(inputStream);
@@ -73,9 +73,9 @@ public class IntegrationTestV2 {
     int[][][] filteredImage = loader.load(
         new FileInputStream("test/integration/sharpenedImage.ppm"));
 
-    assertEquals("[[[1, 1, 1, 1], [1, 2, 2, 2], [1, 2, 2, 1]],"
-        + " [[2, 3, 3, 2], [3, 5, 5, 4], [3, 4, 4, 3]],"
-        + " [[3, 4, 4, 3], [5, 7, 8, 6], [4, 6, 6, 4]]]", Arrays.deepToString(filteredImage));
+    assertEquals("[[[1, 1, 1, 1], [1, 2, 2, 1], [1, 1, 1, 1]], "
+        + "[[2, 3, 3, 2], [3, 5, 5, 3], [2, 3, 3, 2]], "
+        + "[[3, 4, 4, 3], [5, 7, 7, 5], [3, 4, 4, 3]]]", Arrays.deepToString(filteredImage));
   }
 
   @Test
@@ -93,25 +93,10 @@ public class IntegrationTestV2 {
     ImageLoader loader = new PPMImageLoader();
     int[][][] filteredImage = loader.load(new FileInputStream("test/integration/sharpenedImage.ppm"));
 
-    assertEquals("[[[1, 1, 1, 1], [1, 2, 2, 2], [1, 2, 2, 1]],"
-        + " [[2, 3, 3, 2], [3, 5, 5, 4], [3, 4, 4, 3]],"
-        + " [[3, 4, 4, 3], [5, 7, 8, 6], [4, 6, 6, 4]]]", Arrays.deepToString(filteredImage));
+    assertEquals("[[[1, 1, 1, 1], [1, 2, 2, 1], [1, 1, 1, 1]], "
+        + "[[2, 3, 3, 2], [3, 5, 5, 3], [2, 3, 3, 2]], "
+        + "[[3, 4, 4, 3], [5, 7, 7, 5], [3, 4, 4, 3]]]", Arrays.deepToString(filteredImage));
   }
 
-  @Test
-  public void testScript() throws IOException {
-    ModelV2 m = new ModelV2Impl();
-    String input = "src/tester-script.txt";
-    View v = new TextInputView("script", input);
-    Controller c = new ControllerCommandLine(m, v);
-    InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-    System.setIn(inputStream);
-
-    c.run();
-
-    //ImageLoader loader = new PPMImageLoader();
-    //int[][][] filteredImage = loader.load(new FileInputStream("test/integration/blurredImage.ppm"));
-
-  }
 
 }

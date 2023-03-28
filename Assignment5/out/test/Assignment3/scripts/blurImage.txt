@@ -1,5 +1,5 @@
 load test/model/testImage.ppm testImage
 
-blur testImage blurredImage
+gaussian-blur testImage blurredImage
 
 save test/integration/blurredImage.ppm blurredImage
