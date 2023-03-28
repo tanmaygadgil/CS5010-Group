@@ -1,4 +1,4 @@
-package model.Filters;
+package model.filters;
 
 public class GaussianBlur extends AbstractFilter{
 

@@ -1,4 +1,4 @@
-package model.Filters;
+package model.filters;
 
 public abstract class AbstractFilter implements ImageFilter{
 

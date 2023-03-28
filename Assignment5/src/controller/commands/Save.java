@@ -1,7 +1,6 @@
 package controller.commands;
 
 import controller.ImageIOHandlerImpl;
-import controller.ImageProcessingCommand;
 import java.io.IOException;
 import java.io.OutputStream;
 import model.Model;

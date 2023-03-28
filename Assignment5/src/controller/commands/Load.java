@@ -1,7 +1,6 @@
 package controller.commands;
 
 import controller.ImageIOHandlerImpl;
-import controller.ImageProcessingCommand;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import model.Model;

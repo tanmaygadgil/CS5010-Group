@@ -1,6 +1,5 @@
 package controller.commands;
 
-import controller.ImageProcessingCommand;
 import model.ImageComponents;
 import model.Model;
 

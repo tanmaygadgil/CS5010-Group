@@ -1,4 +1,4 @@
-package model.Filters;
+package model.filters;
 
 /**
  * An interface that implements a convolution style image filter.

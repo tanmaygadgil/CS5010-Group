@@ -2,8 +2,6 @@ package model;
 
 import static org.junit.Assert.assertEquals;
 
-import controller.ImageIOHandler;
-import controller.ImageIOHandlerImpl;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -11,10 +9,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
-import model.Filters.GaussianBlur;
-import model.Filters.ImageFilter;
-import model.Filters.Sharpening;
-import model.loaders.ConventionalImageLoader;
+import model.filters.GaussianBlur;
+import model.filters.ImageFilter;
+import model.filters.Sharpening;
 import model.loaders.PPMImageLoader;
 import org.junit.Test;
 

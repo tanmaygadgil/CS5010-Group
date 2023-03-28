@@ -1,7 +1,6 @@
 package model;
 
-import javax.swing.event.TableColumnModelListener;
-import model.Filters.ImageFilter;
+import model.filters.ImageFilter;
 
 /**
  * An enhanced model package which can call encapsulated operations like

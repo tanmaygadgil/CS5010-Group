@@ -19,11 +19,14 @@ public class ImageIOHandlerImpl implements ImageIOHandler {
   }
 
   public static String parseFormat(String filename) {
-    if (filename == null | !filename.contains(".")) {
-      throw new IllegalArgumentException();
+    if (filename == null) {
+      return null;
     }
-
-    String[] split = filename.split(".");
-    return split[split.length - 1];
+    int extensionIndex = filename.lastIndexOf('.');
+    if (extensionIndex == -1) {
+      return "";
+    }
+    String extension = filename.substring(extensionIndex + 1);
+    return extension;
   }
 }

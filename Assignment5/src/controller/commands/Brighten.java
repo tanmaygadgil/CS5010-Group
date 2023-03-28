@@ -1,6 +1,5 @@
 package controller.commands;
 
-import controller.ImageProcessingCommand;
 import model.Model;
 
 public class Brighten implements ImageProcessingCommand {

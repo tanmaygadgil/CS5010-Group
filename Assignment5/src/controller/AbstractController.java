@@ -1,16 +1,20 @@
 package controller;
 
+import controller.commands.Filter;
 import controller.commands.Brighten;
 import controller.commands.Flip;
 import controller.commands.GreyScale;
+import controller.commands.ImageProcessingCommand;
 import controller.commands.Load;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import model.filters.GaussianBlur;
 import model.Model;
 import controller.commands.RGBCombine;
 import controller.commands.RGBSplit;
 import controller.commands.Save;
+import model.filters.Sharpening;
 import view.View;
 import java.io.IOException;
 import model.Axes;
@@ -40,6 +44,8 @@ public abstract class AbstractController implements Controller {
     knownCommands.put("greyscale", s -> new GreyScale(s[1], s[2], s[3]));
     knownCommands.put("rgb-split", s -> new RGBSplit(s[1], s[2], s[3], s[4]));
     knownCommands.put("rgb-combine", s -> new RGBCombine(s[1], s[2], s[3], s[4]));
+    knownCommands.put("blur", s -> new Filter(new GaussianBlur(), s[1], s[2]));
+    knownCommands.put("sharpen", s -> new Filter(new Sharpening(), s[1], s[2]));
   }
 
   protected String[] parseCommand(String command) {
