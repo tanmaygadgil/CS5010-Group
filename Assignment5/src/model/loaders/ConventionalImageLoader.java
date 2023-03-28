@@ -16,7 +16,15 @@ public class ConventionalImageLoader implements ImageLoader {
   public int[][][] load(InputStream in) throws IOException {
     BufferedImage bufferedImage = ImageIO.read(in);
     int[][][] rgbImage = convertToRgb(bufferedImage);
-    return rgbImage;
+    if (detectGreyscale(rgbImage)){
+      int height = rgbImage[0].length;
+      int width = rgbImage[0][0].length;
+      int[][][] grey = new int[1][height][width];
+      grey[0] = rgbImage[0];
+      return grey;
+    }else {
+      return rgbImage;
+    }
   }
 
   private int[][][] convertToRgb(BufferedImage img){
@@ -35,5 +43,20 @@ public class ConventionalImageLoader implements ImageLoader {
 
     return image;
 
+  }
+
+  private boolean detectGreyscale(int[][][] image){
+    int height = image[0].length;
+    int width = image[0][0].length;
+
+    boolean isGrey = true;
+
+    for (int i = 0; i < height; i++){
+      for (int j = 0; j<width;j++){
+        isGrey &= ((image[0][i][j] == image[1][i][j]) & (image[0][i][j] == image[1][i][j]));
+      }
+    }
+
+    return isGrey;
   }
 }

@@ -1,8 +1,8 @@
 package model.operations;
 
-public class ditherGreyscaleOperation implements ImageOperations {
+public class DitherGreyscaleOperation implements ImageOperations {
 
-  public ditherGreyscaleOperation(){
+  public DitherGreyscaleOperation(){
 
 
   }

@@ -2,8 +2,6 @@ package model;
 
 import static org.junit.Assert.assertEquals;
 
-import controller.ImageIOHandler;
-import controller.ImageIOHandlerImpl;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -14,10 +12,9 @@ import java.util.Arrays;
 import model.Filters.GaussianBlur;
 import model.Filters.ImageFilter;
 import model.Filters.Sharpening;
-import model.loaders.ConventionalImageLoader;
 import model.loaders.PPMImageLoader;
 import model.operations.ImageOperations;
-import model.operations.ditherGreyscaleOperation;
+import model.operations.DitherGreyscaleOperation;
 import org.junit.Test;
 
 public class ModelImplTest {
@@ -149,23 +146,23 @@ public class ModelImplTest {
   public void testGreyscale() throws IOException {
     ModelV2 m = new ModelV2Impl();
     InputStream in = new FileInputStream("test/model/greenland_grid_velo.bmp");
-    OutputStream out = new FileOutputStream("test/model/greenland_grid_velo_grey.bmp");
+    OutputStream out = new FileOutputStream("test/model/greenland_grid_velo_grey.jpg");
 
     m.load(in, "testImage", "bmp");
     m.greyscale(ImageComponents.BLUE, "testImage", "grey");
-    m.save(out, "grey", "bmp");
+    m.save(out, "grey", "jpg");
 
   }
 
   @Test
   public void testDither() throws IOException {
     ModelV2 m = new ModelV2Impl();
-    InputStream in = new FileInputStream("test/model/greenland_grid_velo.bmp");
-    OutputStream out = new FileOutputStream("test/model/greenland_grid_velo_grey.ppm");
-    ImageOperations dither = new ditherGreyscaleOperation();
-    m.load(in, "testImage", "bmp");
+    InputStream in = new FileInputStream("test/model/greenland_grid_velo_grey.jpg");
+    OutputStream out = new FileOutputStream("test/model/greenland_grid_velo_dither.jpg");
+    ImageOperations dither = new DitherGreyscaleOperation();
+    m.load(in, "testImage", "jpg");
     m.callOperation(dither, "testImage", "dither");
-    m.save(out, "dither", "bmp");
+    m.save(out, "dither", "jpg");
 
   }
 }
