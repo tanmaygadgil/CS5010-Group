@@ -2,12 +2,14 @@ package model;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.Arrays;
 import model.filters.GaussianBlur;
 import model.filters.ImageFilter;
@@ -19,11 +21,20 @@ import model.transforms.GreyscaleTransform;
 import model.transforms.SepiaTransform;
 import org.junit.Test;
 
+
+/**
+ * This class contains test cases for the {@link ModelV2Impl} class. It tests various image filters
+ * and operations using the {@link ImageFilter}, {@link ImageOperations}, and
+ * {@link ImageTransforms} interfaces.
+ */
 public class ModelV2ImplTest {
 
 
   @Test
   public void load() {
+
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(outputStream));
     InputStream in = null;
     try {
       in = new FileInputStream("test/Model/testImage.ppm");
@@ -66,9 +77,12 @@ public class ModelV2ImplTest {
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
+    String outString = "Width of image: 4\r\n"
+        + "Height of image: 3\r\n"
+        + "Maximum value of a color in this file (usually 255): 255\r\n";
+    assertEquals(outputStream.toString(), outString);
 
   }
-
 
 
   @Test
@@ -151,6 +165,7 @@ public class ModelV2ImplTest {
         + "[[2, 3, 3, 2], [3, 5, 5, 3], [2, 3, 3, 2]], "
         + "[[3, 4, 4, 3], [5, 7, 7, 5], [3, 4, 4, 3]]]", Arrays.deepToString(filteredImage));
   }
+
   @Test
   public void testCallDitheringOperation() throws IOException {
     ModelV2 model = new ModelV2Impl();
@@ -241,15 +256,4 @@ public class ModelV2ImplTest {
         Arrays.deepToString(sepiaImage));
   }
 
-  @Test
-  public void testDitherwhole() throws IOException {
-    ModelV2 m = new ModelV2Impl();
-    InputStream in = new FileInputStream("test/model/greenland_grid_velo_grey.jpg");
-    OutputStream out = new FileOutputStream("test/model/greenland_grid_velo_dither.jpg");
-    ImageOperations dither = new DitherGreyscaleOperation();
-    m.load(in, "testImage", "jpg");
-    m.callOperation(dither, "testImage", "dither");
-    m.save(out, "dither", "jpg");
-
-  }
 }

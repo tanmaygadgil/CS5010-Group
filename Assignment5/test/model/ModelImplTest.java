@@ -20,6 +20,9 @@ import model.transforms.SepiaTransform;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * THis sia testing class out model Implementation.
+ */
 public class ModelImplTest {
 
   Model model;
@@ -151,23 +154,6 @@ public class ModelImplTest {
   }
 
 
-  @Test
-  public void testImageUtilGreyScale() throws IOException {
-    int[][][] image = new int[1][3][4];
-    for (int i = 0; i < 3; i++) {
-      for (int j = 1; j <= 4; j++) {
-        image[0][i][j - 1] = 4 * i + j;
-      }
-    }
-
-    model.load(new FileInputStream("test/Model/greyImage.ppm"), "greyImage", "ppm");
-    model.save(new FileOutputStream("test/Model/greyImageSave.ppm"), "greyImage", "ppm");
-    int[][][] imageGreyScale = ImageUtil.readPPM("test/Model/greyImageSave.ppm");
-  }
-
-
-  //  @Test (expected = ???.class)
-//  public void testFlipThrowingException() throws ??? {
   @Test(expected = IllegalArgumentException.class)
   public void testFlipThrowingException() throws IOException {
     String path = "test/model/testImage.ppm";
@@ -176,8 +162,6 @@ public class ModelImplTest {
   }
 
 
-  //  @Test (expected = ????.class)
-//  public void testGreyscaleThrowingException() throws ??? {
   @Test(expected = IllegalArgumentException.class)
   public void testGreyscaleThrowingException() throws IOException {
 
@@ -189,7 +173,6 @@ public class ModelImplTest {
 
 
   @Test
-//  public void testGreyscaleRed() throws ???? {
   public void testGreyscaleRed() throws IOException {
 
     String path = "test/Model/testImage.ppm";
@@ -206,7 +189,6 @@ public class ModelImplTest {
   }
 
   @Test
-//  public void testGreyscaleGreen() throws ???? {
   public void testGreyscaleGreen() throws IOException {
 
     String path = "test/Model/testImage.ppm";
@@ -225,7 +207,6 @@ public class ModelImplTest {
 
 
   @Test
-//  public void testGreyscaleBlue() throws ???? {
   public void testGreyscaleBlue() throws IOException {
 
     String path = "test/Model/testImage.ppm";
@@ -244,8 +225,6 @@ public class ModelImplTest {
 
 
   @Test
-
-//  public void testGreyscaleLuma() throws ???? {
   public void testGreyscaleLuma() throws IOException {
 
     String path = "test/Model/testImage.ppm";
@@ -262,10 +241,8 @@ public class ModelImplTest {
 
   }
 
-  // Value
 
   @Test
-//  public void testGreyscaleValue() throws ???? {
   public void testGreyscaleValue() throws IOException {
 
     String path = "test/Model/testImage.ppm";
@@ -282,10 +259,8 @@ public class ModelImplTest {
 
   }
 
-  // Intensity
 
   @Test
-//  public void testGreyscaleIntensity() throws ????? {
   public void testGreyscaleIntensity() throws IOException {
 
     String path = "test/Model/testImage.ppm";
@@ -303,8 +278,6 @@ public class ModelImplTest {
   }
 
 
-  //  @Test (expected = ???.class)
-//  public void testRgbSplitThrowingException() throws ??? {
   @Test(expected = IllegalArgumentException.class)
   public void testRgbSplitThrowingException() throws IOException {
     String path = "test/Model/testImage.ppm";
@@ -315,7 +288,6 @@ public class ModelImplTest {
 
 
   @Test
-  //public void testRgbSplit() throws ???? {
   public void testRgbSplit() throws IOException {
 
     String path = "test/Model/testImage.ppm";
@@ -335,8 +307,6 @@ public class ModelImplTest {
   }
 
 
-  //@Test (expected = ???.class)
-  //public void testRgbCombineThrowingException() throws ??? {
   @Test(expected = IllegalArgumentException.class)
   public void testRgbCombineThrowingException() throws IOException {
 
@@ -355,7 +325,6 @@ public class ModelImplTest {
 
 
   @Test
-  //public void testRgbCombine() throws ??? {
   public void testRgbCombine() throws IOException {
 
     String pathRed = "test/Model/testImageRedSplit.ppm";
@@ -459,6 +428,7 @@ public class ModelImplTest {
         + "[[2, 3, 3, 2], [3, 5, 5, 3], [2, 3, 3, 2]], "
         + "[[3, 4, 4, 3], [5, 7, 7, 5], [3, 4, 4, 3]]]", Arrays.deepToString(filteredImage));
   }
+
   @Test
   public void testCallDitheringOperation() throws IOException {
     ModelV2 model = new ModelV2Impl();
@@ -549,20 +519,9 @@ public class ModelImplTest {
         Arrays.deepToString(sepiaImage));
   }
 
-  @Test
-  public void testDitherwhole() throws IOException {
-    ModelV2 m = new ModelV2Impl();
-    InputStream in = new FileInputStream("test/model/greenland_grid_velo_grey.jpg");
-    OutputStream out = new FileOutputStream("test/model/greenland_grid_velo_dither.jpg");
-    ImageOperations dither = new DitherGreyscaleOperation();
-    m.load(in, "testImage", "jpg");
-    m.callOperation(dither, "testImage", "dither");
-    m.save(out, "dither", "jpg");
-
-  }
-
-  @Test (expected = IllegalStateException.class)
-  public void testCallFilterGaussianBlurException() throws IllegalStateException, FileNotFoundException {
+  @Test(expected = IllegalStateException.class)
+  public void testCallFilterGaussianBlurException()
+      throws IllegalStateException, FileNotFoundException {
     ModelV2 model = new ModelV2Impl();
     InputStream in = new FileInputStream("test/model/testImage.ppm");
     OutputStream out = new FileOutputStream("test/model/blurredImage.ppm");
@@ -570,7 +529,7 @@ public class ModelImplTest {
     model.callFilter(new GaussianBlur(), "testImage1", "blurredImage");
   }
 
-  @Test (expected = IllegalStateException.class)
+  @Test(expected = IllegalStateException.class)
   public void testCallTransformSepiaTransformException() throws IllegalStateException,
       FileNotFoundException {
     ModelV2 model = new ModelV2Impl();
@@ -581,7 +540,7 @@ public class ModelImplTest {
         "sepiatransformedImage");
   }
 
-  @Test (expected = IllegalStateException.class)
+  @Test(expected = IllegalStateException.class)
   public void testCallDitheringOperationException() throws IllegalStateException,
       FileNotFoundException {
     ModelV2 model = new ModelV2Impl();
@@ -593,8 +552,9 @@ public class ModelImplTest {
         "ditheredImage");
   }
 
-  @Test (expected = IllegalStateException.class)
-  public void testCallFilterSharpeningException() throws IllegalStateException, FileNotFoundException {
+  @Test(expected = IllegalStateException.class)
+  public void testCallFilterSharpeningException()
+      throws IllegalStateException, FileNotFoundException {
     ModelV2 model = new ModelV2Impl();
     InputStream in = new FileInputStream("test/model/testImage.ppm");
     OutputStream out = new FileOutputStream("test/model/blurredImage.ppm");
@@ -603,14 +563,14 @@ public class ModelImplTest {
   }
 
 
-  @Test (expected = FileNotFoundException.class)
+  @Test(expected = FileNotFoundException.class)
   public void testLoadException() throws IOException {
     ModelV2 model = new ModelV2Impl();
     InputStream in = new FileInputStream("test/model/testImageException.ppm");
     model.load(in, "testImage", "ppm");
   }
 
-  @Test (expected = IllegalStateException.class)
+  @Test(expected = IllegalStateException.class)
   public void testDitherwholeException() throws IllegalStateException,
       FileNotFoundException {
     ModelV2 m = new ModelV2Impl();
@@ -619,6 +579,16 @@ public class ModelImplTest {
     ImageOperations dither = new DitherGreyscaleOperation();
     m.load(in, "testImage", "jpg");
     m.callOperation(dither, "testImage1", "dither");
+  }
+
+  @Test (expected = IllegalArgumentException.class)
+  public void testSaveException() throws IOException {
+    ModelV2 model = new ModelV2Impl();
+    InputStream in = new FileInputStream("test/model/testImage.ppm");
+    model.load(in, "testImage", "ppm");
+    OutputStream out = new FileOutputStream("test/model/testSaveException.ppm");
+    model.save(out, "testImageSaveException", "ppm");
+
   }
 
 

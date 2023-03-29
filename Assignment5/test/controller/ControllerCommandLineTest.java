@@ -51,7 +51,7 @@ public class ControllerCommandLineTest {
     System.out.println(m.getLog());
     System.setOut(new PrintStream(outputStream));
     assertEquals(m.getLog(), outputString);
-//    System.out.println(m.getLog());
+
   }
 
   //testing exceptions and incorrect number of arguments
@@ -278,7 +278,8 @@ public class ControllerCommandLineTest {
         + "In function save with arguments koala-greyscale, ppm\n"
         + "In function rgbSplit with arguments koala, koala-red, koala-green, koala-blue\n"
         + "In function brighten with arguments 50, koala-red, koala-red\n"
-        + "In function rgbCombine with arguments koala-red-tint, koala-red, koala-green, koala-blue\n"
+        + "In function rgbCombine with arguments koala-red-tint, koala-red, koala-green, "
+        + "koala-blue\n"
         + "In function save with arguments koala-red-tint, ppm\n";
     View v = null;
     try {

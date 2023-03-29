@@ -1,8 +1,0 @@
-#load koala.ppm and call it 'koala'
-load images/koala.ppm koala
-
-#flip koala vertically
-vertical-flip koala koala-vertical
-
-#save the brightened koala
-save test/integration/koala-vertical.ppm koala-vertical
