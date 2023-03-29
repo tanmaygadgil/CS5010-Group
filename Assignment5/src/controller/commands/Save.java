@@ -1,5 +1,6 @@
 package controller.commands;
 
+import controller.ImageIOHandler;
 import controller.ImageIOHandlerImpl;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -26,8 +27,10 @@ public class Save implements ImageProcessingCommand {
 
   @Override
   public void run(ModelV2 m) throws IOException {
-    OutputStream out = ImageIOHandlerImpl.getSaver(this.filePath);
-    String format = ImageIOHandlerImpl.parseFormat(this.filePath);
+    ImageIOHandler handler = new ImageIOHandlerImpl();
+    OutputStream out = handler.getSaver(this.filePath);
+    String format = handler.parseFormat(this.filePath);
+
     m.save(out, this.imageName, format);
   }
 }

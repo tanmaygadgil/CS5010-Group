@@ -10,24 +10,20 @@ import model.loaders.PPMImageLoader;
 import model.savers.ConventionalImageSaver;
 import model.savers.PPMImageSaver;
 
-/**
- * The ModelPPM class represents an image file and provides functionality for loading, saving, and
- * modifying the image. The image is stored as a HashMap where the key is a String representing the
- * image name and the value is a three-dimensional array of integers representing the red, green and
- * blue pixels.
- */
 public class ModelImpl implements Model {
-
   final HashMap<String, int[][][]> imageMap;
   int width;
   int height;
 
-  /**
-   * Initializes image map.
-   */
   public ModelImpl() {
     this.imageMap = new HashMap<>();
   }
+
+//  private int[][][] deepCopy(int[][][] original){
+//    int[][][] copy = new int[original.length][original[0].length][original[0][0].length];
+//    for(int i = 0; i < image)
+//
+//  }
 
   @Override
   public void brighten(int increment, String imageName, String destImage) {
@@ -122,8 +118,8 @@ public class ModelImpl implements Model {
   @Override
   public void load(InputStream in, String destImage, String format) throws FileNotFoundException {
     int[][][] image = null;
-    if (format.equals("ppm")) {
-      ImageLoader loader = new PPMImageLoader();
+    if (format.equals("ppm")){
+        ImageLoader loader = new PPMImageLoader();
       try {
         image = loader.load(in);
       } catch (IOException e) {
@@ -131,7 +127,7 @@ public class ModelImpl implements Model {
       }
 
     } else {
-      ImageLoader loader = new ConventionalImageLoader();
+      ImageLoader loader = new ConventionalImageLoader(format);
       try {
         image = loader.load(in);
       } catch (IOException e) {
@@ -139,7 +135,7 @@ public class ModelImpl implements Model {
       }
     }
 
-    if (image == null) {
+    if(image == null){
       throw new FileNotFoundException();
     }
 
@@ -156,9 +152,9 @@ public class ModelImpl implements Model {
     }
     int[][][] image = this.imageMap.get(imageName);
     ImageSaver saver;
-    if (format.equals("ppm")) {
+    if (format.equals("ppm")){
       saver = new PPMImageSaver();
-    } else {
+    }else {
       saver = new ConventionalImageSaver(format);
     }
     saver.save(image, out);
@@ -289,7 +285,7 @@ public class ModelImpl implements Model {
     imageMap.put(destImage, image);
   }
 
-  private boolean isGrey(int[][][] image) {
+  private boolean isGrey(int[][][] image){
     return image.length == 1;
   }
 }

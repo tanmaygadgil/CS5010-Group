@@ -1,5 +1,6 @@
 package controller.commands;
 
+import controller.ImageIOHandler;
 import controller.ImageIOHandlerImpl;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -26,8 +27,9 @@ public class Load implements ImageProcessingCommand {
 
   @Override
   public void run(ModelV2 m) throws FileNotFoundException {
-    InputStream in = ImageIOHandlerImpl.getLoader(this.filePath);
-    String format = ImageIOHandlerImpl.parseFormat(this.filePath);
+    ImageIOHandler handler = new ImageIOHandlerImpl();
+    InputStream in = handler.getLoader(this.filePath);
+    String format = handler.parseFormat(this.filePath);
     m.load(in, destImage, format);
   }
 }
