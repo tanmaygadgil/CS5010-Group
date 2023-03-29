@@ -7,7 +7,15 @@ import java.io.OutputStream;
 import model.filters.ImageFilter;
 import model.operations.ImageOperations;
 
+/**
+ * The MockModelImpl class is an implementation of the MockModel interface, which provides methods
+ * for loading and saving images, performing various image operations such as greyscale, flipping,
+ * brightening, darkening, splitting and combining RGB channels, as well as applying image filters
+ * and transformations. The class keeps track of all the function calls made to it by appending them
+ * to a log string that can be retrieved using the getLog() method.
+ */
 public class MockModelImpl implements MockModel {
+
   private StringBuilder log = null;
 
   /**
@@ -16,6 +24,7 @@ public class MockModelImpl implements MockModel {
   public MockModelImpl() {
     this.log = new StringBuilder();
   }
+
   @Override
   public void load(InputStream in, String destImage, String format) throws FileNotFoundException {
     this.log.append(String.format("In function load with arguments %s, %s\n", destImage, format));
@@ -84,14 +93,16 @@ public class MockModelImpl implements MockModel {
   @Override
   public void callTransform(ImageTransforms transform, String imagename, String destname) {
     this.log.append(
-        String.format("In function callTransform with arguments %s, %s, %s\n", transform.toString(), imagename,
+        String.format("In function callTransform with arguments %s, %s, %s\n", transform.toString(),
+            imagename,
             destname));
   }
 
   @Override
   public void callOperation(ImageOperations ops, String imagename, String destname) {
     this.log.append(
-        String.format("In function callOperation with arguments %s, %s, %s\n", ops.toString(), imagename,
+        String.format("In function callOperation with arguments %s, %s, %s\n", ops.toString(),
+            imagename,
             destname));
   }
 }

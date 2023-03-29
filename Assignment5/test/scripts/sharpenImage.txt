@@ -1,5 +1,0 @@
-load test/model/testImage.ppm testImage
-
-sharpen testImage sharpenedImage
-
-save test/integration/sharpenedImage.ppm sharpenedImage
