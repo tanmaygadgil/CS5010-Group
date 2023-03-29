@@ -13,7 +13,7 @@ public class PPMImageLoader implements ImageLoader {
    * Initialize the image loader for PPM images.
    */
   public PPMImageLoader() {
-    //this is empty because we need the
+    //This pattern will implement more complex elements which will need a constructor.
   }
 
   @Override

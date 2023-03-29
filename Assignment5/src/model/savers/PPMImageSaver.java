@@ -13,7 +13,7 @@ public class PPMImageSaver implements ImageSaver {
    * Initialize the image saver for PPM images.
    */
   public PPMImageSaver() {
-
+    //This pattern will implement more complex elements which will need a constructor.
   }
 
   @Override

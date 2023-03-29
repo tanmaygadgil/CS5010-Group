@@ -15,7 +15,7 @@ public class ConventionalImageLoader implements ImageLoader {
    * Initializes the image loader with the given format.
    */
   public ConventionalImageLoader() {
-    //This
+    //This pattern will implement more complex elements which will need a constructor.
   }
 
   @Override

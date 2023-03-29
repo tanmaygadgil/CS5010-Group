@@ -9,7 +9,7 @@ public class DitherGreyscaleOperation implements ImageOperations {
    * Initialize the dither operation.
    */
   public DitherGreyscaleOperation() {
-
+    //This pattern will implement more complex elements which will need a constructor.
   }
 
   @Override

@@ -6,10 +6,14 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+/**
+ * This class represents an image handler, which gets the loaders and savers for an image as well
+ * as the file format.
+ */
 public class ImageIOHandlerImpl implements ImageIOHandler {
 
   public ImageIOHandlerImpl() {
-
+    //This pattern will implement more complex elements which will need a constructor.
   }
 
   public InputStream getLoader(String filepath) throws FileNotFoundException {
@@ -22,6 +26,12 @@ public class ImageIOHandlerImpl implements ImageIOHandler {
     return out;
   }
 
+  /**
+   * Returns the file extension given the file name.
+   *
+   * @param filename file name.
+   * @return the file extension.
+   */
   public String parseFormat(String filename) {
 
     if (filename == null) {
