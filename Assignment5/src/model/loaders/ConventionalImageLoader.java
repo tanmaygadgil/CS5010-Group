@@ -6,28 +6,34 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import model.ImageLoader;
 
+/**
+ * This class represents an image loader for multiple well-known image formats.
+ */
 public class ConventionalImageLoader implements ImageLoader {
 
-  private String format;
-  public ConventionalImageLoader(String format){
-    this.format = format;
+  /**
+   * Initializes the image loader with the given format.
+   */
+  public ConventionalImageLoader() {
+    //This
   }
+
   @Override
   public int[][][] load(InputStream in) throws IOException {
     BufferedImage bufferedImage = ImageIO.read(in);
     int[][][] rgbImage = convertToRgb(bufferedImage);
-    if (detectGreyscale(rgbImage)){
+    if (detectGreyscale(rgbImage)) {
       int height = rgbImage[0].length;
       int width = rgbImage[0][0].length;
       int[][][] grey = new int[1][height][width];
       grey[0] = rgbImage[0];
       return grey;
-    }else {
+    } else {
       return rgbImage;
     }
   }
 
-  private int[][][] convertToRgb(BufferedImage img){
+  private int[][][] convertToRgb(BufferedImage img) {
     int height = img.getHeight();
     int width = img.getWidth();
     int[] pixels = img.getRGB(0, 0, width, height, null, 0, width);
@@ -45,14 +51,14 @@ public class ConventionalImageLoader implements ImageLoader {
 
   }
 
-  private boolean detectGreyscale(int[][][] image){
+  private boolean detectGreyscale(int[][][] image) {
     int height = image[0].length;
     int width = image[0][0].length;
 
     boolean isGrey = true;
 
-    for (int i = 0; i < height; i++){
-      for (int j = 0; j<width;j++){
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
         isGrey &= ((image[0][i][j] == image[1][i][j]) & (image[0][i][j] == image[1][i][j]));
       }
     }
@@ -61,7 +67,7 @@ public class ConventionalImageLoader implements ImageLoader {
   }
 
   @Override
-  public String toString(){
+  public String toString() {
     return "ConventionalLoader";
   }
 }

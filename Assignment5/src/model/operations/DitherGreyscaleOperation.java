@@ -1,7 +1,13 @@
 package model.operations;
 
+/**
+ * This class represents the dither operation.
+ */
 public class DitherGreyscaleOperation implements ImageOperations {
 
+  /**
+   * Initialize the dither operation.
+   */
   public DitherGreyscaleOperation() {
 
   }
@@ -19,7 +25,6 @@ public class DitherGreyscaleOperation implements ImageOperations {
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
         int oldColor = image[0][i][j];
-//        int newColor = (int)(255 * Math.round(oldColor / 255));
         int newColor = oldColor > 127 ? 255 : 0;
         int error = oldColor - newColor;
         newImage[0][i][j] = newColor;

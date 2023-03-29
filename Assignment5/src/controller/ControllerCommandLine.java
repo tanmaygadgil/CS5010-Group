@@ -1,6 +1,5 @@
 package controller;
 
-import model.Model;
 import model.ModelV2;
 import view.View;
 import java.io.IOException;

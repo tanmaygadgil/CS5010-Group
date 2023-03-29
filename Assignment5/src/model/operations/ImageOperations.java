@@ -6,9 +6,10 @@ package model.operations;
 public interface ImageOperations {
 
   /**
-   * Encapsulates the logic to run an image operation
-   * @param image the image to be transformed
-   * @return the operated image
+   * Encapsulates the logic to run an image operation.
+   *
+   * @param image the image to be transformed.
+   * @return the operated image.
    */
   int[][][] operate(int[][][] image);
 

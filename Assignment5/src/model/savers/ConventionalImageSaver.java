@@ -6,23 +6,33 @@ import java.io.OutputStream;
 import javax.imageio.ImageIO;
 import model.ImageSaver;
 
+/**
+ * This class represents an image saver for multiple well-known image formats.
+ */
 public class ConventionalImageSaver implements ImageSaver {
 
   private String format;
+
+  /**
+   * Initializes the image saver with the given format.
+   *
+   * @param format image format of saved image.
+   */
   public ConventionalImageSaver(String format) {
     this.format = format;
   }
+
   @Override
   public void save(int[][][] image, OutputStream out) throws IOException {
     BufferedImage bufferedImage = rgbToBufferedImage(image);
     ImageIO.write(bufferedImage, this.format, out);
   }
 
-  private BufferedImage rgbToBufferedImage(int[][][] image){
+  private BufferedImage rgbToBufferedImage(int[][][] image) {
     int height = image[0].length;
     int width = image[0][0].length;
     int[][][] newImage;
-    if(image.length == 1){
+    if (image.length == 1) {
       newImage = new int[3][height][width];
       for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
@@ -32,7 +42,7 @@ public class ConventionalImageSaver implements ImageSaver {
         }
       }
 
-    }else {
+    } else {
       newImage = image;
     }
     BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -49,7 +59,7 @@ public class ConventionalImageSaver implements ImageSaver {
   }
 
   @Override
-  public String toString(){
+  public String toString() {
     return "ConventionalSaver";
   }
 }

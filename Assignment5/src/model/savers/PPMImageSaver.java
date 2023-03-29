@@ -4,8 +4,14 @@ import java.io.IOException;
 import java.io.OutputStream;
 import model.ImageSaver;
 
+/**
+ * This class represents an image saver for PPM files.
+ */
 public class PPMImageSaver implements ImageSaver {
 
+  /**
+   * Initialize the image saver for PPM images.
+   */
   public PPMImageSaver() {
 
   }
@@ -31,7 +37,7 @@ public class PPMImageSaver implements ImageSaver {
   }
 
   @Override
-  public String toString(){
+  public String toString() {
     return "PPMSaver";
   }
 }

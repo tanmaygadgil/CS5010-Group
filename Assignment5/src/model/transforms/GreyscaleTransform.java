@@ -1,8 +1,8 @@
 package model.transforms;
 
-import model.ImageTransforms;
-import model.operations.ImageOperations;
-
+/**
+ * This class represents the greyscale transformations to be done on images.
+ */
 public class GreyscaleTransform implements model.ImageTransforms {
 
   @Override
@@ -28,7 +28,7 @@ public class GreyscaleTransform implements model.ImageTransforms {
   }
 
   @Override
-  public String toString(){
+  public String toString() {
     return "Greyscale Transform";
   }
 }

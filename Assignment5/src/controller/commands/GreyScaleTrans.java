@@ -1,25 +1,34 @@
 package controller.commands;
 
-import controller.commands.ImageProcessingCommand;
 import java.io.IOException;
 import model.ImageTransforms;
 import model.ModelV2;
 import model.transforms.GreyscaleTransform;
-import model.transforms.SepiaTransform;
 
+/**
+ * This class allows the controller to call the greyscale command.
+ */
 public class GreyScaleTrans implements ImageProcessingCommand {
-  private String imagename;
-  private String destimage;
 
-  public GreyScaleTrans(String imagename, String destimage){
-    this.imagename = imagename;
-    this.destimage = destimage;
+  private String imageName;
+  private String destImage;
+
+  /**
+   * Initialize the greyscaletrans command.
+   *
+   * @param imageName image name.
+   * @param destImage destination image name.
+   */
+  public GreyScaleTrans(String imageName, String destImage) {
+    this.imageName = imageName;
+    this.destImage = destImage;
 
   }
+
   @Override
   public void run(ModelV2 m) throws IOException {
     ImageTransforms grey = new GreyscaleTransform();
-    m.callTransform(grey, this.imagename, this.destimage);
+    m.callTransform(grey, this.imageName, this.destImage);
 
   }
 }

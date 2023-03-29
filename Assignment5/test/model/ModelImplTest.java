@@ -76,7 +76,7 @@ public class ModelImplTest {
   public void testGaussianBlur() throws IOException {
     ImageFilter blur = new GaussianBlur();
 
-    ImageLoader loader = new ConventionalImageLoader("jpg");
+    ImageLoader loader = new ConventionalImageLoader();
     InputStream in = new FileInputStream("test/model/testImage.ppm");
     int[][][] image = loader.load(in);
 

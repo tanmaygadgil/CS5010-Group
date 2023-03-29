@@ -1,20 +1,23 @@
 package model.filters;
 
-public abstract class AbstractFilter implements ImageFilter{
+/**
+ * This class is an abstract representation of a filter.
+ */
+public abstract class AbstractFilter implements ImageFilter {
 
   double[][] kernel;
 
   @Override
   public int[][][] filter(int[][][] image) {
     int[][][] filteredImage = new int[image.length][image[0].length][image[0][0].length];
-    for(int i = 0; i < image.length; i++) {
+    for (int i = 0; i < image.length; i++) {
       filteredImage[i] = convEntireImage(image[i], kernel);
     }
 
     return filteredImage;
   }
 
-  protected int convOnePixel(int[][] image, double[][] kernel, int row, int col){
+  protected int convOnePixel(int[][] image, double[][] kernel, int row, int col) {
     double out = 0;
     row = row - ((kernel.length - 1) / 2);
     col = col - ((kernel.length - 1) / 2);
@@ -40,7 +43,7 @@ public abstract class AbstractFilter implements ImageFilter{
     return ((int) out);
   }
 
-  protected int[][] convEntireImage(int[][] image, double[][] kernel){
+  protected int[][] convEntireImage(int[][] image, double[][] kernel) {
     int[][] imageFiltered = new int[image.length][image[0].length];
     for (int i = 0; i < image.length; i++) {
       for (int j = 0; j < image[0].length; j++) {

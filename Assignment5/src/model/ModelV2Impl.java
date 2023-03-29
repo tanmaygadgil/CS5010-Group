@@ -3,11 +3,16 @@ package model;
 import model.filters.ImageFilter;
 import model.operations.ImageOperations;
 
+/**
+ * This class extends the ModelImpl class, and provides all functionality from the previous model as
+ * well as the capability to filter, transform and call an operation on an image.
+ */
 public class ModelV2Impl extends ModelImpl implements ModelV2 {
 
-  public ModelV2Impl(){
+  public ModelV2Impl() {
     super();
   }
+
   @Override
   public void callFilter(ImageFilter filter, String imageName, String destName) {
     int[][][] image = this.imageMap.get(imageName);

@@ -5,11 +5,20 @@ import model.filters.ImageFilter;
 import model.filters.Sharpening;
 import model.ModelV2;
 
+/**
+ * This class allows the controller to call the sharpen command.
+ */
 public class Sharpen implements ImageProcessingCommand {
 
   private String imageName;
   private String destImage;
 
+  /**
+   * Initialize the sharpen command.
+   *
+   * @param imageName image name.
+   * @param destImage destination image name.
+   */
   public Sharpen(String imageName, String destImage) {
     this.imageName = imageName;
     this.destImage = destImage;

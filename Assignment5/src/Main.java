@@ -1,7 +1,5 @@
 import controller.Controller;
 import controller.ControllerCommandLine;
-import model.Model;
-import model.ModelImpl;
 import model.ModelV2;
 import model.ModelV2Impl;
 import view.View;

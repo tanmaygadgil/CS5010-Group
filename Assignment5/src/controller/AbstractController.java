@@ -30,6 +30,12 @@ public abstract class AbstractController implements Controller {
   protected final View view;
   protected final Map<String, Function<String[], ImageProcessingCommand>> knownCommands;
 
+  /**
+   * Create an instance of an abstract controller.
+   *
+   * @param model the model to be used by the controller.
+   * @param view  the view to be used by the controller.
+   */
   public AbstractController(ModelV2 model, View view) {
     this.model = model;
     this.view = view;
@@ -101,7 +107,7 @@ public abstract class AbstractController implements Controller {
         c = cmd.apply(commandArgs);
         c.run(model);
         return commandArgs[0] + " successful";
-      } catch(Exception e) {
+      } catch (Exception e) {
         e.printStackTrace();
         return commandArgs[0] + " unsuccessful";
       }

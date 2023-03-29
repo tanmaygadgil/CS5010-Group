@@ -1,26 +1,34 @@
 package controller.commands;
 
-import controller.commands.ImageProcessingCommand;
 import java.io.IOException;
 import model.ImageTransforms;
 import model.ModelV2;
-import model.ModelV2Impl;
 import model.transforms.SepiaTransform;
 
+/**
+ * This class allows the controller to call the sepia command.
+ */
 public class Sepia implements ImageProcessingCommand {
 
-  private String imagename;
-  private String destimage;
+  private String imageName;
+  private String destImage;
 
-  public Sepia(String imagename, String destimage){
-    this.imagename = imagename;
-    this.destimage = destimage;
+  /**
+   * Initialize the sepia command.
+   *
+   * @param imageName image name.
+   * @param destImage destination image name.
+   */
+  public Sepia(String imageName, String destImage) {
+    this.imageName = imageName;
+    this.destImage = destImage;
 
   }
+
   @Override
   public void run(ModelV2 m) throws IOException {
     ImageTransforms sepia = new SepiaTransform();
-    m.callTransform(sepia, this.imagename, this.destimage);
+    m.callTransform(sepia, this.imageName, this.destImage);
 
   }
 }

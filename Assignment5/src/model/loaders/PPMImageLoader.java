@@ -1,14 +1,19 @@
 package model.loaders;
 
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Scanner;
 import model.ImageLoader;
 
+/**
+ * This class represents an image loader for PPM files.
+ */
 public class PPMImageLoader implements ImageLoader {
 
+  /**
+   * Initialize the image loader for PPM images.
+   */
   public PPMImageLoader() {
-
+    //this is empty because we need the
   }
 
   @Override
@@ -70,7 +75,7 @@ public class PPMImageLoader implements ImageLoader {
   }
 
   @Override
-  public String toString(){
+  public String toString() {
     return "PPMLoader";
   }
 

@@ -1,8 +1,10 @@
 package controller.commands;
 
-import model.Model;
 import model.ModelV2;
 
+/**
+ * This class allows the controller to call the rgbsplit command.
+ */
 public class RGBSplit implements ImageProcessingCommand {
 
   String imageName;
@@ -10,6 +12,14 @@ public class RGBSplit implements ImageProcessingCommand {
   String destImageGreen;
   String destImageBlue;
 
+  /**
+   * Initialize the rgb split command.
+   *
+   * @param imageName      image name.
+   * @param destImageRed   destination image name for red component.
+   * @param destImageGreen destination image name for green component.
+   * @param destImageBlue  destination image name for blue component.
+   */
   public RGBSplit(String imageName, String destImageRed, String destImageGreen,
       String destImageBlue) {
     this.imageName = imageName;
