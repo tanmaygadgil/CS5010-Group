@@ -253,4 +253,64 @@ public class ModelImplTest {
     m.save(out, "dither", "jpg");
 
   }
+
+  @Test (expected = IllegalStateException.class)
+  public void testCallFilterGaussianBlurException() throws IllegalStateException, FileNotFoundException {
+    ModelV2 model = new ModelV2Impl();
+    InputStream in = new FileInputStream("test/model/testImage.ppm");
+    OutputStream out = new FileOutputStream("test/model/blurredImage.ppm");
+    model.load(in, "testImage", "ppm");
+    model.callFilter(new GaussianBlur(), "testImage1", "blurredImage");
+  }
+
+  @Test (expected = IllegalStateException.class)
+  public void testCallTransformSepiaTransformException() throws IllegalStateException,
+      FileNotFoundException {
+    ModelV2 model = new ModelV2Impl();
+    InputStream in = new FileInputStream("test/model/testImage.ppm");
+    OutputStream out = new FileOutputStream("test/model/sepiatransformedImage.ppm");
+    model.load(in, "testImage", "ppm");
+    model.callTransform(new SepiaTransform(), "testImage1",
+        "sepiatransformedImage");
+  }
+
+  @Test (expected = IllegalStateException.class)
+  public void testCallDitheringOperationException() throws IllegalStateException,
+      FileNotFoundException {
+    ModelV2 model = new ModelV2Impl();
+    InputStream in = new FileInputStream("test/model/testImage2.ppm");
+    OutputStream out = new FileOutputStream("test/model/ditheredImage.ppm");
+    model.load(in, "testImage", "ppm");
+    model.callTransform(new GreyscaleTransform(), "testImage", "greyImage");
+    model.callOperation(new DitherGreyscaleOperation(), "greyImage1",
+        "ditheredImage");
+  }
+
+  @Test (expected = IllegalStateException.class)
+  public void testCallFilterSharpeningException() throws IllegalStateException, FileNotFoundException {
+    ModelV2 model = new ModelV2Impl();
+    InputStream in = new FileInputStream("test/model/testImage.ppm");
+    OutputStream out = new FileOutputStream("test/model/blurredImage.ppm");
+    model.load(in, "testImage", "ppm");
+    model.callFilter(new Sharpening(), "testImage1", "blurredImage");
+  }
+
+
+  @Test (expected = FileNotFoundException.class)
+  public void testLoadException() throws IOException {
+    ModelV2 model = new ModelV2Impl();
+    InputStream in = new FileInputStream("test/model/testImageException.ppm");
+    model.load(in, "testImage", "ppm");
+  }
+
+  @Test (expected = IllegalStateException.class)
+  public void testDitherwholeException() throws IllegalStateException,
+      FileNotFoundException {
+    ModelV2 m = new ModelV2Impl();
+    InputStream in = new FileInputStream("test/model/greenland_grid_velo_grey.jpg");
+    OutputStream out = new FileOutputStream("test/model/greenland_grid_velo_dither.jpg");
+    ImageOperations dither = new DitherGreyscaleOperation();
+    m.load(in, "testImage", "jpg");
+    m.callOperation(dither, "testImage1", "dither");
+  }
 }

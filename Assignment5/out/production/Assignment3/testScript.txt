@@ -1,5 +1,5 @@
 #load test file
-load sample.ppm scene
+load src/sample.jpg scene
 
 #flip scene vertically
 vertical-flip scene scene-vertical
@@ -9,6 +9,6 @@ vertical-flip scene scene-vertical
 rgb-split scene scene-red scene-green scene-blue
 
 #save each component
-save scene-red.ppm scene-red
-save scene-green.ppm scene-green
-save scene-blue.ppm scene-blue
+save src/scene-red.jpg scene-red
+save src/scene-green.jpg scene-green
+save src/scene-blue.jpg scene-blue

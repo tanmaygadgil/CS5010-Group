@@ -9,15 +9,9 @@ import java.io.OutputStream;
  */
 public interface ImageIOHandler {
 
-  static InputStream getLoader(String filepath) throws FileNotFoundException {
-    return null;
-  }
+  InputStream getLoader(String filepath) throws FileNotFoundException ;
 
-  static OutputStream getSaver(String filepath) throws FileNotFoundException {
-    return null;
-  }
+  OutputStream getSaver(String filepath) throws FileNotFoundException;
 
-  static String parseFormat(String filepath) {
-    return null;
-  }
+  String parseFormat(String filepath);
 }

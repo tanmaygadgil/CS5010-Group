@@ -8,6 +8,7 @@ public class GaussianBlur extends AbstractFilter implements ImageFilter {
         {1.0/8, 1.0/4, 1.0/8},
         {1.0/16, 1.0/8, 1.0/16}
     };
+
   }
   @Override
   public String toString(){

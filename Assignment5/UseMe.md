@@ -45,12 +45,9 @@ To compile the code
 In this mode the app runs when the user gives command line inputs into the terminal
 To run the script:
 
-```shell
-cd src/
-```
 
 ```shell
-java Main.java
+java -jar Assignment5.jar
 ```
 
 To exit the application enter the command ```exit``` or use ```ctrl-c```
@@ -63,12 +60,9 @@ character
 
 To run the application script mode attach the -s flag to the command line arguments
 
-```shell
-cd src/
-```
 
 ```shell
-java Main.java -s <location of script file.txt>
+java -jar Assignment5.jar -s <location of script file.txt>
 ```
 
 ### Sample Scripts
@@ -80,30 +74,62 @@ Run these sample scripts for the following use cases
 First execute
 
 ```shell
->>> cd src/
->>> java Main.java
+>>> java -jar Assignment5.jar
 ```
 
 Then execute the following commands **one at a time**
 
 ```shell
->>> load sample.ppm scene
+load res/tanzania.jpg tanzania
+brighten 50 tanzania brightentanzania
+save res/brightentanzania.jpg brightentanzania
 
->>> vertical-flip scene scene-vertical
+load res/tanzania.jpg tanzania
+darken 100 tanzania darkentanzania
+save res/darkentanzania.jpg darkentanzania
 
->>> rgb-split scene scene-red scene-green scene-blue
+load res/tanzania.jpg tanzania
+horizontal-flip tanzania horizontaltanzania
+save res/horizontaltanzania.jpg horizontaltanzania
 
->>> save scene-red.ppm scene-red
+load res/tanzania.jpg tanzania
+vertical-flip tanzania verticaltanzania
+save res/verticaltanzania.jpg verticaltanzania
 
->>> save scene-green.ppm scene-green
+load res/tanzania.jpg tanzania
+greyscale tanzania greytanzania
+save res/greytanzania.jpg greytanzania
 
->>> save scene-blue.ppm scene-blue
+load res/tanzania.jpg tanzania
+rgb-split tanzania redtanzania greentanzania bluetanzania
+save res/redtanzania.jpg redtanzania
+save res/greentanzania.jpg greentanzania
+save res/bluetanzania.jpg bluetanzania
+
+load res/tanzania.jpg tanzania
+rgb-combine combinetanzania redtanzania greentanzania bluetanzania
+save res/combinetanzania.jpg combinetanzania
+
+load res/tanzania.jpg tanzania
+dither tanzania dithertanzania
+save res/dithertanzania.jpg dithertanzania
+
+load res/tanzania.jpg tanzania
+sepia tanzania sepiatanzania
+save res/sepiatanzania.jpg sepiatanzania
+
+load res/tanzania.jpg tanzania
+gaussian-blur tanzania gaussian-blurtanzania
+save res/gaussian-blurtanzania.jpg gaussian-blurtanzania
+
+load res/tanzania.jpg tanzania
+sharpen tanzania sharptanzania
+save res/sharptanzania.jpg sharptanzania
 ```
 
 #### Running in script mode
 
 ```shell
->>> cd src/
->>> java Main.java -s testScript.txt
+>>> java -jar Assignment5.jar -s res/commands.txt
 ```
 

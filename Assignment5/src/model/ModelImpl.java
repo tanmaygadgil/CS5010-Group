@@ -19,11 +19,11 @@ public class ModelImpl implements Model {
     this.imageMap = new HashMap<>();
   }
 
-  private int[][][] deepCopy(int[][][] original){
-    int[][][] copy = new int[original.length][original[0].length][original[0][0].length];
-    for(int i = 0; i < image)
-
-  }
+//  private int[][][] deepCopy(int[][][] original){
+//    int[][][] copy = new int[original.length][original[0].length][original[0][0].length];
+//    for(int i = 0; i < image)
+//
+//  }
 
   @Override
   public void brighten(int increment, String imageName, String destImage) {
