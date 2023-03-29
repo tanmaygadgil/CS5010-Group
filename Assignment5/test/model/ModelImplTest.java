@@ -151,6 +151,62 @@ public class ModelImplTest {
         + "[[2, 3, 3, 2], [3, 5, 5, 3], [2, 3, 3, 2]], "
         + "[[3, 4, 4, 3], [5, 7, 7, 5], [3, 4, 4, 3]]]", Arrays.deepToString(filteredImage));
   }
+  @Test
+  public void testCallDitheringOperation() throws IOException {
+    ModelV2 model = new ModelV2Impl();
+    InputStream in = new FileInputStream("test/model/testImage2.ppm");
+    OutputStream out = new FileOutputStream("test/model/ditheredImage.ppm");
+    model.load(in, "testImage", "ppm");
+    model.callTransform(new GreyscaleTransform(), "testImage", "greyImage");
+    model.callOperation(new DitherGreyscaleOperation(), "greyImage",
+        "ditheredImage");
+    model.save(out, "ditheredImage", "ppm");
+
+    ImageLoader loader = new PPMImageLoader();
+    int[][][] transformedImage = loader.load(new FileInputStream(
+        "test/model/ditheredImage.ppm"));
+    assertEquals("[[[255, 255, 0, 0], [0, 0, 255, 255], [0, 255, 255, 0]], "
+            + "[[255, 255, 0, 0], [0, 0, 255, 255], [0, 255, 255, 0]], "
+            + "[[255, 255, 0, 0], [0, 0, 255, 255], [0, 255, 255, 0]]]",
+        Arrays.deepToString(transformedImage));
+  }
+
+  @Test
+  public void testCallTransformSepiaTransform() throws IOException {
+    ModelV2 model = new ModelV2Impl();
+    InputStream in = new FileInputStream("test/model/testImage.ppm");
+    OutputStream out = new FileOutputStream("test/model/sepiatransformedImage.ppm");
+    model.load(in, "testImage", "ppm");
+    model.callTransform(new SepiaTransform(), "testImage",
+        "sepiatransformedImage");
+    model.save(out, "sepiatransformedImage", "ppm");
+
+    ImageLoader loader = new PPMImageLoader();
+    int[][][] transformedImage = loader.load(new FileInputStream(
+        "test/model/sepiatransformedImage.ppm"));
+    assertEquals(
+        "[[[2, 2, 2, 2], [2, 2, 2, 2], [2, 2, 2, 2]], "
+            + "[[2, 2, 2, 2], [2, 2, 2, 2], [2, 2, 2, 2]], "
+            + "[[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]]",
+        Arrays.deepToString(transformedImage));
+  }
+
+  @Test
+  public void testCallTransformGreyscaleTransform() throws IOException {
+    ModelV2 model = new ModelV2Impl();
+    InputStream in = new FileInputStream("test/model/testImage.ppm");
+    OutputStream out = new FileOutputStream("test/model/greyscaledImage.ppm");
+    model.load(in, "testImage", "ppm");
+    model.callTransform(new GreyscaleTransform(), "testImage", "greyscaledImage");
+    model.save(out, "greyscaledImage", "ppm");
+
+    ImageLoader loader = new PPMImageLoader();
+    int[][][] transformedImage = loader.load(new FileInputStream(
+        "test/model/greyscaledImage.ppm"));
+    assertEquals(
+        "[[[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]]",
+        Arrays.deepToString(transformedImage));
+  }
 
   @Test
   public void testGreyscale() throws IOException {
