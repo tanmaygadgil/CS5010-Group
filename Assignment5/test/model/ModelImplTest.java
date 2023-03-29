@@ -15,6 +15,8 @@ import model.filters.Sharpening;
 import model.loaders.PPMImageLoader;
 import model.operations.ImageOperations;
 import model.operations.DitherGreyscaleOperation;
+import model.transforms.GreyscaleTransform;
+import model.transforms.SepiaTransform;
 import org.junit.Test;
 
 public class ModelImplTest {
@@ -67,10 +69,7 @@ public class ModelImplTest {
 
   }
 
-  @Test
-  public void loadPNG() {
 
-  }
 
   @Test
   public void testGaussianBlur() throws IOException {
@@ -82,11 +81,28 @@ public class ModelImplTest {
 
     int[][][] filteredImage = blur.filter(image);
 
-    assertEquals(
-        "[[[0, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]], "
-            + "[[1, 1, 1, 1], [1, 2, 2, 1], [1, 1, 1, 1]], "
-            + "[[1, 2, 2, 1], [2, 3, 3, 2], [1, 2, 2, 1]]]",
-        Arrays.deepToString(filteredImage));
+    assertEquals("[[[0, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]], "
+        + "[[1, 1, 1, 1], [1, 2, 2, 1], [1, 1, 1, 1]], "
+        + "[[1, 2, 2, 1], [2, 3, 3, 2], [1, 2, 2, 1]]]", Arrays.deepToString(filteredImage));
+  }
+
+  @Test
+  public void testDither() throws IOException {
+    ImageOperations op = new DitherGreyscaleOperation();
+    ImageTransforms grey = new GreyscaleTransform();
+    ImageLoader loader = new PPMImageLoader();
+    InputStream in = new FileInputStream("test/model/testImage2.ppm");
+
+    int[][][] image = loader.load(in);
+    int[][][] greyImg = grey.transform(image);
+    int[][][] filteredImage = op.operate(greyImg);
+
+    String expected = "[[[255, 255, 0, 0], [0, 0, 255, 255], [0, 255, 255, 0]], "
+        + "[[255, 255, 0, 0], [0, 0, 255, 255], [0, 255, 255, 0]], "
+        + "[[255, 255, 0, 0], [0, 0, 255, 255], [0, 255, 255, 0]]]";
+
+    assertEquals(expected, Arrays.deepToString(filteredImage));
+
   }
 
   @Test
@@ -100,11 +116,9 @@ public class ModelImplTest {
 
     ImageLoader loader = new PPMImageLoader();
     int[][][] filteredImage = loader.load(new FileInputStream("test/model/blurredImage.ppm"));
-    assertEquals(
-        "[[[0, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]], "
-            + "[[1, 1, 1, 1], [1, 2, 2, 1], [1, 1, 1, 1]], "
-            + "[[1, 2, 2, 1], [2, 3, 3, 2], [1, 2, 2, 1]]]",
-        Arrays.deepToString(filteredImage));
+    assertEquals("[[[0, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]], "
+        + "[[1, 1, 1, 1], [1, 2, 2, 1], [1, 1, 1, 1]], "
+        + "[[1, 2, 2, 1], [2, 3, 3, 2], [1, 2, 2, 1]]]", Arrays.deepToString(filteredImage));
   }
 
   @Test
@@ -117,11 +131,9 @@ public class ModelImplTest {
 
     int[][][] filteredImage = blur.filter(image);
 
-    assertEquals(
-        "[[[1, 1, 1, 1], [1, 2, 2, 2], [1, 2, 2, 1]],"
-            + " [[2, 3, 3, 2], [3, 5, 5, 4], [3, 4, 4, 3]],"
-            + " [[3, 4, 4, 3], [5, 7, 8, 6], [4, 6, 6, 4]]]",
-        Arrays.deepToString(filteredImage));
+    assertEquals("[[[1, 1, 1, 1], [1, 2, 2, 1], [1, 1, 1, 1]],"
+        + " [[2, 3, 3, 2], [3, 5, 5, 3], [2, 3, 3, 2]], "
+        + "[[3, 4, 4, 3], [5, 7, 7, 5], [3, 4, 4, 3]]]", Arrays.deepToString(filteredImage));
   }
 
   @Test
@@ -135,27 +147,46 @@ public class ModelImplTest {
 
     ImageLoader loader = new PPMImageLoader();
     int[][][] filteredImage = loader.load(new FileInputStream("test/model/sharpenedImage.ppm"));
-    assertEquals(
-        "[[[1, 1, 1, 1], [1, 2, 2, 2], [1, 2, 2, 1]],"
-            + " [[2, 3, 3, 2], [3, 5, 5, 4], [3, 4, 4, 3]],"
-            + " [[3, 4, 4, 3], [5, 7, 8, 6], [4, 6, 6, 4]]]",
-        Arrays.deepToString(filteredImage));
+    assertEquals("[[[1, 1, 1, 1], [1, 2, 2, 1], [1, 1, 1, 1]], "
+        + "[[2, 3, 3, 2], [3, 5, 5, 3], [2, 3, 3, 2]], "
+        + "[[3, 4, 4, 3], [5, 7, 7, 5], [3, 4, 4, 3]]]", Arrays.deepToString(filteredImage));
   }
 
   @Test
   public void testGreyscale() throws IOException {
-    ModelV2 m = new ModelV2Impl();
-    InputStream in = new FileInputStream("test/model/greenland_grid_velo.bmp");
-    OutputStream out = new FileOutputStream("test/model/greenland_grid_velo_grey.jpg");
 
-    m.load(in, "testImage", "bmp");
-    m.greyscale(ImageComponents.BLUE, "testImage", "grey");
-    m.save(out, "grey", "jpg");
+    ImageTransforms grey = new GreyscaleTransform();
+    ImageLoader loader = new PPMImageLoader();
+    InputStream in = new FileInputStream("test/model/testImage2.ppm");
+
+    int[][][] image = loader.load(in);
+
+    int[][][] greyImage = grey.transform(image);
+    assertEquals(
+        "[[[225, 163, 174, 70], [83, 97, 195, 140], [81, 86, 199, 106]]]",
+        Arrays.deepToString(greyImage));
+
 
   }
 
   @Test
-  public void testDither() throws IOException {
+  public void testSepia() throws IOException {
+    ImageTransforms sepia = new SepiaTransform();
+    ImageLoader loader = new PPMImageLoader();
+    InputStream in = new FileInputStream("test/model/testImage.ppm");
+
+    int[][][] image = loader.load(in);
+
+    int[][][] sepiaImage = sepia.transform(image);
+    assertEquals(
+        "[[[2, 2, 2, 2], [2, 2, 2, 2], [2, 2, 2, 2]], "
+            + "[[2, 2, 2, 2], [2, 2, 2, 2], [2, 2, 2, 2]],"
+            + " [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]]",
+        Arrays.deepToString(sepiaImage));
+  }
+
+  @Test
+  public void testDitherwhole() throws IOException {
     ModelV2 m = new ModelV2Impl();
     InputStream in = new FileInputStream("test/model/greenland_grid_velo_grey.jpg");
     OutputStream out = new FileOutputStream("test/model/greenland_grid_velo_dither.jpg");
