@@ -12,4 +12,8 @@ public class Sharpening extends AbstractFilter {
     };
   }
 
+  @Override
+  public String toString(){
+    return "Sharpening";
+  }
 }

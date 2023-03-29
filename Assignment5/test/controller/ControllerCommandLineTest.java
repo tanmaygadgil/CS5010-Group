@@ -33,7 +33,7 @@ public class ControllerCommandLineTest {
         + "In function brighten with arguments 10, koala, koala-brighter\n"
         + "In function flip with arguments VERTICAL, koala, koala-vertical\n"
         + "In function flip with arguments HORIZONTAL, koala-vertical, koala-vertical-horizontal\n"
-        + "In function greyscale with arguments RED, koala, koala-greyscale\n"
+        + "In function callTransform with arguments Greyscale Transform, red-component, koala\n"
         + "In function save with arguments koala-greyscale, ppm\n"
         + "In function rgbSplit with arguments koala, koala-red, koala-green, koala-blue\n"
         + "In function brighten with arguments 50, koala-red, koala-red\n"
@@ -132,7 +132,7 @@ public class ControllerCommandLineTest {
   public void greyscaleArgumentsError() {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream));
-    String input = "greyscale value-component koala\nexit";
+    String input = "greyscale value-component\nexit";
     String outputString = "greyscale unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
@@ -150,7 +150,7 @@ public class ControllerCommandLineTest {
   public void greyscaleComponentError() {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream));
-    String input = "greyscale no-component koala\nexit";
+    String input = "greyscale no-component\nexit";
     String outputString = "greyscale unsuccessful\r\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
@@ -273,7 +273,7 @@ public class ControllerCommandLineTest {
         + "In function brighten with arguments 10, koala, koala-brighter\n"
         + "In function flip with arguments VERTICAL, koala, koala-vertical\n"
         + "In function flip with arguments HORIZONTAL, koala-vertical, koala-vertical-horizontal\n"
-        + "In function greyscale with arguments VALUE, koala, koala-greyscale\n"
+        + "In function callTransform with arguments Greyscale Transform, value-component, koala\n"
         + "In function save with arguments koala-brighter, ppm\n"
         + "In function save with arguments koala-greyscale, ppm\n"
         + "In function rgbSplit with arguments koala, koala-red, koala-green, koala-blue\n"

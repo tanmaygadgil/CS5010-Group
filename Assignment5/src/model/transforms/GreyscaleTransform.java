@@ -26,4 +26,9 @@ public class GreyscaleTransform implements model.ImageTransforms {
     returnImage[0] = greyscaledImage[0];
     return returnImage;
   }
+
+  @Override
+  public String toString(){
+    return "Greyscale Transform";
+  }
 }

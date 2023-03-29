@@ -36,4 +36,8 @@ public class SepiaTransform implements model.ImageTransforms {
 
     return sepiaImage;
   }
+  @Override
+  public String toString(){
+    return "SepiaTransform";
+  }
 }

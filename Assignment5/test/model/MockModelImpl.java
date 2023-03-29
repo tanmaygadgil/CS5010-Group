@@ -47,6 +47,13 @@ public class MockModelImpl implements MockModel {
   }
 
   @Override
+  public void darken(int increment, String imageName, String destImage) {
+    this.log.append(
+        String.format("In function darken with arguments %s, %s, %s\n", increment, imageName,
+            destImage));
+  }
+
+  @Override
   public void rgbSplit(String imageName, String destImageRed, String destImageGreen,
       String destImageBlue) {
     this.log.append(String.format("In function rgbSplit with arguments %s, %s, %s, %s\n", imageName,
@@ -77,14 +84,14 @@ public class MockModelImpl implements MockModel {
   @Override
   public void callTransform(ImageTransforms transform, String imagename, String destname) {
     this.log.append(
-        String.format("In function brighten with arguments %s, %s, %s\n", transform.toString(), imagename,
+        String.format("In function callTransform with arguments %s, %s, %s\n", transform.toString(), imagename,
             destname));
   }
 
   @Override
   public void callOperation(ImageOperations ops, String imagename, String destname) {
     this.log.append(
-        String.format("In function brighten with arguments %s, %s, %s\n", ops.toString(), imagename,
+        String.format("In function callOperation with arguments %s, %s, %s\n", ops.toString(), imagename,
             destname));
   }
 }

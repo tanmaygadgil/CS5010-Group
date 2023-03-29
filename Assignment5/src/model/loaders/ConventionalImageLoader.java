@@ -59,4 +59,9 @@ public class ConventionalImageLoader implements ImageLoader {
 
     return isGrey;
   }
+
+  @Override
+  public String toString(){
+    return "ConventionalLoader";
+  }
 }

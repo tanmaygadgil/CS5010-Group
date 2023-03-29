@@ -29,4 +29,9 @@ public class PPMImageSaver implements ImageSaver {
       }
     }
   }
+
+  @Override
+  public String toString(){
+    return "PPMSaver";
+  }
 }
