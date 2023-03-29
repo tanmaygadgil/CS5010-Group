@@ -1,6 +1,6 @@
 package model.filters;
 
-public class GaussianBlur extends AbstractFilter{
+public class GaussianBlur extends AbstractFilter implements ImageFilter {
 
   public GaussianBlur(){
     this.kernel = new double[][] {

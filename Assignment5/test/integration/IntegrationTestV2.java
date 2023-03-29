@@ -41,7 +41,7 @@ public class IntegrationTestV2 {
   @Test
   public void testBlurCommandLine() throws IOException {
     ModelV2 m = new ModelV2Impl();
-    String input = "load test/model/testImage.ppm testImage\n blur testImage blurredImage\n "
+    String input = "load test/model/testImage.ppm testImage\n gaussian-blur testImage blurredImage\n "
         + "save test/integration/blurredImage.ppm blurredImage\nexit";
     InputStream inputStream = new ByteArrayInputStream(input.getBytes());
     System.setIn(inputStream);
