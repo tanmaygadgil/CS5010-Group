@@ -8,23 +8,22 @@ import java.io.OutputStream;
 
 public class ImageIOHandlerImpl implements ImageIOHandler {
 
-  public static InputStream getLoader(String filepath) throws FileNotFoundException {
+  public ImageIOHandlerImpl() {
+
+  }
+
+  public InputStream getLoader(String filepath) throws FileNotFoundException {
     InputStream in = new FileInputStream(filepath);
     return in;
   }
 
-  public static OutputStream getSaver(String filepath) throws FileNotFoundException {
+  public OutputStream getSaver(String filepath) throws FileNotFoundException {
     OutputStream out = new FileOutputStream(filepath);
     return out;
   }
 
-  public static String parseFormat(String filename) {
-//    if (filename == null | !filename.contains(".")) {
-//      throw new IllegalArgumentException();
-//    }
-//
-//    String[] split = filename.split(".");
-//    return split[split.length - 1];
+  public String parseFormat(String filename) {
+
     if (filename == null) {
       return null;
     }
