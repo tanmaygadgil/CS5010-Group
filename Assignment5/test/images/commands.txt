@@ -1,0 +1,45 @@
+load test/images/tanzania.jpg tanzania
+brighten 50 tanzania brightentanzania
+save test/images/brightentanzania.jpg brightentanzania
+
+load test/images/tanzania.jpg tanzania
+darken 100 tanzania darkentanzania
+save test/images/darkentanzania.jpg darkentanzania
+
+load test/images/tanzania.jpg tanzania
+horizontal-flip tanzania horizontaltanzania
+save test/images/horizontaltanzania.jpg horizontaltanzania
+
+load test/images/tanzania.jpg tanzania
+vertical-flip tanzania verticaltanzania
+save test/images/verticaltanzania.jpg verticaltanzania
+
+load test/images/tanzania.jpg tanzania
+greyscale tanzania greytanzania
+save test/images/greytanzania.jpg greytanzania
+
+load test/images/tanzania.jpg tanzania
+rgb-split tanzania redtanzania greentanzania bluetanzania
+save test/images/redtanzania.jpg redtanzania
+save test/images/greentanzania.jpg greentanzania
+save test/images/bluetanzania.jpg bluetanzania
+
+load test/images/tanzania.jpg tanzania
+rgb-combine combinetanzania redtanzania greentanzania bluetanzania
+save test/images/combinetanzania.jpg combinetanzania
+
+load test/images/tanzania.jpg tanzania
+dither tanzania dithertanzania
+save test/images/dithertanzania.jpg dithertanzania
+
+load test/images/tanzania.jpg tanzania
+sepia tanzania sepiatanzania
+save test/images/sepiatanzania.jpg sepiatanzania
+
+load test/images/tanzania.jpg tanzania
+gaussian-blur tanzania gaussian-blurtanzania
+save test/images/gaussian-blurtanzania.jpg gaussian-blurtanzania
+
+load test/images/tanzania.jpg tanzania
+sharpen tanzania sharptanzania
+save test/images/sharptanzania.jpg sharptanzania
