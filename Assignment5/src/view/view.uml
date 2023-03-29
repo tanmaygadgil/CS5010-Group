@@ -3,8 +3,8 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="-40.0" y="-14.5">view.View</node>
     <node x="-79.0" y="48.5">view.AbstractTextView</node>
+    <node x="-40.0" y="-14.5">view.View</node>
   </nodes>
   <notes />
   <edges>

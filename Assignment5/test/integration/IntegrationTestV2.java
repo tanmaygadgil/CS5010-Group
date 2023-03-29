@@ -49,8 +49,9 @@ public class IntegrationTestV2 {
   @Test
   public void testBlurCommandLine() throws IOException {
     ModelV2 m = new ModelV2Impl();
-    String input = "load test/model/testImage.ppm testImage\n gaussian-blur testImage blurredImage\n "
-        + "save test/integration/blurredImage.ppm blurredImage\nexit";
+    String input =
+        "load test/model/testImage.ppm testImage\n gaussian-blur testImage blurredImage\n "
+            + "save test/integration/blurredImage.ppm blurredImage\nexit";
     InputStream inputStream = new ByteArrayInputStream(input.getBytes());
     System.setIn(inputStream);
     View v = new TextInputView();
@@ -99,11 +100,82 @@ public class IntegrationTestV2 {
     c.run();
 
     ImageLoader loader = new PPMImageLoader();
-    int[][][] filteredImage = loader.load(new FileInputStream("test/integration/sharpenedImage.ppm"));
+    int[][][] filteredImage = loader.load(
+        new FileInputStream("test/integration/sharpenedImage.ppm"));
 
     assertEquals("[[[1, 1, 1, 1], [1, 2, 2, 1], [1, 1, 1, 1]], "
         + "[[2, 3, 3, 2], [3, 5, 5, 3], [2, 3, 3, 2]], "
         + "[[3, 4, 4, 3], [5, 7, 7, 5], [3, 4, 4, 3]]]", Arrays.deepToString(filteredImage));
+  }
+
+  @Test
+  public void testDitherCommandLine() throws IOException {
+    ModelV2 m = new ModelV2Impl();
+    String input = "load test/model/testImage2.ppm testImage\n dither testImage ditheredImage\n "
+        + "save test/integration/ditheredTestImage.ppm ditheredImage\nexit";
+    InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+    System.setIn(inputStream);
+    View v = new TextInputView();
+    Controller c = new ControllerCommandLine(m, v);
+
+    c.run();
+
+    ImageLoader loader = new PPMImageLoader();
+    int[][][] filteredImage = loader.load(
+        new FileInputStream("test/integration/ditheredTestImage.ppm"));
+
+    assertEquals("[[[255, 255, 0, 0], [0, 0, 255, 255], [0, 255, 255, 0]], "
+            + "[[255, 255, 0, 0], [0, 0, 255, 255], [0, 255, 255, 0]], "
+            + "[[255, 255, 0, 0], [0, 0, 255, 255], [0, 255, 255, 0]]]",
+        Arrays.deepToString(filteredImage));
+  }
+
+  @Test
+  public void testGreyscaleCommandLine() throws IOException {
+    ModelV2 m = new ModelV2Impl();
+    String input = "load test/model/testImage.ppm testImage\n greyscale testImage" +
+        " greyscaledImageCommandLine\n" +
+        " save test/integration/greyscaledImageCommandLine.ppm" +
+        " greyscaledImageCommandLine\nexit";
+    InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+    System.setIn(inputStream);
+    View v = new TextInputView();
+    Controller c = new ControllerCommandLine(m, v);
+
+    c.run();
+
+    ImageLoader loader = new PPMImageLoader();
+    int[][][] greyscaledImage = loader.load(new FileInputStream(
+        "test/integration/greyscaledImageCommandLine.ppm"));
+
+    assertEquals(
+        "[[[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]]",
+        Arrays.deepToString(greyscaledImage));
+  }
+
+  @Test
+  public void testSepiaCommandLine() throws IOException {
+    ModelV2 m = new ModelV2Impl();
+    String input = "load test/model/testImage.ppm testImage\n" +
+        " sepia testImage sepiadImageCommandLine\n" +
+        " save test/integration/sepiadImageCommandLine.ppm sepiadImageCommandLine\nexit";
+
+    InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+    System.setIn(inputStream);
+    View v = new TextInputView();
+    Controller c = new ControllerCommandLine(m, v);
+
+    c.run();
+
+    ImageLoader loader = new PPMImageLoader();
+    int[][][] sepiadImage = loader.load(new FileInputStream(
+        "test/integration/sepiadImageCommandLine.ppm"));
+
+    assertEquals(
+        "[[[2, 2, 2, 2], [2, 2, 2, 2], [2, 2, 2, 2]], "
+            + "[[2, 2, 2, 2], [2, 2, 2, 2], [2, 2, 2, 2]], "
+            + "[[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]]",
+        Arrays.deepToString(sepiadImage));
   }
 
 

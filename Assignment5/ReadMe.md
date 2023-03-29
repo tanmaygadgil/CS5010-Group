@@ -17,11 +17,12 @@ At a high level this is how the application functions:
 
 ![src](diagrams/src.png)
 
+
 ## Class and Interface Definitions
 
 ### Model
 
-![Model](diagrams/model.png)
+![Model](diagrams/Model.png)
 
 The model implements the actual functionalities offered by the program.
 In model module we have the following classes:
@@ -53,15 +54,15 @@ In model module we have the following classes:
   images.
 
 
-- **filters** This directory contains all of the possible filters to which can be applied to an
+- **filters** This directory contains all the possible filters to which can be applied to an
   image.
 
 
-- **operations** This directory contains all of the possible operations to which can be applied to
+- **operations** This directory contains all the possible operations to which can be applied to
   an image.
 
 
-- **transforms** This directory contains all of the possible transforms to which can be applied to
+- **transforms** This directory contains all the possible transforms to which can be applied to
   an image.
 
 
@@ -95,7 +96,8 @@ In model module we have the following classes:
 
 ### Controller
 
-![Controller](./diagrams/controller.png)
+
+![controller](diagrams\controller.png)
 
 The controller takes inputs from the user and tells the model what to do and the view what to show.
 
@@ -120,12 +122,13 @@ The controller takes inputs from the user and tells the model what to do and the
   readers
 
 
-- **commands** A directory which contains all of the commands our application supports. 
+- **commands** A directory which contains all the commands our application supports. 
 
 
 ### View
 
-![View](./diagrams/view.png)
+![view](diagrams/view.png)
+
 
 The view is the part of the program that shows results to the user.
 
@@ -143,108 +146,4 @@ The view is the part of the program that shows results to the user.
   command-line interface for user input. It has two modes, "command" and "script", with the former
   taking input directly from the user and the latter executing commands from a file in sequence
   until the end of the file or the command "exit" is reached.
-
-## Commands
-
-### Accepted commands
-
-Here is a list of accepted commands for both the command mode and the script mode.
-
-1. load <image-path> <image-name>
-2. save <image-path> <image-name>
-3. greyscale <component-name> <image-name> <dest-image-name>
-4. horizontal-flip <image-name> <dest-image-name>
-5. vertical-flip <image-name> <dest-image-name>
-6. brighten <increment_value> <image-name> <dest-image-name>
-7. rgb-split <image-name> <dest-image-name-red> <dest-image-name-green> <dest-image-name-blue>
-8. rgb-combine <image-name> <red-image> <green-image> <blue-image>
-9. dither <image-name> <dest-image-name>
-10. sepia <image-name> <dest-image-name>
-11. gaussian-blur <image-name> <dest-image-name>
-12. sharpen <image-name> <dest-image-name>
-
-The main script of this application is run using the Main.java class found in the src/ folder
-
-The first step is to compile the classes to ensure that they run in the terminal
-To compile the code
-
-#### Before running the script:
-
-1. First be in the [src/](src) directory
-    ```shell
-   cd src/
-   ```
-2. Run the compilation script
-    ```shell
-    sh compile_all.sh
-    ```
-
-#### Running the Script:
-
-**Command line mode**
-
-In this mode the app runs when the user gives command line inputs into the terminal
-To run the script:
-
-```shell
-cd src/
-```
-
-```shell
-java Main.java
-```
-
-To exit the application enter the command ```exit``` or use ```ctrl-c```
-
-**Scripting mode**
-
-This mode accepts a script to run. This script is a text file which lists out all the
-commands that can be given in the terminal. To add a comment add in text following a ```#```
-character
-
-To run the application script mode attach the -s flag to the command line arguments
-
-```shell
-cd src/
-```
-
-```shell
-java Main.java -s <location of script file.txt>
-```
-
-### Sample Scripts
-
-Run these sample scripts for the following use cases
-
-#### Running in command mode
-
-First execute
-
-```shell
->>> cd src/
->>> java Main.java
-```
-
-Then execute the following commands **one at a time**
-
-```shell
->>> load sample.ppm scene
-
->>> vertical-flip scene scene-vertical
-
->>> rgb-split scene scene-red scene-green scene-blue
-
->>> save scene-red.ppm scene-red
-
->>> save scene-green.ppm scene-green
-
->>> save scene-blue.ppm scene-blue
-```
-
-#### Running in script mode
-
-```shell
->>> cd src/
->>> java Main.java -s testScript.txt
-```
 
