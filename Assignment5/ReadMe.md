@@ -120,8 +120,7 @@ The controller takes inputs from the user and tells the model what to do and the
   readers
 
 
-- **commands** A directory which contains all of the commands our application supports. 
-
+- **commands** A directory which contains all of the commands our application supports.
 
 ### View
 
@@ -247,4 +246,9 @@ Then execute the following commands **one at a time**
 >>> cd src/
 >>> java Main.java -s testScript.txt
 ```
+
+#### Photo Citation
+
+Photo provided by Etienne Steenkamp on unsplash https://unsplash.com/photos/oymHjI4qPJI.
+License : https://unsplash.com/license
 

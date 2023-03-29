@@ -106,5 +106,16 @@ public class IntegrationTestV2 {
         + "[[3, 4, 4, 3], [5, 7, 7, 5], [3, 4, 4, 3]]]", Arrays.deepToString(filteredImage));
   }
 
+  @Test
+  public void testAllCommands() throws IOException{
+    ModelV2 m = new ModelV2Impl();
+    String input = "test/scripts/allCommands.txt";
+    View v = new TextInputView("script", input);
+    Controller c = new ControllerCommandLine(m, v);
+    InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+    System.setIn(inputStream);
+
+    c.run();
+  }
 
 }
