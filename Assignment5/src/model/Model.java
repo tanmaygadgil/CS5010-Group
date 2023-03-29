@@ -59,6 +59,16 @@ public interface Model {
    */
   void brighten(int increment, String imageName, String destImage);
 
+  /**
+   * Decreases the brightness of the specified image by the specified increment and stores the
+   * result in the imageMap with the specified destImage name.
+   *
+   * @param increment amount to increase the brightness by.
+   * @param imageName image to brighten.
+   * @param destImage name of the new image to store.
+   */
+  void darken(int increment, String imageName, String destImage);
+
 
   /**
    * Splits the RGB channels of the image into separate components and stores them as individual

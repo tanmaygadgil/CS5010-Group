@@ -41,6 +41,29 @@ public class ModelImpl implements Model {
     imageMap.put(destImage, image);
   }
 
+  @Override
+  public void darken(int increment, String imageName, String destImage) {
+    if (!imageMap.containsKey(imageName)) {
+      throw new IllegalArgumentException("Image name not found in hashmap");
+    }
+    int[][][] image = imageMap.get(imageName);
+    for (int i = 0; i < image.length; i++) {
+      for (int j = 0; j < height; j++) {
+        for (int k = 0; k < width; k++) {
+          if (image[i][j][k] - increment > 255) {
+            image[i][j][k] = 255;
+          } else if (image[i][j][k] - increment < 0) {
+            image[i][j][k] = 0;
+          } else {
+            image[i][j][k] = image[i][j][k] - increment;
+          }
+        }
+      }
+    }
+
+    imageMap.put(destImage, image);
+  }
+
 
   @Override
   public void flip(Axes axis, String imageName, String destImage) {

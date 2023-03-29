@@ -2,9 +2,9 @@ package controller;
 
 import controller.commands.BlurGaussian;
 import controller.commands.Brighten;
+import controller.commands.Darken;
 import controller.commands.Dither;
 import controller.commands.Flip;
-import controller.commands.GreyScale;
 import controller.commands.GreyScaleTrans;
 import controller.commands.ImageProcessingCommand;
 import controller.commands.Load;
@@ -13,7 +13,6 @@ import controller.commands.Sharpen;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-import model.Model;
 import controller.commands.RGBCombine;
 import controller.commands.RGBSplit;
 import controller.commands.Save;
@@ -42,6 +41,7 @@ public abstract class AbstractController implements Controller {
     knownCommands.put("load", s -> new Load(s[1], s[2]));
     knownCommands.put("save", s -> new Save(s[1], s[2]));
     knownCommands.put("brighten", s -> new Brighten(Integer.parseInt(s[1]), s[2], s[3]));
+    knownCommands.put("darken", s -> new Darken(Integer.parseInt(s[1]), s[2], s[3]));
     knownCommands.put("horizontal-flip", s -> new Flip(Axes.HORIZONTAL, s[1], s[2]));
     knownCommands.put("vertical-flip", s -> new Flip(Axes.VERTICAL, s[1], s[2]));
     knownCommands.put("greyscale", s -> new GreyScaleTrans(s[1], s[2]));
