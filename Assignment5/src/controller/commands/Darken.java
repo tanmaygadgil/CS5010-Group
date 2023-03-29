@@ -1,6 +1,5 @@
 package controller.commands;
 
-import java.io.IOException;
 import model.ModelV2;
 
 public class Darken implements ImageProcessingCommand {

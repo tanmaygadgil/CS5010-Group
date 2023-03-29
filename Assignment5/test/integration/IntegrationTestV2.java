@@ -109,7 +109,7 @@ public class IntegrationTestV2 {
   @Test
   public void testAllCommands() throws IOException{
     ModelV2 m = new ModelV2Impl();
-    String input = "test/scripts/allCommands.txt";
+    String input = "test/images/commands.txt";
     View v = new TextInputView("script", input);
     Controller c = new ControllerCommandLine(m, v);
     InputStream inputStream = new ByteArrayInputStream(input.getBytes());
