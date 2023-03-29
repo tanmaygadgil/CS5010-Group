@@ -45,6 +45,26 @@ In model module we have the following classes:
     - callOperation
 
 
+- **loaders** This directory holds the different kinds of loaders needed for different types of
+  images.
+
+
+- **savers** This directory holds the different kinds of savers needed for different types of
+  images.
+
+
+- **filters** This directory contains all of the possible filters to which can be applied to an
+  image.
+
+
+- **operations** This directory contains all of the possible operations to which can be applied to
+  an image.
+
+
+- **transforms** This directory contains all of the possible transforms to which can be applied to
+  an image.
+
+
 - **MockModel:** This interface is a Mock of Model interface for testing the controller easier.
   This interface has the following methods:
 
@@ -61,10 +81,6 @@ In model module we have the following classes:
 - **ModelV2Impl** The ModelV2Impl class extends the ModelImpl class and implements the ModelV2
   interface. This class provides all of the functionality of the ModelImpl, but adds the ability
   to call features, color transformations and dithering.
-
-
-- **ModelPPMMock:** This a Mock class of ModelPPM class for testing the controller easier, which
-  implements MockModel.
 
 
 - **Axes:** This enumerated type represents which axe should be considered for flip method.
@@ -98,6 +114,14 @@ The controller takes inputs from the user and tells the model what to do and the
 - **ControllerCommandLine:** This class represents the command line implementation of the controller
   interface. It allows users to run commands through a model using a command line interface, and has
   a function called "parseAndCall" which parses input files and calls model functions.
+
+
+- **ImageIOHandler** An IO handler that parses image files and sends the respective input an output
+  readers
+
+
+- **commands** A directory which contains all of the commands our application supports. 
+
 
 ### View
 
