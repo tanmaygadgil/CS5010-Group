@@ -69,4 +69,9 @@ public class PPMImageLoader implements ImageLoader {
     return image;
   }
 
+  @Override
+  public String toString(){
+    return "PPMLoader";
+  }
+
 }

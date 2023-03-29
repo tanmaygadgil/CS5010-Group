@@ -47,4 +47,9 @@ public class ConventionalImageSaver implements ImageSaver {
     }
     return bufferedImage;
   }
+
+  @Override
+  public String toString(){
+    return "ConventionalSaver";
+  }
 }
