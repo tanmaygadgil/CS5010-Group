@@ -12,6 +12,7 @@ import java.util.Arrays;
 import model.filters.GaussianBlur;
 import model.filters.ImageFilter;
 import model.filters.Sharpening;
+import model.loaders.ConventionalImageLoader;
 import model.loaders.PPMImageLoader;
 import model.operations.ImageOperations;
 import model.operations.DitherGreyscaleOperation;
@@ -75,7 +76,7 @@ public class ModelImplTest {
   public void testGaussianBlur() throws IOException {
     ImageFilter blur = new GaussianBlur();
 
-    ImageLoader loader = new PPMImageLoader();
+    ImageLoader loader = new ConventionalImageLoader("jpg");
     InputStream in = new FileInputStream("test/model/testImage.ppm");
     int[][][] image = loader.load(in);
 
