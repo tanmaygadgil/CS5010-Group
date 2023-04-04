@@ -1,8 +1,0 @@
-#load
-#load test/integration/incMatRGB.txt incmat
-load test/integration/incMatRGB.txt incmat
-
-#flip vertically
-vertical-flip incmat incmat-vertical
-
-save test/integration/incmat-vertical.txt incmat-vertical

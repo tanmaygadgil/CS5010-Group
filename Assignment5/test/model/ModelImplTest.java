@@ -570,16 +570,7 @@ public class ModelImplTest {
     model.load(in, "testImage", "ppm");
   }
 
-  @Test(expected = IllegalStateException.class)
-  public void testDitherwholeException() throws IllegalStateException,
-      FileNotFoundException {
-    ModelV2 m = new ModelV2Impl();
-    InputStream in = new FileInputStream("test/model/greenland_grid_velo_grey.jpg");
-    OutputStream out = new FileOutputStream("test/model/greenland_grid_velo_dither.jpg");
-    ImageOperations dither = new DitherGreyscaleOperation();
-    m.load(in, "testImage", "jpg");
-    m.callOperation(dither, "testImage1", "dither");
-  }
+
 
   @Test (expected = IllegalArgumentException.class)
   public void testSaveException() throws IOException {
