@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-
+import org.jfree.chart.JFreeChart;
 public class HistogramPanel extends JPanel {
 
   int[][][] image;
