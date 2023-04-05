@@ -62,7 +62,7 @@ public class HistogramPanel extends JPanel {
 
 
       }
-      
+
 
     }
     return hist;
@@ -110,9 +110,6 @@ public class HistogramPanel extends JPanel {
     return hist;
   }
 
-  private XYDataset createDataset() {
-
-  }
 
 }
 
