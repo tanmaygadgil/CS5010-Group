@@ -4,88 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66c9cdc-7734-4029-a17f-1cff5b82bd81" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/ImageUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/compile_all.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/controller/AbstractController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/controller/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/controller/ControllerCommandLine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/controller/ImageIOHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/controller/ImageIOHandlerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/controller/commands/BlurGaussian.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/controller/commands/Brighten.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/controller/commands/Darken.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/controller/commands/Dither.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/controller/commands/Flip.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/controller/commands/GreyScale.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/controller/commands/GreyScaleTrans.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/controller/commands/ImageProcessingCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/controller/commands/Load.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/controller/commands/RGBCombine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/controller/commands/RGBSplit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/controller/commands/Save.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/controller/commands/Sepia.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/controller/commands/Sharpen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/diagram.uml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/Axes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/ImageComponents.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/ImageLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/ImageSaver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/ImageTransforms.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/ImageUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/Model.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/ModelImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/ModelV2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/ModelV2Impl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/filters/AbstractFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/filters/GaussianBlur.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/filters/ImageFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/filters/Sharpening.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/loaders/ConventionalImageLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/loaders/PPMImageLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/operations/DitherGreyscaleOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/operations/ImageOperations.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/savers/ConventionalImageSaver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/savers/PPMImageSaver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/transforms/GreyscaleTransform.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/transforms/ImageTransforms.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/model/transforms/SepiaTransform.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/script2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/view/AbstractTextView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/view/TextInputView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/src/view/View.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/controller/Axes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/controller/ControllerCommandLineTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/controller/ControllerCommandLineV2Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/controller/ImageComponents.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/controller/Model.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/integration/IntegrationTestV2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/integration/testImage.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/integration/testImage2.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/model/ImageUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/model/MockModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/model/MockModelImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/model/ModelImplTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/model/ModelV2ImplTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/model/greenland_grid_velo.bmp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/model/greenland_grid_velo_grey.bmp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/model/testImage.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/model/testImage2.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/model/testImageAscendingCols.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/model/testImageAscendingRows.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/model/testImageBlueSplit.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/model/testImageGreenSplit.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/model/testImageRedSplit.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/scripts/blurImage.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/scripts/script1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/scripts/script2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/scripts/sharpenImage.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/view/MockScriptView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/view/TextInputViewTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment6/test/view/ViewScriptFileTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JSwingPlayground/src/HistogramPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/JSwingPlayground/src/HistogramPanel.java" afterDir="false" />
-    </list>
+    <list default="true" id="a66c9cdc-7734-4029-a17f-1cff5b82bd81" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -112,6 +31,10 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "JavaScript.Libraries",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -128,11 +51,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678304840273</updated>
-      <workItem from="1680709313301" duration="645000" />
+      <workItem from="1680709313301" duration="867000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
