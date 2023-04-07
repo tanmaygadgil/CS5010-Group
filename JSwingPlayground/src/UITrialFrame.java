@@ -39,14 +39,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class UITrialFrame extends JFrame implements ActionListener, ItemListener, ListSelectionListener{
 
   //Buttons
-
+  private JPanel controlPanel;
+  private GridBagConstraints gbc;
 
   public UITrialFrame() {
     setTitle("Image App");
     setSize(800, 800);
     setLayout(new BorderLayout());
 
-    JPanel controlPanel = new JPanel();
+    controlPanel = new JPanel();
     controlPanel.setBackground(Color.RED);
     controlPanel.setSize(100, 50);
     controlPanel.setLayout(new GridBagLayout());
@@ -54,7 +55,9 @@ public class UITrialFrame extends JFrame implements ActionListener, ItemListener
 
 
 
-    JComboBox filterComboBox = new JComboBox<>(new String[]{"Load", "Save", "Sepia", "Flip"});
+    JComboBox filterComboBox = new JComboBox<>(new String[]{"Load", "Save", "Sepia", "Flip", "Brighten"});
+    filterComboBox.addActionListener(this);
+    filterComboBox.setActionCommand("operations");
     JButton applyButton = new JButton("Apply");
 
     gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -112,7 +115,20 @@ public class UITrialFrame extends JFrame implements ActionListener, ItemListener
 
   @Override
   public void actionPerformed(ActionEvent e) {
-
+    switch (e.getActionCommand()) {
+      case "operations":
+        if (e.getSource() instanceof JComboBox) {
+          JComboBox<String> box = (JComboBox<String>) e.getSource();
+          if (box.getSelectedItem().equals("Brighten")) {
+            JTextArea textArea = new JTextArea(1, 20);
+            textArea.setBorder(BorderFactory.createTitledBorder("Regular text area"));
+            gbc.gridx = 0;
+            gbc.gridy = 3;
+            gbc.weightx = 1;
+            controlPanel.add(textArea);
+          }
+        }
+    }
   }
 
   @Override
