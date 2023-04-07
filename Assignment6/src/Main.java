@@ -27,7 +27,7 @@ public class Main {
       if (sFlag) {
         inputFile = arg;
       }
-      if (arg.equals("-s")) {
+      if (arg.equals("-file")) {
         sFlag = true;
 
       }
