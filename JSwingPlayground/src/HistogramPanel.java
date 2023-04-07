@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
@@ -7,7 +8,14 @@ import java.util.Arrays;
 import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
 public class HistogramPanel extends JPanel {
 
   int[][][] image;
@@ -31,8 +39,29 @@ public class HistogramPanel extends JPanel {
     this.image = convertToRgb(img);
     int height = this.image[0].length;
     int width = this.image[0][0].length;
-    int[] redHist = getRedHistorgramValues();
-    System.out.println(Arrays.toString(Arrays.stream(redHist).toArray()));
+    float[] redHist = getRedHistorgramValues();
+
+    add(new ChartPanel(createChart("Intensity Plot", "Pixel", "Norm Count",
+        generateDataset(getIntensityHistorgramValues()))));
+    add(new ChartPanel(createChart("Red Plot", "Pixel", "Norm Count",
+        generateDataset(getRedHistorgramValues()))));
+    add(new ChartPanel(createChart("Blue Plot", "Pixel", "Norm Count",
+        generateDataset(getBlueHistorgramValues()))));
+    add(new ChartPanel(createChart("Green Plot", "Pixel", "Norm Count",
+        generateDataset(getgreenHistorgramValues()))));
+
+    setPreferredSize(new Dimension(300, 800));
+  }
+
+  private JFreeChart createChart(String title, String XAxisLabel, String yAxisLabel,
+      XYDataset dataset) {
+    JFreeChart chart = ChartFactory.createXYLineChart(
+        title, XAxisLabel, yAxisLabel, dataset, PlotOrientation.VERTICAL,
+        true, true, false
+    );
+
+    return chart;
+
   }
 
   private int[][][] convertToRgb(BufferedImage img) {
@@ -53,61 +82,91 @@ public class HistogramPanel extends JPanel {
 
   }
 
-  public int[] getRedHistorgramValues() {
-    int[] hist = new int[256];
+  public float[] getRedHistorgramValues() {
+    float[] hist = new float[256];
+    float maxval = 0;
     for (int i = 0; i < this.image[0].length; i++) {
       for (int j = 0; j < this.image[0][0].length; j++) {
         int val = this.image[0][i][j];
         hist[val] += 1;
-
+        maxval = Math.max(hist[val], maxval);
 
       }
-
-
+    }
+    //Normalize
+    for (int i = 0; i < hist.length; i ++){
+      hist[i] /= (float)maxval;
     }
     return hist;
   }
 
-  public int[] getgreenHistorgramValues() {
-    int[] hist = new int[256];
+  public float[] getgreenHistorgramValues() {
+    float[] hist = new float[256];
+    float maxval = 0;
     for (int i = 0; i < this.image[0].length; i++) {
       for (int j = 0; j < this.image[0][0].length; j++) {
         int val = this.image[1][i][j];
         hist[val] += 1;
-
+        maxval = Math.max(hist[val], maxval);
 
       }
 
     }
+    //Normalize
+    for (int i = 0; i < hist.length; i ++){
+      hist[i] /= (float)maxval;
+    }
     return hist;
   }
 
-  public int[] getBlueHistorgramValues() {
-    int[] hist = new int[256];
+  public float[] getBlueHistorgramValues() {
+    float[] hist = new float[256];
+    float maxval = 0;
     for (int i = 0; i < this.image[0].length; i++) {
       for (int j = 0; j < this.image[0][0].length; j++) {
         int val = this.image[2][i][j];
         hist[val] += 1;
-
+        maxval = Math.max(hist[val], maxval);
 
       }
 
+    }
+    //Normalize
+    for (int i = 0; i < hist.length; i ++){
+      hist[i] /= (float)maxval;
     }
     return hist;
   }
 
-  public int[] getIntensityHistorgramValues() {
-    int[] hist = new int[256];
+  public float[] getIntensityHistorgramValues() {
+    float[] hist = new float[256];
+    float maxval = 0;
     for (int i = 0; i < this.image[0].length; i++) {
       for (int j = 0; j < this.image[0][0].length; j++) {
-        int val = (this.image[0][i][j]+ this.image[1][i][j]+ this.image[2][i][j]) / 3;
+        int val = (this.image[0][i][j] + this.image[1][i][j] + this.image[2][i][j]) / 3;
         hist[val] += 1;
-
+        maxval = Math.max(hist[val], maxval);
 
       }
 
     }
+    //Normalize
+    for (int i = 0; i < hist.length; i ++){
+      hist[i] /= (float)maxval;
+    }
     return hist;
+  }
+
+  private XYDataset generateDataset(float[] hist) {
+    XYSeriesCollection dataset = new XYSeriesCollection();
+    XYSeries series1 = new XYSeries("Data");
+
+    for (int i = 0; i < hist.length; i++) {
+      series1.add(i, hist[i]);
+    }
+    dataset.addSeries(series1);
+
+    return dataset;
   }
 
 

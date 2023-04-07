@@ -2,7 +2,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -36,57 +39,75 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class UITrialFrame extends JFrame implements ActionListener, ItemListener, ListSelectionListener{
 
   //Buttons
-
+  private JPanel controlPanel;
+  private GridBagConstraints gbc;
 
   public UITrialFrame() {
     setTitle("Image App");
     setSize(800, 800);
     setLayout(new BorderLayout());
 
-    JPanel controlPanel = new JPanel();
+    controlPanel = new JPanel();
     controlPanel.setBackground(Color.RED);
-    controlPanel.setSize(50, 50);
-    controlPanel.setLayout(new BoxLayout(controlPanel, BoxLayout.PAGE_AXIS));
+    controlPanel.setSize(100, 50);
+    controlPanel.setLayout(new GridBagLayout());
+    GridBagConstraints gbc = new GridBagConstraints();
 
-    JButton loadButton = new JButton("load");
-    loadButton.setActionCommand("load");
-    controlPanel.add(loadButton);
 
-    JButton saveButton = new JButton("save");
-    saveButton.setActionCommand("save");
-    controlPanel.add(saveButton);
 
-    JButton greyButton = new JButton("grey");
-    greyButton.setActionCommand("grey");
-    controlPanel.add(greyButton);
+    JComboBox filterComboBox = new JComboBox<>(new String[]{"Load", "Save", "Sepia", "Flip", "Brighten"});
+    filterComboBox.addActionListener(this);
+    filterComboBox.setActionCommand("operations");
+    JButton applyButton = new JButton("Apply");
 
-    JButton sepiaButton = new JButton("sepia");
-    sepiaButton.setActionCommand("sepia");
-    controlPanel.add(sepiaButton);
+    gbc.fill = GridBagConstraints.HORIZONTAL;
+    gbc.insets = new Insets(10,10,10,10);
+    gbc.gridx = 0;
+    gbc.gridy = 0;
+    gbc.weightx = 1;
+    controlPanel.add(filterComboBox, gbc);
+
+
+    gbc.gridx = 0;
+    gbc.gridy = 1;
+    gbc.weightx = 1;
+    controlPanel.add(applyButton, gbc);
+//    JButton loadButton = new JButton("load");
+//    loadButton.setActionCommand("load");
+//
+//    controlPanel.add(loadButton);
+//
+//    JButton saveButton = new JButton("save");
+//    saveButton.setActionCommand("save");
+//    controlPanel.add(saveButton);
+//
+//    JButton greyButton = new JButton("grey");
+//    greyButton.setActionCommand("grey");
+//    controlPanel.add(greyButton);
+//
+//    JButton sepiaButton = new JButton("sepia");
+//    sepiaButton.setActionCommand("sepia");
+//    controlPanel.add(sepiaButton);
 
     add(controlPanel, BorderLayout.WEST);
 
+
+//    imagePanel.add(imageScroll);
+
+    HistogramPanel histogramPanel = new HistogramPanel();
+    histogramPanel.setSize(150,800);
+    histogramPanel.readAndLoad("src/Jellyfish.jpg");
+
+    add(histogramPanel, BorderLayout.EAST);
+
     ImagePanel imagePanel =  new ImagePanel();
-
-
-
-    imagePanel.readAndLoad("src/Koala.jpg");
-
-
+    imagePanel.readAndLoad("src/Jellyfish.jpg");
     JScrollPane imageScroll = new JScrollPane(imagePanel);
     imageScroll.setSize(new Dimension(500,getHeight()));
     imageScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     imageScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-//    imageScroll.setPreferredSize(new Dimension(100, 600));
+    imageScroll.setSize(new Dimension(550, 800));
     add(imageScroll, BorderLayout.CENTER);
-//    imagePanel.add(imageScroll);
-
-    HistogramPanel histogramPanel = new HistogramPanel();
-    histogramPanel.setSize(300,800);
-    histogramPanel.readAndLoad("src/Koala.jpg");
-
-    add(histogramPanel, BorderLayout.EAST);
-
 
 //    controlPanel.setLayout(FlowLayout);
 
@@ -94,7 +115,20 @@ public class UITrialFrame extends JFrame implements ActionListener, ItemListener
 
   @Override
   public void actionPerformed(ActionEvent e) {
-
+    switch (e.getActionCommand()) {
+      case "operations":
+        if (e.getSource() instanceof JComboBox) {
+          JComboBox<String> box = (JComboBox<String>) e.getSource();
+          if (box.getSelectedItem().equals("Brighten")) {
+            JTextArea textArea = new JTextArea(1, 20);
+            textArea.setBorder(BorderFactory.createTitledBorder("Regular text area"));
+            gbc.gridx = 0;
+            gbc.gridy = 3;
+            gbc.weightx = 1;
+            controlPanel.add(textArea);
+          }
+        }
+    }
   }
 
   @Override
