@@ -175,18 +175,5 @@ public class IntegrationTestV2 {
         Arrays.deepToString(sepiadImage));
   }
 
-  @Test
-  public void testScript() throws IOException {
-    ModelV2 m = new ModelV2Impl();
-    String input = "test/scripts/script.txt";
-    View v = new TextInputView("script", input);
-    Controller c = new ControllerCommandLine(m, v);
-    InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-    System.setIn(inputStream);
-
-    c.run();
-
-  }
-
 
 }

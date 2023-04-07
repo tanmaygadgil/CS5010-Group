@@ -13,7 +13,10 @@ import org.junit.Test;
 import view.MockScriptView;
 import view.View;
 
-public class ControllerCommandLineV2Test extends ControllerCommandLineTest{
+/**
+ * This extends the previous set of tests to test the new commands.
+ */
+public class ControllerCommandLineV2Test extends ControllerCommandLineTest {
 
   @Test
   public void testFilters() {
@@ -35,7 +38,6 @@ public class ControllerCommandLineV2Test extends ControllerCommandLineTest{
     System.out.println(m.getLog());
     System.setOut(new PrintStream(outputStream));
     assertEquals(m.getLog(), outputString);
-//    System.out.println(m.getLog());
   }
 
   @Test
@@ -58,7 +60,6 @@ public class ControllerCommandLineV2Test extends ControllerCommandLineTest{
     System.out.println(m.getLog());
     System.setOut(new PrintStream(outputStream));
     assertEquals(m.getLog(), outputString);
-//    System.out.println(m.getLog());
   }
 
   @Test
@@ -80,7 +81,6 @@ public class ControllerCommandLineV2Test extends ControllerCommandLineTest{
     System.out.println(m.getLog());
     System.setOut(new PrintStream(outputStream));
     assertEquals(m.getLog(), outputString);
-//    System.out.println(m.getLog());
   }
 
 }

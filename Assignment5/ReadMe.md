@@ -15,13 +15,13 @@ images but can be extended for other formats in the future.
 
 At a high level this is how the application functions:
 
-![src](diagrams/src.png)
+![src](res/src.png)
 
 ## Class and Interface Definitions
 
 ### Model
 
-![Model](diagrams/model.png)
+![Model](res/model.png)
 
 The model implements the actual functionalities offered by the program.
 In model module we have the following classes:
@@ -95,7 +95,7 @@ In model module we have the following classes:
 
 ### Controller
 
-![Controller](./diagrams/controller.png)
+![Controller](./res/controller.png)
 
 The controller takes inputs from the user and tells the model what to do and the view what to show.
 
@@ -124,7 +124,7 @@ The controller takes inputs from the user and tells the model what to do and the
 
 ### View
 
-![View](./diagrams/view.png)
+![View](./res/view.png)
 
 The view is the part of the program that shows results to the user.
 

@@ -5,16 +5,11 @@ import static org.junit.Assert.assertEquals;
 import controller.Controller;
 import controller.ControllerCommandLine;
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Arrays;
 import model.ImageLoader;
-import model.ImageUtil;
-import model.Model;
-import model.ModelImpl;
 import model.ModelV2;
 import model.ModelV2Impl;
 import model.loaders.PPMImageLoader;
@@ -23,7 +18,9 @@ import view.TextInputView;
 import view.View;
 
 /**
- * Test class for integration tests.
+ * IntegrationTestV2 class includes tests for testing the integration of different components of the
+ * program. It tests the functionality of ModelV2Impl, ControllerCommandLine, PPMImageLoader,
+ * TextInputView, and ImageUtil.
  */
 public class IntegrationTestV2 {
 
