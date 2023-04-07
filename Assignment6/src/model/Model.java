@@ -8,7 +8,7 @@ import java.io.OutputStream;
 /**
  * This interface represents possible actions to be done on a PPM file.
  */
-public interface Model {
+public interface Model extends ViewModel{
 
   /**
    * Reads an image file from the specified filePath, converts it to a three-dimensional array of

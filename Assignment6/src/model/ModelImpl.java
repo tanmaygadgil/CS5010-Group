@@ -292,4 +292,13 @@ public class ModelImpl implements Model {
   private boolean isGrey(int[][][] image) {
     return image.length == 1;
   }
+
+  @Override
+  public int[][][] getImage(String imagename) {
+    if (!imageMap.containsKey(imagename)) {
+      throw new IllegalArgumentException("Image name not found in hashmap");
+    } else {
+      return imageMap.get(imagename);
+    }
+  }
 }
