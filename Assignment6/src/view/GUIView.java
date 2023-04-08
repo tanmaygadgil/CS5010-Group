@@ -2,50 +2,31 @@ package view;
 
 import controller.Features;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.io.File;
 
 import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import model.ViewModel;
-import model.ViewModelImpl;
 
 public class GUIView extends JFrame implements IGUIView {
 
   //Buttons
-  private JPanel controlPanel, fileOpenPanel;
+  private JPanel controlPanel;
   private GridBagConstraints gbc;
   private JPanel filterComboBoxPanel;
   private JComboBox<String> filterComboBox;
@@ -53,13 +34,15 @@ public class GUIView extends JFrame implements IGUIView {
   private JButton fileOpenButton;
   private ImagePanel imagePanel;
   private ViewModel viewModel;
+  private HistogramPanel histogramPanel;
 
   public GUIView(ViewModel viewModel) {
     this.viewModel = viewModel;
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     setTitle("Image App");
-    setSize(800, 800);
+    //setSize(800, 800);
+    setPreferredSize(new Dimension(800, 800));
     setLayout(new BorderLayout());
 
     controlPanel = new JPanel();
@@ -104,9 +87,8 @@ public class GUIView extends JFrame implements IGUIView {
     controlPanel.add(applyButton, gbc);
 
     add(controlPanel, BorderLayout.WEST);
-    HistogramPanel histogramPanel = new HistogramPanel();
+    histogramPanel = new HistogramPanel();
     histogramPanel.setSize(150, 800);
-    histogramPanel.readAndLoad("tanzania.jpg");
 
     add(histogramPanel, BorderLayout.EAST);
 
@@ -126,8 +108,8 @@ public class GUIView extends JFrame implements IGUIView {
   @Override
   public void addFeatures(Features features) {
     //add the options for the combobox
-    String[] options = {"horizontal-flip", "vertical-flip", "greyscale",
-    "gaussian-blur", "dither", "sepia", "sharpen"};
+    String[] options = {"horizontal-flip", "vertical-flip", "greyscale", "gaussian-blur", "dither",
+        "sepia", "sharpen"};
     for (String str : options) {
       filterComboBox.addItem(str);
     }
@@ -138,6 +120,7 @@ public class GUIView extends JFrame implements IGUIView {
       try {
         features.callCommand(filterComboBox.getSelectedItem().toString());
         imagePanel.setImage(viewModel.getImage("image"));
+        histogramPanel.setImage(viewModel.getImage("image"));
       } catch (IOException e) {
         throw new RuntimeException(e);
       }
@@ -147,8 +130,8 @@ public class GUIView extends JFrame implements IGUIView {
       @Override
       public void actionPerformed(ActionEvent e) {
         final JFileChooser fChooser = new JFileChooser(".");
-        FileNameExtensionFilter filter = new FileNameExtensionFilter(
-            "JPG & GIF Images", "jpg", "gif");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg",
+            "gif");
         fChooser.setFileFilter(filter);
         int retValue = fChooser.showOpenDialog(GUIView.this);
         if (retValue == JFileChooser.APPROVE_OPTION) {
@@ -156,6 +139,7 @@ public class GUIView extends JFrame implements IGUIView {
           try {
             features.callLoad(f.getAbsolutePath());
             imagePanel.readAndLoad(f.getAbsolutePath());
+            histogramPanel.readAndLoad(f.getAbsolutePath());
           } catch (IOException ex) {
             throw new RuntimeException(ex);
           }

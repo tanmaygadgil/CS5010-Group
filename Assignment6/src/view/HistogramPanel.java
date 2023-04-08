@@ -17,7 +17,16 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 public class HistogramPanel extends JPanel {
 
-  int[][][] image;
+  private int[][][] image;
+
+  private ChartPanel intensityChart;
+  private ChartPanel redChart;
+  private ChartPanel greenChart;
+  private ChartPanel blueChart;
+  private XYDataset intensity;
+  private XYDataset red;
+  private XYDataset green;
+  private XYDataset blue;
 
   public HistogramPanel() {
     setLayout(new GridLayout(4, 1));
@@ -25,7 +34,34 @@ public class HistogramPanel extends JPanel {
   }
 
   public void setImage(int[][][] image) {
+    this.remove(this.intensityChart);
+    this.remove(this.redChart);
+    this.remove(this.greenChart);
+    this.remove(this.blueChart);
 
+    this.image = image;
+
+    this.intensity = generateDataset(getIntensityHistorgramValues());
+    this.red = generateDataset(getRedHistorgramValues());
+    this.green = generateDataset(getgreenHistorgramValues());
+    this.blue = generateDataset(getBlueHistorgramValues());
+
+    this.intensityChart = new ChartPanel(createChart("Intensity Plot", "Pixel", "Norm Count",
+        this.intensity));
+    this.redChart = new ChartPanel(createChart("Intensity Plot", "Pixel", "Norm Count",
+        this.red));
+    this.greenChart = new ChartPanel(createChart("Intensity Plot", "Pixel", "Norm Count",
+        this.green));
+    this.blueChart = new ChartPanel(createChart("Intensity Plot", "Pixel", "Norm Count",
+        this.blue));
+
+    add(this.intensityChart);
+    add(this.redChart);
+    add(this.greenChart);
+    add(this.blueChart);
+
+    this.revalidate();
+    this.repaint();
   }
 
   public void readAndLoad(String ImagePath) {
@@ -36,20 +72,29 @@ public class HistogramPanel extends JPanel {
       throw new RuntimeException(e);
     }
     this.image = convertToRgb(img);
-    int height = this.image[0].length;
-    int width = this.image[0][0].length;
-    float[] redHist = getRedHistorgramValues();
 
-    add(new ChartPanel(createChart("Intensity Plot", "Pixel", "Norm Count",
-        generateDataset(getIntensityHistorgramValues()))));
-    add(new ChartPanel(createChart("Red Plot", "Pixel", "Norm Count",
-        generateDataset(getRedHistorgramValues()))));
-    add(new ChartPanel(createChart("Blue Plot", "Pixel", "Norm Count",
-        generateDataset(getBlueHistorgramValues()))));
-    add(new ChartPanel(createChart("Green Plot", "Pixel", "Norm Count",
-        generateDataset(getgreenHistorgramValues()))));
+    this.intensity = generateDataset(getIntensityHistorgramValues());
+    this.red = generateDataset(getRedHistorgramValues());
+    this.green = generateDataset(getgreenHistorgramValues());
+    this.blue = generateDataset(getBlueHistorgramValues());
+
+    this.intensityChart = new ChartPanel(createChart("Intensity Plot", "Pixel", "Norm Count",
+        this.intensity));
+    this.redChart = new ChartPanel(createChart("Intensity Plot", "Pixel", "Norm Count",
+        this.red));
+    this.greenChart = new ChartPanel(createChart("Intensity Plot", "Pixel", "Norm Count",
+        this.green));
+    this.blueChart = new ChartPanel(createChart("Intensity Plot", "Pixel", "Norm Count",
+        this.blue));
+
+    add(this.intensityChart);
+    add(this.redChart);
+    add(this.greenChart);
+    add(this.blueChart);
 
     setPreferredSize(new Dimension(300, 800));
+    revalidate();
+    repaint();
   }
 
   private JFreeChart createChart(String title, String XAxisLabel, String yAxisLabel,
@@ -93,9 +138,11 @@ public class HistogramPanel extends JPanel {
       }
     }
     //Normalize
+
     for (int i = 0; i < hist.length; i ++){
       hist[i] /= (float)maxval;
     }
+
     return hist;
   }
 
@@ -112,9 +159,11 @@ public class HistogramPanel extends JPanel {
 
     }
     //Normalize
+
     for (int i = 0; i < hist.length; i ++){
       hist[i] /= (float)maxval;
     }
+
     return hist;
   }
 
