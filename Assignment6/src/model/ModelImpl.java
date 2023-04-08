@@ -16,9 +16,8 @@ import model.savers.PPMImageSaver;
  * image name and the value is a three-dimensional array of integers representing the red, green and
  * blue pixels.
  */
-public class ModelImpl implements Model {
+public class ModelImpl extends ViewModelImpl implements Model {
 
-  final HashMap<String, int[][][]> imageMap;
   int width;
   int height;
 
@@ -26,7 +25,7 @@ public class ModelImpl implements Model {
    * Initializes the hashmap.
    */
   public ModelImpl() {
-    this.imageMap = new HashMap<>();
+    super();
   }
 
   @Override
@@ -293,12 +292,4 @@ public class ModelImpl implements Model {
     return image.length == 1;
   }
 
-  @Override
-  public int[][][] getImage(String imagename) {
-    if (!imageMap.containsKey(imagename)) {
-      throw new IllegalArgumentException("Image name not found in hashmap");
-    } else {
-      return imageMap.get(imagename);
-    }
-  }
 }

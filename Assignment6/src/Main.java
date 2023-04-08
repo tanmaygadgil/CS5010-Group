@@ -1,7 +1,11 @@
 import controller.Controller;
 import controller.ControllerCommandLine;
+import controller.UIController;
 import model.ModelV2;
 import model.ModelV2Impl;
+import model.ViewModelImpl;
+import view.GUIView;
+import view.IGUIView;
 import view.View;
 import view.TextInputView;
 import java.io.IOException;
@@ -20,6 +24,7 @@ public class Main {
    * @throws IOException if file cannot be found.
    */
   public static void main(String[] args) throws IOException {
+    /*
     boolean sFlag = false;
     String inputFile = null;
     //find script flag
@@ -40,9 +45,11 @@ public class Main {
       view = new TextInputView();
     }
 
+     */
     ModelV2 model = new ModelV2Impl();
-    Controller controller = new ControllerCommandLine(model, view);
+    IGUIView view = new GUIView(model);
+    Controller controller = new UIController(model, view);
 
-    controller.run();
+    //controller.run();
   }
 }

@@ -3,6 +3,7 @@ package controller;
 import controller.commands.ImageProcessingCommand;
 import java.util.function.Function;
 import model.ModelV2;
+import view.IGUIView;
 import view.View;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,12 +25,14 @@ public class UIController extends AbstractController implements Features {
    * @param model model to run commands through.
    * @param view  view to show outputs.
    */
-  public UIController(ModelV2 model, View view) {
+  public UIController(ModelV2 model, IGUIView view) {
     super(model, view);
+    view.addFeatures(this);
   }
 
   @Override
   public void run() throws IOException {
+    /*
     while (true) {
       String command = this.view.getInput();
 
@@ -39,6 +42,8 @@ public class UIController extends AbstractController implements Features {
 
       this.parseAndCall(command);
     }
+
+     */
   }
 
   /**
