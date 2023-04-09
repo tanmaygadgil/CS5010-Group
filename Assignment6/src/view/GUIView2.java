@@ -24,7 +24,7 @@ import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import model.ViewModel;
 
-public class GUIView extends JFrame implements IGUIView {
+public class GUIView2 extends JFrame implements IGUIView {
 
   //Buttons
   private JPanel controlPanel;
@@ -37,13 +37,13 @@ public class GUIView extends JFrame implements IGUIView {
   private ViewModel viewModel;
   private HistogramPanel histogramPanel;
 
-  public GUIView(ViewModel viewModel) {
+  public GUIView2(ViewModel viewModel) {
     this.viewModel = viewModel;
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     setTitle("Image App");
     //setSize(800, 800);
-    setPreferredSize(new Dimension(800, 800));
+    setPreferredSize(new Dimension(1000, 800));
     setLayout(new BorderLayout());
 
     controlPanel = new JPanel();
@@ -54,13 +54,14 @@ public class GUIView extends JFrame implements IGUIView {
 
     //load a file
     fileOpenButton = new JButton("Open a file");
-    controlPanel.add(fileOpenButton);
+
 
     //add the combobox panel
     filterComboBoxPanel = new JPanel();
     filterComboBoxPanel.setBorder(BorderFactory.createTitledBorder("Select an operation:"));
     filterComboBoxPanel.setLayout(new BoxLayout(filterComboBoxPanel, BoxLayout.PAGE_AXIS));
-    controlPanel.add(filterComboBoxPanel);
+//    controlPanel.add(filterComboBoxPanel);
+
 
     //create and set the display for the combobox
     JLabel comboboxDisplay = new JLabel("Options");
@@ -77,13 +78,19 @@ public class GUIView extends JFrame implements IGUIView {
 
     gbc.fill = GridBagConstraints.HORIZONTAL;
     gbc.insets = new Insets(10, 10, 10, 10);
+
     gbc.gridx = 0;
     gbc.gridy = 0;
     gbc.weightx = 1;
-    controlPanel.add(filterComboBox, gbc);
+    controlPanel.add(fileOpenButton, gbc);
 
     gbc.gridx = 0;
     gbc.gridy = 1;
+    gbc.weightx = 1;
+    controlPanel.add(filterComboBoxPanel, gbc);
+
+    gbc.gridx = 0;
+    gbc.gridy = 2;
     gbc.weightx = 1;
     controlPanel.add(applyButton, gbc);
 
@@ -109,7 +116,7 @@ public class GUIView extends JFrame implements IGUIView {
   public void addFeatures(Features features) {
     //add the options for the combobox
     String[] options = {"horizontal-flip", "vertical-flip", "greyscale", "gaussian-blur", "dither",
-        "sepia", "sharpen"};
+        "sepia", "sharpen", "brighten"};
     for (String str : options) {
       filterComboBox.addItem(str);
     }
@@ -119,6 +126,7 @@ public class GUIView extends JFrame implements IGUIView {
     applyButton.addActionListener(evt -> {
       try {
         features.callCommand(filterComboBox.getSelectedItem().toString());
+
       } catch (IOException e) {
         throw new RuntimeException(e);
       }
@@ -131,13 +139,12 @@ public class GUIView extends JFrame implements IGUIView {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg",
             "gif");
         fChooser.setFileFilter(filter);
-        int retValue = fChooser.showOpenDialog(GUIView.this);
+        int retValue = fChooser.showOpenDialog(GUIView2.this);
         if (retValue == JFileChooser.APPROVE_OPTION) {
           File f = fChooser.getSelectedFile();
           try {
             features.callLoad(f.getAbsolutePath());
-            imagePanel.readAndLoad(f.getAbsolutePath());
-            histogramPanel.readAndLoad(f.getAbsolutePath());
+
           } catch (IOException ex) {
             throw new RuntimeException(ex);
           }
@@ -155,7 +162,18 @@ public class GUIView extends JFrame implements IGUIView {
 
   @Override
   public void renderOutput(String inputString) {
+    setImage(inputString);
+    setHistogram(inputString);
+  }
 
+  private void setImage(String imageName){
+    int[][][] image = viewModel.getImage(imageName);
+    imagePanel.setImage(image);
+  }
+
+  private void setHistogram(String imageName){
+    float[][] histVals = viewModel.getHistogramValues(imageName);
+    histogramPanel.setImage(histVals);
   }
 
 

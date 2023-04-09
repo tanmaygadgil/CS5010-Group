@@ -1,7 +1,9 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -11,7 +13,23 @@ import javax.swing.JPanel;
 public class ImagePanel extends JPanel {
   private int[][][] image;
   public ImagePanel() {
-    this.image = null;
+//    this.image = null;
+    setSize(new Dimension(500, 800)); // set the preferred size of the panel
+
+    reset();
+// Repaint the JPanel to show the new blank background
+    revalidate();
+    repaint();
+
+  }
+
+  public void reset(){
+    BufferedImage blankImage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+    Graphics2D g2d = blankImage.createGraphics();
+    g2d.setColor(Color.WHITE);
+    g2d.fillRect(0, 0, getWidth(), getHeight());
+    this.image = convertToRgb(blankImage);
+    setBackground(Color.WHITE);
   }
 
   public void setImage(int[][][] image) {
