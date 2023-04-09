@@ -37,6 +37,8 @@ public class GUIView2 extends JFrame implements IGUIView {
   private ViewModel viewModel;
   private HistogramPanel histogramPanel;
 
+  private JButton fileSaveButton;
+
   public GUIView2(ViewModel viewModel) {
     this.viewModel = viewModel;
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,6 +56,7 @@ public class GUIView2 extends JFrame implements IGUIView {
 
     //load a file
     fileOpenButton = new JButton("Open a file");
+    fileSaveButton = new JButton("Save a file");
 
 
     //add the combobox panel
@@ -87,10 +90,15 @@ public class GUIView2 extends JFrame implements IGUIView {
     gbc.gridx = 0;
     gbc.gridy = 1;
     gbc.weightx = 1;
-    controlPanel.add(filterComboBoxPanel, gbc);
+    controlPanel.add(fileSaveButton, gbc);
 
     gbc.gridx = 0;
     gbc.gridy = 2;
+    gbc.weightx = 1;
+    controlPanel.add(filterComboBoxPanel, gbc);
+
+    gbc.gridx = 0;
+    gbc.gridy = 3;
     gbc.weightx = 1;
     controlPanel.add(applyButton, gbc);
 
@@ -153,6 +161,26 @@ public class GUIView2 extends JFrame implements IGUIView {
 
     });
 
+    fileSaveButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        final JFileChooser fChooser = new JFileChooser(".");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg",
+            "gif");
+        fChooser.setFileFilter(filter);
+        int retValue = fChooser.showOpenDialog(GUIView2.this);
+        if (retValue == JFileChooser.APPROVE_OPTION) {
+          File f = fChooser.getSelectedFile();
+          try {
+            features.callSave(f.getAbsolutePath());
+
+          } catch (IOException ex) {
+            throw new RuntimeException(ex);
+          }
+        }
+      }
+    });
+
   }
 
   @Override
@@ -166,15 +194,24 @@ public class GUIView2 extends JFrame implements IGUIView {
     setHistogram(inputString);
   }
 
+  @Override
+  public void reset(){
+    imagePanel.reset();
+    histogramPanel.reset();
+  }
+
   private void setImage(String imageName){
     int[][][] image = viewModel.getImage(imageName);
     imagePanel.setImage(image);
   }
 
+
   private void setHistogram(String imageName){
     float[][] histVals = viewModel.getHistogramValues(imageName);
     histogramPanel.setImage(histVals);
   }
+
+
 
 
 }

@@ -149,6 +149,11 @@ public class GUIView extends JFrame implements IGUIView {
   }
 
   @Override
+  public void reset() {
+
+  }
+
+  @Override
   public String getInput() {
     return null;
   }

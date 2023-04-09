@@ -34,15 +34,19 @@ public class HistogramPanel extends JPanel {
     this.image = null;
   }
 
-  public void setImage(float[][] histVals) {
+  public void reset() {
     try {
       this.remove(this.intensityChart);
       this.remove(this.redChart);
       this.remove(this.greenChart);
       this.remove(this.blueChart);
-    }catch (Exception e){
+    } catch (Exception e) {
       System.out.println("no chart loaded");
     }
+  }
+
+  public void setImage(float[][] histVals) {
+    reset();
 
     this.intensity = generateDataset(histVals[0]);
     this.red = generateDataset(histVals[1]);

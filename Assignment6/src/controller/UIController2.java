@@ -121,9 +121,11 @@ public class UIController2 extends AbstractController implements Features {
   Save button should send the path here
    */
   @Override
-  public void callSave(String filePath) {
+  public void callSave(String filePath) throws IOException {
 
     String[] saveCommands = {"save", filePath, "image"};
+    this.callModel(saveCommands);
+    view.reset();
 
   }
 }

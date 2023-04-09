@@ -6,4 +6,6 @@ public interface IGUIView extends View {
 
   void addFeatures(Features features);
 
+  void reset();
+
 }
