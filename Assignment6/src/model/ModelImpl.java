@@ -16,8 +16,9 @@ import model.savers.PPMImageSaver;
  * image name and the value is a three-dimensional array of integers representing the red, green and
  * blue pixels.
  */
-public class ModelImpl extends ViewModelImpl implements Model {
+public class ModelImpl implements Model {
 
+  HashMap<String, int[][][]> imageMap;
   int width;
   int height;
 
@@ -25,7 +26,7 @@ public class ModelImpl extends ViewModelImpl implements Model {
    * Initializes the hashmap.
    */
   public ModelImpl() {
-    super();
+    imageMap = new HashMap<>();
   }
 
   @Override
@@ -291,5 +292,85 @@ public class ModelImpl extends ViewModelImpl implements Model {
   private boolean isGrey(int[][][] image) {
     return image.length == 1;
   }
+
+  @Override
+  public int[][][] getImage(String imagename) {
+    if (!imageMap.containsKey(imagename)) {
+      throw new IllegalArgumentException("Image name not found in hashmap");
+    } else {
+      return imageMap.get(imagename);
+    }
+  }
+
+  @Override
+  public float[][] getHistogramValues(String imagename) {
+    float[][] histVals = new float[4][];
+    histVals[0] = generateHistogramValues(imagename, 0);
+    histVals[1] = generateHistogramValues(imagename, 1);
+    histVals[2] = generateHistogramValues(imagename, 2);
+    histVals[3] = generateHistogramValues(imagename, 3);
+    return histVals;
+  }
+
+  /**
+   * Creates counts for histogram values.
+   *
+   * @param imagename the name of the image to be processed
+   * @param component 0-Intensity, 1-red, 2- green, 3-blue
+   * @return an array with the histogram values
+   */
+  private float[] generateHistogramValues(String imagename, int component) {
+    int[][][] inputImage;
+    int index;
+    float[] hist = new float[256];
+    float maxval = 0;
+    //check if images exist
+    if (!imageMap.containsKey(imagename)) {
+      throw new IllegalArgumentException("Image name not found in hashmap");
+    } else {
+      inputImage = imageMap.get(imagename);
+    }
+    //if greyscale just get the first value
+    if (isGrey(inputImage)) {
+      maxval = 0;
+      for (int i = 0; i < inputImage[0].length; i++) {
+        for (int j = 0; j < inputImage[0][0].length; j++) {
+          int val = inputImage[0][i][j];
+          hist[val] += 1;
+          maxval = Math.max(hist[val], maxval);
+        }
+      }
+
+    } else {
+
+      if (component == 0) {
+        maxval = 0;
+        for (int i = 0; i < inputImage[0].length; i++) {
+          for (int j = 0; j < inputImage[0][0].length; j++) {
+            int val = (inputImage[0][i][j] + inputImage[1][i][j] + inputImage[2][i][j]) / 3;
+            hist[val] += 1;
+            maxval = Math.max(hist[val], maxval);
+          }
+        }
+      } else {
+        index = component - 1;
+        maxval = 0;
+        for (int i = 0; i < inputImage[0].length; i++) {
+          for (int j = 0; j < inputImage[0][0].length; j++) {
+            int val = inputImage[index][i][j];
+            hist[val] += 1;
+            maxval = Math.max(hist[val], maxval);
+          }
+        }
+      }
+    }
+    //Normalize
+
+    for (int i = 0; i < hist.length; i++) {
+      hist[i] /= (float) maxval;
+    }
+    return hist;
+  }
+
 
 }

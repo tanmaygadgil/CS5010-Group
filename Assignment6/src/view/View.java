@@ -17,4 +17,6 @@ public interface View {
    * @param inputString The string to be represented
    */
   void renderOutput(String inputString);
+
+  void reset();
 }

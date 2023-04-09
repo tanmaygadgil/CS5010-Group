@@ -1,22 +1,16 @@
 import controller.Controller;
-import controller.ControllerCommandLine;
 import controller.UIController;
+import controller.UIController2;
+import java.io.IOException;
 import model.ModelV2;
 import model.ModelV2Impl;
 import model.ViewModel;
 import model.ViewModelImpl;
 import view.GUIView;
+import view.GUIView2;
 import view.IGUIView;
-import view.View;
-import view.TextInputView;
-import java.io.IOException;
 
-/**
- * The Main class is the entry point of the program. It parses command-line arguments, creates
- * instances of the Model, View, and Controller, and runs the program.
- */
-public class Main {
-
+public class Main2 {
   /**
    * The main method is the entry point of the program. It parses command-line arguments, creates
    * instances of the Model, View, and Controller, and runs the program.
@@ -49,8 +43,8 @@ public class Main {
      */
     ModelV2 model = new ModelV2Impl();
     ViewModel vm = new ViewModelImpl(model);
-    IGUIView view = new GUIView(model);
-    Controller controller = new UIController(model, view);
+    IGUIView view = new GUIView2(model);
+    Controller controller = new UIController2(model, view);
 
     //controller.run();
   }

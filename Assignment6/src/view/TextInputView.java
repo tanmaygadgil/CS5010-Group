@@ -64,6 +64,11 @@ public class TextInputView extends AbstractTextView {
     System.out.println(inputString);
   }
 
+  @Override
+  public void reset() {
+
+  }
+
 
 }
 
