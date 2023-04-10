@@ -5,6 +5,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.function.Function;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import model.ModelV2;
 import view.IGUIView;
 import view.InputDialog;
@@ -90,57 +91,97 @@ public class UIController2 extends AbstractController implements Features {
     switch (command) {
       case "brighten":
         final String commandValue;
-        InputDialog db = new InputDialog((JFrame) view, "Please input the amount to brighten by");
-//      db.addWindowListener(new WindowAdapter() {
-//        public void windowClosed(WindowEvent e) {
-//          commandValue[0] = db.getInput();
-//          System.out.println("User input: " + commandValue[0]);
-//        }
-//      });
-        commandValue = db.getInputAndWait();
-        commandArgs = new String[]{command, commandValue, "image", "image"};
-        this.callModel(commandArgs);
-        view.renderOutput("image");
+        String res = null;
+        String error = null;
+        try {
+          InputDialog db = new InputDialog((JFrame) view, "Please input the amount to brighten by");
+          commandValue = db.getInputAndWait();
+          commandArgs = new String[]{command, commandValue, "image", "image"};
+          res = this.callModel(commandArgs);
+          view.renderOutput("image");
+        } catch (Exception e) {
+          error = e.getMessage();
+        }
+        if (res.contains("unsuccessful")) {
+          JOptionPane.showMessageDialog(null, "An error occurred: " + error,
+              "Error",
+              JOptionPane.ERROR_MESSAGE);
+        }
+        break;
+      case "darken":
+        res = null;
+        error = null;
+        try {
+          InputDialog db = new InputDialog((JFrame) view, "Please input the amount to darken by");
+          commandValue = db.getInputAndWait();
+          commandArgs = new String[]{command, commandValue, "image", "image"};
+          res = this.callModel(commandArgs);
+          view.renderOutput("image");
+        } catch (Exception e) {
+          error = e.getMessage();
+        }
+        if (res.contains("unsuccessful")) {
+          JOptionPane.showMessageDialog(null, "An error occurred: " + error,
+              "Error",
+              JOptionPane.ERROR_MESSAGE);
+        }
         break;
       case "rgb-split":
         final String filePathRed;
         final String filePathGreen;
         final String filePathBlue;
+        InputFileChooser fChooseRed;
+        InputFileChooser fChooseGreen;
+        InputFileChooser fChooseBlue;
+        try {
+          fChooseRed = new InputFileChooser("Save the Red Component");
+          filePathRed = fChooseRed.getInput();
+          fChooseGreen = new InputFileChooser("Save the Green Component");
+          filePathGreen = fChooseGreen.getInput();
+          fChooseBlue = new InputFileChooser("Save the Blue Component");
+          filePathBlue = fChooseBlue.getInput();
 
-        InputFileChooser fChooseRed = new InputFileChooser("Save the Red Component");
-        filePathRed = fChooseRed.getInput();
-        InputFileChooser fChooseGreen = new InputFileChooser("Save the Green Component");
-        filePathGreen = fChooseGreen.getInput();
-        InputFileChooser fChooseBlue = new InputFileChooser("Save the Blue Component");
-        filePathBlue = fChooseBlue.getInput();
-
-        commandArgs = new String[]{command, "image", "red", "green", "blue"};
-        this.callModel(commandArgs);
-        this.callSave(filePathRed, "red");
-        this.callSave(filePathGreen, "green");
-        this.callSave(filePathBlue, "blue");
+          commandArgs = new String[]{command, "image", "red", "green", "blue"};
+          this.callModel(commandArgs);
+          this.callSave(filePathRed, "red");
+          this.callSave(filePathGreen, "green");
+          this.callSave(filePathBlue, "blue");
+        } catch (Exception e) {
+          JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage(), "Error",
+              JOptionPane.ERROR_MESSAGE);
+        }
         break;
       case "rgb-combine":
-        fChooseRed = new InputFileChooser("Load the Red Component");
-        filePathRed = fChooseRed.getInput();
-        fChooseGreen = new InputFileChooser("Load the Green Component");
-        filePathGreen = fChooseGreen.getInput();
-        fChooseBlue = new InputFileChooser("Load the Blue Component");
-        filePathBlue = fChooseBlue.getInput();
+        try {
+          fChooseRed = new InputFileChooser("Load the Red Component");
+          filePathRed = fChooseRed.getInput();
+          fChooseGreen = new InputFileChooser("Load the Green Component");
+          filePathGreen = fChooseGreen.getInput();
+          fChooseBlue = new InputFileChooser("Load the Blue Component");
+          filePathBlue = fChooseBlue.getInput();
 
-        this.callLoad(filePathRed, "red");
-        this.callLoad(filePathGreen, "green");
-        this.callLoad(filePathBlue, "blue");
+          this.callLoad(filePathRed, "red");
+          this.callLoad(filePathGreen, "green");
+          this.callLoad(filePathBlue, "blue");
 
-        commandArgs = new String[]{command, "combinedImage", "red", "green", "blue"};
-        this.callModel(commandArgs);
-        InputFileChooser fChooseSave = new InputFileChooser("Save the Combined Image");
-        this.callSave(fChooseSave.getInput(), "combinedImage");
+          commandArgs = new String[]{command, "combinedImage", "red", "green", "blue"};
+          this.callModel(commandArgs);
+          InputFileChooser fChooseSave = new InputFileChooser("Save the Combined Image");
+          this.callSave(fChooseSave.getInput(), "combinedImage");
+        } catch (Exception e) {
+          JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage(), "Error",
+              JOptionPane.ERROR_MESSAGE);
+        }
         break;
       default:
-        commandArgs = new String[]{command, "image", "image"};
-        this.callModel(commandArgs);
-        view.renderOutput("image");
+        try {
+          commandArgs = new String[]{command, "image", "image"};
+          this.callModel(commandArgs);
+          view.renderOutput("image");
+        } catch (Exception e) {
+          JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage(), "Error",
+              JOptionPane.ERROR_MESSAGE);
+        }
         break;
     }
 

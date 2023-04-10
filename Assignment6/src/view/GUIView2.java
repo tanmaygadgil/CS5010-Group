@@ -58,13 +58,11 @@ public class GUIView2 extends JFrame implements IGUIView {
     fileOpenButton = new JButton("Open a file");
     fileSaveButton = new JButton("Save a file");
 
-
     //add the combobox panel
     filterComboBoxPanel = new JPanel();
     filterComboBoxPanel.setBorder(BorderFactory.createTitledBorder("Select an operation:"));
     filterComboBoxPanel.setLayout(new BoxLayout(filterComboBoxPanel, BoxLayout.PAGE_AXIS));
 //    controlPanel.add(filterComboBoxPanel);
-
 
     //create and set the display for the combobox
     JLabel comboboxDisplay = new JLabel("Options");
@@ -124,7 +122,7 @@ public class GUIView2 extends JFrame implements IGUIView {
   public void addFeatures(Features features) {
     //add the options for the combobox
     String[] options = {"horizontal-flip", "vertical-flip", "greyscale", "gaussian-blur", "dither",
-        "sepia", "sharpen", "brighten", "rgb-split", "rgb-combine"};
+        "sepia", "sharpen", "brighten", "darken", "rgb-split", "rgb-combine"};
     for (String str : options) {
       filterComboBox.addItem(str);
     }
@@ -144,8 +142,9 @@ public class GUIView2 extends JFrame implements IGUIView {
       @Override
       public void actionPerformed(ActionEvent e) {
         final JFileChooser fChooser = new JFileChooser(".");
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg",
-            "gif");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+            "ASCII PPM and Conventional Images", "jpg",
+            "gif", "ppm", "bmp", "png");
         fChooser.setFileFilter(filter);
         int retValue = fChooser.showOpenDialog(GUIView2.this);
         if (retValue == JFileChooser.APPROVE_OPTION) {
@@ -165,8 +164,9 @@ public class GUIView2 extends JFrame implements IGUIView {
       @Override
       public void actionPerformed(ActionEvent e) {
         final JFileChooser fChooser = new JFileChooser(".");
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg",
-            "gif");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+            "ASCII PPM and Conventional Images", "jpg",
+            "gif", "ppm", "bmp", "png");
         fChooser.setFileFilter(filter);
         int retValue = fChooser.showOpenDialog(GUIView2.this);
         if (retValue == JFileChooser.APPROVE_OPTION) {
@@ -195,18 +195,18 @@ public class GUIView2 extends JFrame implements IGUIView {
   }
 
   @Override
-  public void reset(){
+  public void reset() {
     imagePanel.reset();
     histogramPanel.reset();
   }
 
-  private void setImage(String imageName){
+  private void setImage(String imageName) {
     int[][][] image = viewModel.getImage(imageName);
     imagePanel.setImage(image);
   }
 
 
-  private void setHistogram(String imageName){
+  private void setHistogram(String imageName) {
     float[][] histVals = viewModel.getHistogramValues(imageName);
     histogramPanel.setImage(histVals);
   }
