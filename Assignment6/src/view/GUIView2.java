@@ -124,7 +124,7 @@ public class GUIView2 extends JFrame implements IGUIView {
   public void addFeatures(Features features) {
     //add the options for the combobox
     String[] options = {"horizontal-flip", "vertical-flip", "greyscale", "gaussian-blur", "dither",
-        "sepia", "sharpen", "brighten"};
+        "sepia", "sharpen", "brighten", "rgb-split", "rgb-combine"};
     for (String str : options) {
       filterComboBox.addItem(str);
     }
@@ -151,7 +151,7 @@ public class GUIView2 extends JFrame implements IGUIView {
         if (retValue == JFileChooser.APPROVE_OPTION) {
           File f = fChooser.getSelectedFile();
           try {
-            features.callLoad(f.getAbsolutePath());
+            features.callLoad(f.getAbsolutePath(), "image");
 
           } catch (IOException ex) {
             throw new RuntimeException(ex);
@@ -172,7 +172,7 @@ public class GUIView2 extends JFrame implements IGUIView {
         if (retValue == JFileChooser.APPROVE_OPTION) {
           File f = fChooser.getSelectedFile();
           try {
-            features.callSave(f.getAbsolutePath());
+            features.callSave(f.getAbsolutePath(), "image");
 
           } catch (IOException ex) {
             throw new RuntimeException(ex);
@@ -210,8 +210,6 @@ public class GUIView2 extends JFrame implements IGUIView {
     float[][] histVals = viewModel.getHistogramValues(imageName);
     histogramPanel.setImage(histVals);
   }
-
-
 
 
 }
