@@ -89,6 +89,7 @@ public class UIController2 extends AbstractController implements Features {
    */ public void callCommand(String command) throws IOException {
     String[] commandArgs;
     switch (command) {
+      case "darken":
       case "brighten":
         final String commandValue;
         String res = null;
