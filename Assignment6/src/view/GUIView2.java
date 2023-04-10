@@ -124,7 +124,7 @@ public class GUIView2 extends JFrame implements IGUIView {
   public void addFeatures(Features features) {
     //add the options for the combobox
     String[] options = {"horizontal-flip", "vertical-flip", "greyscale", "gaussian-blur", "dither",
-        "sepia", "sharpen", "brighten", "rgb-split", "rgb-combine"};
+        "sepia", "sharpen", "brighten", "darken", "rgb-split", "rgb-combine"};
     for (String str : options) {
       filterComboBox.addItem(str);
     }
