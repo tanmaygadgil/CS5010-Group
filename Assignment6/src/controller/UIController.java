@@ -93,8 +93,8 @@ public class UIController extends AbstractController implements Features {
   Load button should send the path here
    */
   @Override
-  public void callLoad(String filePath) throws IOException {
-    String[] loadCommands = {"load", filePath, "image"};
+  public void callLoad(String filePath, String imageName) throws IOException {
+    String[] loadCommands = {"load", filePath, imageName};
     this.callModel(loadCommands);
   }
 
@@ -102,9 +102,8 @@ public class UIController extends AbstractController implements Features {
   Save button should send the path here
    */
   @Override
-  public void callSave(String filePath) {
-    String[] saveCommands = {"save", filePath, "image"};
+  public void callSave(String filePath, String imageName) {
+    String[] saveCommands = {"save", filePath, imageName};
   }
-
 
 }

@@ -109,7 +109,7 @@ public class GUIView extends JFrame implements IGUIView {
   public void addFeatures(Features features) {
     //add the options for the combobox
     String[] options = {"horizontal-flip", "vertical-flip", "greyscale", "gaussian-blur", "dither",
-        "sepia", "sharpen"};
+        "sepia", "sharpen", "rgb-split"};
     for (String str : options) {
       filterComboBox.addItem(str);
     }
@@ -135,7 +135,7 @@ public class GUIView extends JFrame implements IGUIView {
         if (retValue == JFileChooser.APPROVE_OPTION) {
           File f = fChooser.getSelectedFile();
           try {
-            features.callLoad(f.getAbsolutePath());
+            features.callLoad(f.getAbsolutePath(), "image");
             imagePanel.readAndLoad(f.getAbsolutePath());
             histogramPanel.readAndLoad(f.getAbsolutePath());
           } catch (IOException ex) {
