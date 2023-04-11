@@ -105,4 +105,14 @@ public class MockModelImpl implements MockModel {
             imagename,
             destname));
   }
+
+  @Override
+  public int[][][] getImage(String imagename) {
+    return new int[0][][];
+  }
+
+  @Override
+  public float[][] getHistogramValues(String imagename) {
+    return new float[0][];
+  }
 }

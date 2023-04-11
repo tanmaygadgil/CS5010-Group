@@ -65,6 +65,11 @@ public class MockScriptView implements View {
     System.out.println(inputString);
   }
 
+  @Override
+  public void reset() {
+
+  }
+
   private ArrayList<String> loadFile(String fileName) throws IOException {
     BufferedReader reader = new BufferedReader(new FileReader(fileName));
     ArrayList<String> commandArgs = new ArrayList<String>();

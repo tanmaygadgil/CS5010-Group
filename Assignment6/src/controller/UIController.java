@@ -74,10 +74,6 @@ public class UIController extends AbstractController implements Features {
     }
   }
 
-  /*
-  ///////////////FOR NOW ALL IMAGES ARE JUST CALLED "image"//////////////////
-   */
-
   @Override
   /*
   Apply button sends the text currently in the combobox to the controller and the
@@ -184,10 +180,6 @@ public class UIController extends AbstractController implements Features {
 //      view.renderOutput("image");
   }
 
-
-  /*
-  Load button should send the path here
-   */
   @Override
   public void callLoad(String filePath, String imageName) throws IOException {
     String[] loadCommands = {"load", filePath, imageName};
@@ -195,9 +187,7 @@ public class UIController extends AbstractController implements Features {
     view.renderOutput("image");
   }
 
-  /*
-  Save button should send the path here
-   */
+
   @Override
   public void callSave(String filePath, String imageName) throws IOException {
 
