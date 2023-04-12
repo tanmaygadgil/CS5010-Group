@@ -1,7 +1,15 @@
 # USE Me
 
-This file will outline the necessary step to use this application, all accepted commands 
-and a few sample commands to run the files 
+This file will outline the necessary step to use this application, all accepted commands
+and a few sample commands to run the files
+
+This program runs in three modes
+
+- Text mode: Here twe input the command in the terminal. Commands are highlighted below. This mode
+  will be accessed with the -text flag
+- Script mode: here the package expects a script file after a flag -file
+- UI mode: Spins up a simple UI that can be used to modify a single image displayed in the UI. The
+  UI also renders histogram values for the chart.
 
 ## Commands
 
@@ -45,7 +53,6 @@ To compile the code
 In this mode the app runs when the user gives command line inputs into the terminal
 To run the script:
 
-
 ```shell
 java -jar Assignment5.jar
 ```
@@ -59,7 +66,6 @@ commands that can be given in the terminal. To add a comment add in text followi
 character
 
 To run the application script mode attach the -s flag to the command line arguments
-
 
 ```shell
 java -jar Assignment5.jar -s <location of script file.txt>

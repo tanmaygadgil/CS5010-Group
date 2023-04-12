@@ -201,6 +201,9 @@ public class ModelImpl implements Model {
 
   private int[][][] getRed(String imageName) {
     int[][][] image = imageMap.get(imageName);
+    if (image.length == 1){
+      throw new IllegalStateException("cannot get component of a greyscale image");
+    }
     int[][][] grey = new int[1][height][width];
     grey[0] = image[0];
 
@@ -209,6 +212,9 @@ public class ModelImpl implements Model {
 
   private int[][][] getGreen(String imageName) {
     int[][][] image = imageMap.get(imageName);
+    if (image.length == 1){
+      throw new IllegalStateException("cannot get component of a greyscale image");
+    }
     int[][][] grey = new int[1][height][width];
     grey[0] = image[1];
 
@@ -217,6 +223,9 @@ public class ModelImpl implements Model {
 
   private int[][][] getBlue(String imageName) {
     int[][][] image = imageMap.get(imageName);
+    if (image.length == 1){
+      throw new IllegalStateException("cannot get component of a greyscale image");
+    }
     int[][][] grey = new int[1][height][width];
     grey[0] = image[2];
 
@@ -226,6 +235,9 @@ public class ModelImpl implements Model {
   private int[][][] greyscaleValue(String imageName) {
     int[][][] image = imageMap.get(imageName);
     int[][][] grey = new int[1][height][width];
+    if (image.length == 1){
+      throw new IllegalStateException("cannot get component of a greyscale image");
+    }
 
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
@@ -239,6 +251,9 @@ public class ModelImpl implements Model {
   private int[][][] greyscaleIntensity(String imageName) {
     int[][][] image = imageMap.get(imageName);
     int[][][] grey = new int[1][height][width];
+    if (image.length == 1){
+      throw new IllegalStateException("cannot get component of a greyscale image");
+    }
 
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
@@ -252,6 +267,9 @@ public class ModelImpl implements Model {
   private int[][][] greyscaleLuma(String imageName) {
     int[][][] image = imageMap.get(imageName);
     int[][][] grey = new int[1][height][width];
+    if (image.length == 1){
+      throw new IllegalStateException("cannot get component of a greyscale image");
+    }
 
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {

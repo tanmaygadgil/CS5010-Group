@@ -7,6 +7,10 @@ public class GreyscaleTransform implements model.ImageTransforms {
 
   @Override
   public int[][][] transform(int[][][] image) {
+
+    if (image.length == 1){
+      return image;
+    }
     int length = image.length;
     int width = image[0][0].length;
     int height = image[0].length;
