@@ -31,18 +31,7 @@ public class UIController extends AbstractController implements Features {
 
   @Override
   public void run() throws IOException {
-    /*
-    while (true) {
-      String command = this.view.getInput();
-
-      if (command.strip().equals("exit")) {
-        break;
-      }
-
-      this.parseAndCall(command);
-    }
-
-     */
+    throw new UnsupportedOperationException("The GUI controller does not have an event loop");
   }
 
   /**
@@ -176,23 +165,6 @@ public class UIController extends AbstractController implements Features {
         break;
     }
 
-//    if (command.equals("brighten")){
-//      final String commandValue;
-//      InputDialog db = new InputDialog((JFrame) view,"Please input the amount to brighten by");
-//      db.addWindowListener(new WindowAdapter() {
-//        public void windowClosed(WindowEvent e) {
-//          commandValue[0] = db.getInput();
-//          System.out.println("User input: " + commandValue[0]);
-//        }
-//      });
-//      commandValue = db.getInputAndWait();
-//      String[] commandArgs = {command, commandValue, "image", "image"};
-//      this.callModel(commandArgs);
-//      view.renderOutput("image");
-//    }else {
-//      String[] commandArgs = {command, "image", "image"};
-//      this.callModel(commandArgs);
-//      view.renderOutput("image");
   }
 
   @Override
