@@ -109,7 +109,7 @@ public abstract class AbstractController implements Controller {
         return commandArgs[0] + " successful";
       } catch (Exception e) {
         e.printStackTrace();
-        return commandArgs[0] + " unsuccessful";
+        return commandArgs[0] + " unsuccessful" + e.getMessage();
       }
     }
 

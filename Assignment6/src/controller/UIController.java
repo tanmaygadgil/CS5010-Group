@@ -96,13 +96,14 @@ public class UIController extends AbstractController implements Features {
           error = e.getMessage();
         }
         if (res.contains("unsuccessful")) {
-          JOptionPane.showMessageDialog(null, "An error occurred: " + error,
+          JOptionPane.showMessageDialog(null, res,
               "Error",
               JOptionPane.ERROR_MESSAGE);
         }
         break;
 
       case "rgb-split":
+        res = null;
         final String filePathRed;
         final String filePathGreen;
         final String filePathBlue;
@@ -118,16 +119,21 @@ public class UIController extends AbstractController implements Features {
           filePathBlue = fChooseBlue.getInput();
 
           commandArgs = new String[]{command, "image", "red", "green", "blue"};
-          this.callModel(commandArgs);
+          res = this.callModel(commandArgs);
           this.callSave(filePathRed, "red");
           this.callSave(filePathGreen, "green");
           this.callSave(filePathBlue, "blue");
         } catch (Exception e) {
-          JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage(), "Error",
+          error = e.getMessage();
+        }
+        if (res.contains("unsuccessful")) {
+          JOptionPane.showMessageDialog(null, res,
+              "Error",
               JOptionPane.ERROR_MESSAGE);
         }
         break;
       case "rgb-combine":
+        res = null;
         try {
           fChooseRed = new InputFileChooser("Load the Red Component");
           filePathRed = fChooseRed.getInput();
@@ -141,21 +147,30 @@ public class UIController extends AbstractController implements Features {
           this.callLoad(filePathBlue, "blue");
 
           commandArgs = new String[]{command, "combinedImage", "red", "green", "blue"};
-          this.callModel(commandArgs);
+          res = this.callModel(commandArgs);
           InputFileChooser fChooseSave = new InputFileChooser("Save the Combined Image");
           this.callSave(fChooseSave.getInput(), "combinedImage");
         } catch (Exception e) {
-          JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage(), "Error",
+          error = e.getMessage();
+        }
+        if (res.contains("unsuccessful")) {
+          JOptionPane.showMessageDialog(null, res,
+              "Error",
               JOptionPane.ERROR_MESSAGE);
         }
         break;
       default:
+        res = null;
         try {
           commandArgs = new String[]{command, "image", "image"};
-          this.callModel(commandArgs);
+          res = this.callModel(commandArgs);
           view.renderOutput("image");
         } catch (Exception e) {
-          JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage(), "Error",
+          error = e.getMessage();
+        }
+        if (res.contains("unsuccessful")) {
+          JOptionPane.showMessageDialog(null, res,
+              "Error",
               JOptionPane.ERROR_MESSAGE);
         }
         break;

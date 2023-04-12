@@ -3,6 +3,8 @@
 This file will outline the necessary step to use this application, all accepted commands 
 and a few sample commands to run the files 
 
+This program runs in three modes
+-
 ## Commands
 
 ### Accepted commands
