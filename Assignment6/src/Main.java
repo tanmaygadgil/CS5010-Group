@@ -59,7 +59,7 @@ public class Main {
     }else {
       //if using the UI
       ViewModel vm = new ViewModelImpl(model);
-      IGUIView view = new GUIView(model);
+      IGUIView view = new GUIView(vm);
       Controller controller = new UIController(model, view);
     }
 
