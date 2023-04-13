@@ -23,12 +23,30 @@ Here is a list of accepted commands for both the command mode and the script mod
 12. sharpen <image-name> <dest-image-name>
 13. darken <increment_value> <image-name> <dest-image-name>
 
-The GUI application also supports all of the above operations. 
+The GUI application also supports all of the above operations.
 
 The main script of this application is run using the Main.java class found in the src/ folder
 
 The first step is to compile the classes to ensure that they run in the terminal
 To compile the code
+
+### GUI
+In order to apply the commands to the images, there are four main components on the left hand 
+side of the window: a button to open a file, a button to save a file, a dropdown menu to 
+select the command to apply and an apply button to apply the command to the loaded image.
+
+The pane in the middle will hold the image and the pane on the right will display four 
+histograms showing the intensity, red, green and blue components. 
+
+The open a file button will allow you to open an image. 
+
+The save a file button will allow you to save the current image on your screen to your computer. 
+
+The dropdown menu determines which command to apply. Clicking the dropdown menu will 
+show the supported commands. The currently selected command will be the one applied 
+to the current image. 
+
+The apply button applies whatever command is currently shown in the dropdown box. 
 
 #### Before running the script:
 
