@@ -21,6 +21,9 @@ Here is a list of accepted commands for both the command mode and the script mod
 10. sepia <image-name> <dest-image-name>
 11. gaussian-blur <image-name> <dest-image-name>
 12. sharpen <image-name> <dest-image-name>
+13. darken <increment_value> <image-name> <dest-image-name>
+
+The GUI application also supports all of the above operations. 
 
 The main script of this application is run using the Main.java class found in the src/ folder
 
