@@ -5,26 +5,34 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+/**
+ * A JSwing panel used to visualize the image that is being worked on.
+ */
 public class ImagePanel extends JPanel {
+
   private int[][][] image;
+
+  /**
+   * Initializes the image panel.
+   */
   public ImagePanel() {
-//    this.image = null;
     setSize(new Dimension(500, 800)); // set the preferred size of the panel
 
     reset();
-// Repaint the JPanel to show the new blank background
+    // Repaint the JPanel to show the new blank background
     revalidate();
     repaint();
 
   }
 
-  public void reset(){
-    BufferedImage blankImage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+  /**
+   * Resets the image view to a blank canvas.
+   */
+  public void reset() {
+    BufferedImage blankImage = new BufferedImage(getWidth(), getHeight(),
+        BufferedImage.TYPE_INT_ARGB);
     Graphics2D g2d = blankImage.createGraphics();
     g2d.setColor(Color.WHITE);
     g2d.fillRect(0, 0, getWidth(), getHeight());
@@ -32,20 +40,25 @@ public class ImagePanel extends JPanel {
     setBackground(Color.WHITE);
   }
 
+  /**
+   * Sets the image in the canvas.
+   *
+   * @param image the image object to be set.
+   */
   public void setImage(int[][][] image) {
     this.image = image;
     int height = image[0].length;
     int width = image[0][0].length;
-    this.setPreferredSize(new Dimension( width, height));
+    this.setPreferredSize(new Dimension(width, height));
     this.revalidate();
     this.repaint();
   }
 
   @Override
-  protected void paintComponent(Graphics g){
+  protected void paintComponent(Graphics g) {
     super.paintComponent(g);
     BufferedImage bufferedImage = rgbToBufferedImage(this.image);
-    g.drawImage(bufferedImage, 0,0, image[0][0].length, image[0].length, this);
+    g.drawImage(bufferedImage, 0, 0, image[0][0].length, image[0].length, this);
   }
 
   private int[][][] convertToRgb(BufferedImage img) {
@@ -65,6 +78,7 @@ public class ImagePanel extends JPanel {
     return image;
 
   }
+
   private BufferedImage rgbToBufferedImage(int[][][] image) {
     int height = image[0].length;
     int width = image[0][0].length;
@@ -95,22 +109,5 @@ public class ImagePanel extends JPanel {
     return bufferedImage;
   }
 
-  public void readAndLoad(String ImagePath) {
-    BufferedImage img;
-    try {
-      img = ImageIO.read(new FileInputStream(ImagePath));
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-    this.image = convertToRgb(img);
-    int height = this.image[0].length;
-    int width = this.image[0][0].length;
-    System.out.println(height);
-    System.out.println(width);
-    this.setPreferredSize(new Dimension( width, height));
-    revalidate();
-    repaint();
-
-  }
 
 }

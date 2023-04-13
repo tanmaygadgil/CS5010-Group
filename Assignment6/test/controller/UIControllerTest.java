@@ -3,21 +3,18 @@ package controller;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
-import java.util.Scanner;
 import model.MockModel;
 import model.MockModelImpl;
 import model.ModelV2;
-import model.ModelV2Impl;
 import model.ViewModel;
-import model.ViewModelImpl;
 import org.junit.Before;
 import org.junit.Test;
-import view.GUIView;
 import view.IGUIView;
-import view.MockScriptView;
 import view.MockUIView;
-import view.View;
 
+/**
+ * Testing class to test the UI controller.
+ */
 public class UIControllerTest {
 
   ModelV2 model;

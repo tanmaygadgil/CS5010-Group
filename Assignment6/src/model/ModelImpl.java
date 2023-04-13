@@ -201,7 +201,7 @@ public class ModelImpl implements Model {
 
   private int[][][] getRed(String imageName) {
     int[][][] image = imageMap.get(imageName);
-    if (image.length == 1){
+    if (image.length == 1) {
       throw new IllegalStateException("cannot get component of a greyscale image");
     }
     int[][][] grey = new int[1][height][width];
@@ -212,7 +212,7 @@ public class ModelImpl implements Model {
 
   private int[][][] getGreen(String imageName) {
     int[][][] image = imageMap.get(imageName);
-    if (image.length == 1){
+    if (image.length == 1) {
       throw new IllegalStateException("cannot get component of a greyscale image");
     }
     int[][][] grey = new int[1][height][width];
@@ -223,7 +223,7 @@ public class ModelImpl implements Model {
 
   private int[][][] getBlue(String imageName) {
     int[][][] image = imageMap.get(imageName);
-    if (image.length == 1){
+    if (image.length == 1) {
       throw new IllegalStateException("cannot get component of a greyscale image");
     }
     int[][][] grey = new int[1][height][width];
@@ -235,7 +235,7 @@ public class ModelImpl implements Model {
   private int[][][] greyscaleValue(String imageName) {
     int[][][] image = imageMap.get(imageName);
     int[][][] grey = new int[1][height][width];
-    if (image.length == 1){
+    if (image.length == 1) {
       throw new IllegalStateException("cannot get component of a greyscale image");
     }
 
@@ -251,7 +251,7 @@ public class ModelImpl implements Model {
   private int[][][] greyscaleIntensity(String imageName) {
     int[][][] image = imageMap.get(imageName);
     int[][][] grey = new int[1][height][width];
-    if (image.length == 1){
+    if (image.length == 1) {
       throw new IllegalStateException("cannot get component of a greyscale image");
     }
 
@@ -267,7 +267,7 @@ public class ModelImpl implements Model {
   private int[][][] greyscaleLuma(String imageName) {
     int[][][] image = imageMap.get(imageName);
     int[][][] grey = new int[1][height][width];
-    if (image.length == 1){
+    if (image.length == 1) {
       throw new IllegalStateException("cannot get component of a greyscale image");
     }
 

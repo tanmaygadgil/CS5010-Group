@@ -3,9 +3,6 @@ package view;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -15,25 +12,25 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
+/**
+ * A panel used to render the histograms of the images displayed.
+ */
 public class HistogramPanel extends JPanel {
-
-  private int[][][] image;
 
   private ChartPanel intensityChart;
   private ChartPanel redChart;
   private ChartPanel greenChart;
   private ChartPanel blueChart;
-  private XYDataset intensity;
-  private XYDataset red;
-  private XYDataset green;
-  private XYDataset blue;
+
 
   public HistogramPanel() {
     setLayout(new GridLayout(4, 1));
     setPreferredSize(new Dimension(300, 800));
-    this.image = null;
   }
 
+  /**
+   * Resets the histogram panel.
+   */
   public void reset() {
     try {
       this.remove(this.intensityChart);
@@ -45,19 +42,28 @@ public class HistogramPanel extends JPanel {
     }
   }
 
+  /**
+   * Used to set the histogram values.
+   *
+   * @param histVals the histogram values as counts.
+   */
   public void setImage(float[][] histVals) {
+    XYDataset intensity;
+    XYDataset red;
+    XYDataset green;
+    XYDataset blue;
     reset();
 
-    this.intensity = generateDataset(histVals[0]);
-    this.red = generateDataset(histVals[1]);
-    this.green = generateDataset(histVals[2]);
-    this.blue = generateDataset(histVals[3]);
+    intensity = generateDataset(histVals[0]);
+    red = generateDataset(histVals[1]);
+    green = generateDataset(histVals[2]);
+    blue = generateDataset(histVals[3]);
 
     this.intensityChart = new ChartPanel(
-        createChart("Intensity Plot", "Pixel", "Norm Count", this.intensity));
-    this.redChart = new ChartPanel(createChart("Red Plot", "Pixel", "Norm Count", this.red));
-    this.greenChart = new ChartPanel(createChart("Green Plot", "Pixel", "Norm Count", this.green));
-    this.blueChart = new ChartPanel(createChart("Blue Plot", "Pixel", "Norm Count", this.blue));
+        createChart("Intensity Plot", "Pixel", "Norm Count", intensity));
+    this.redChart = new ChartPanel(createChart("Red Plot", "Pixel", "Norm Count", red));
+    this.greenChart = new ChartPanel(createChart("Green Plot", "Pixel", "Norm Count", green));
+    this.blueChart = new ChartPanel(createChart("Blue Plot", "Pixel", "Norm Count", blue));
 
     add(this.intensityChart);
     add(this.redChart);
@@ -68,41 +74,9 @@ public class HistogramPanel extends JPanel {
     this.repaint();
   }
 
-  public void readAndLoad(String ImagePath) {
-//    BufferedImage img;
-//    try {
-//      img = ImageIO.read(new FileInputStream(ImagePath));
-//    } catch (IOException e) {
-//      throw new RuntimeException(e);
-//    }
-//    this.image = convertToRgb(img);
-//
-//    this.intensity = generateDataset(getIntensityHistorgramValues());
-//    this.red = generateDataset(getRedHistorgramValues());
-//    this.green = generateDataset(getgreenHistorgramValues());
-//    this.blue = generateDataset(getBlueHistorgramValues());
-//
-//    this.intensityChart = new ChartPanel(
-//        createChart("Intensity Plot", "Pixel", "Norm Count", this.intensity));
-//    this.redChart = new ChartPanel(createChart("Intensity Plot", "Pixel", "Norm Count", this.red));
-//    this.greenChart = new ChartPanel(
-//        createChart("Intensity Plot", "Pixel", "Norm Count", this.green));
-//    this.blueChart = new ChartPanel(
-//        createChart("Intensity Plot", "Pixel", "Norm Count", this.blue));
-//
-//    add(this.intensityChart);
-//    add(this.redChart);
-//    add(this.greenChart);
-//    add(this.blueChart);
-//
-//    setPreferredSize(new Dimension(300, 800));
-//    revalidate();
-//    repaint();
-  }
-
-  private JFreeChart createChart(String title, String XAxisLabel, String yAxisLabel,
+  private JFreeChart createChart(String title, String xAxisLabel, String yAxisLabel,
       XYDataset dataset) {
-    JFreeChart chart = ChartFactory.createXYLineChart(title, XAxisLabel, yAxisLabel, dataset,
+    JFreeChart chart = ChartFactory.createXYLineChart(title, xAxisLabel, yAxisLabel, dataset,
         PlotOrientation.VERTICAL, true, true, false);
 
     return chart;

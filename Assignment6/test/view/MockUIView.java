@@ -2,11 +2,14 @@ package view;
 
 import controller.Features;
 
-public class MockUIView implements IGUIView{
+/**
+ * A mock model for the GUI used for testing.
+ */
+public class MockUIView implements IGUIView {
 
   @Override
   public void addFeatures(Features features) {
-
+    //Left blank for the mock
   }
 
   @Override
@@ -16,11 +19,11 @@ public class MockUIView implements IGUIView{
 
   @Override
   public void renderOutput(String inputString) {
-
+    //Left blank for the mock
   }
 
   @Override
   public void reset() {
-
+    //Left blank for the mock
   }
 }
