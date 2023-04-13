@@ -4,8 +4,8 @@
     <root id="archive" name="Assignment6.jar">
       <element id="module-output" name="Assignment6" />
       <element id="library" level="project" name="jfreechart-1.0.1" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/jfreechart-1.0.19.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Downloads/jcommon-1.0.23.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/jfreechart-1.0.19.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
