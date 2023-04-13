@@ -1,14 +1,20 @@
 package view;
 
 import java.io.File;
-import java.io.IOException;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+/**
+ * Used to select the file to be loaded or saved.
+ */
 public class InputFileChooser extends JFileChooser {
 
-  public InputFileChooser(String title){
+  /**
+   * Initializes the file chooser.
+   *
+   * @param title the title for the file chooser
+   */
+  public InputFileChooser(String title) {
     super(".");
     FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg",
         "gif");
@@ -16,7 +22,11 @@ public class InputFileChooser extends JFileChooser {
     this.setDialogTitle(title);
   }
 
-  public String getInput(){
+  /**
+   * Gets the input of the file.
+   * @return the entered filepath
+   */
+  public String getInput() {
     int retValue = this.showOpenDialog(InputFileChooser.this);
     if (retValue == JFileChooser.APPROVE_OPTION) {
       File f = this.getSelectedFile();

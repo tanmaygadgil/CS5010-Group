@@ -9,17 +9,26 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * A dialog box to obtain additional inputs.
+ */
 public class InputDialog extends JDialog {
+
   private JTextField textField;
-  private JButton okButton;
   private String input;
   private boolean inputEntered;
 
-  public InputDialog(JFrame parentFrame, String title)  {
+  /**
+   * Intitializes the dialog box.
+   *
+   * @param parentFrame the frame that this box is attached to
+   * @param title       The title of the dialog box
+   */
+  public InputDialog(JFrame parentFrame, String title) {
     super(parentFrame, title, true); // use modal option for JDialog to block input to parent
     setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     textField = new JTextField(20);
-    okButton = new JButton("OK");
+    JButton okButton = new JButton("OK");
     okButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         input = textField.getText();
@@ -36,10 +45,20 @@ public class InputDialog extends JDialog {
     setResizable(false); // prevent resizing the dialog
   }
 
-  public String getInput(){
+  /**
+   * Simple method to return the input asynchronously.
+   *
+   * @return the input received
+   */
+  public String getInput() {
     return input;
   }
 
+  /**
+   * Method to force the program to pause until an input is given.
+   *
+   * @return the input received
+   */
   public String getInputAndWait() {
     inputEntered = false;
     setVisible(true);
@@ -50,7 +69,6 @@ public class InputDialog extends JDialog {
         e.printStackTrace();
       }
     }
-
 
     return input;
   }

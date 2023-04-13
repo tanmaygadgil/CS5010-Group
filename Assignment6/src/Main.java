@@ -10,7 +10,11 @@ import view.GUIView;
 import view.IGUIView;
 import view.TextInputView;
 
+/**
+ * The main entrypoint of the jar file.
+ */
 public class Main {
+
   /**
    * The main method is the entry point of the program. It parses command-line arguments, creates
    * instances of the Model, View, and Controller, and runs the program.
@@ -28,7 +32,7 @@ public class Main {
       if (sFlag) {
         inputFile = arg;
       }
-      if (tFlag){
+      if (tFlag) {
         break;
       }
       if (arg.equals("-file")) {
@@ -45,18 +49,18 @@ public class Main {
     ModelV2 model = new ModelV2Impl();
 
     //check mode
-    if(sFlag | tFlag){
+    if (sFlag | tFlag) {
       TextInputView view;
       String mode;
-      if(sFlag){
+      if (sFlag) {
         mode = "script";
         view = new TextInputView(mode, inputFile);
-      }else {
+      } else {
         view = new TextInputView();
       }
       Controller controller = new ControllerCommandLine(model, view);
       controller.run();
-    }else {
+    } else {
       //if using the UI
       ViewModel vm = new ViewModelImpl(model);
       IGUIView view = new GUIView(vm);

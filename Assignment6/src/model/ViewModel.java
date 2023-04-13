@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * An interface to enable the guiview to read images and histogram values.
+ */
 public interface ViewModel {
 
   /**

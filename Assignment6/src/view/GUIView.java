@@ -24,10 +24,11 @@ import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import model.ViewModel;
 
+/**
+ * A JSwing GUI interface for our application.
+ */
 public class GUIView extends JFrame implements IGUIView {
 
-  //Buttons
-  private JPanel controlPanel;
   private GridBagConstraints gbc;
   private JPanel filterComboBoxPanel;
   private JComboBox<String> filterComboBox;
@@ -39,7 +40,13 @@ public class GUIView extends JFrame implements IGUIView {
 
   private JButton fileSaveButton;
 
+  /**
+   * Instantiates the View.
+   *
+   * @param viewModel the view model used to read images and histograms.
+   */
   public GUIView(ViewModel viewModel) {
+    JPanel controlPanel;
     this.viewModel = viewModel;
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -62,7 +69,6 @@ public class GUIView extends JFrame implements IGUIView {
     filterComboBoxPanel = new JPanel();
     filterComboBoxPanel.setBorder(BorderFactory.createTitledBorder("Select an operation:"));
     filterComboBoxPanel.setLayout(new BoxLayout(filterComboBoxPanel, BoxLayout.PAGE_AXIS));
-//    controlPanel.add(filterComboBoxPanel);
 
     //create and set the display for the combobox
     JLabel comboboxDisplay = new JLabel("Options");
