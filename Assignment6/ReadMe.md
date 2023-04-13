@@ -185,6 +185,10 @@ The view is the part of the program that shows results to the user.
 - **HistogramPanel:** A class inheriting from JPanel that defines the behaviours of the histogram
   panel.
 
+### A Screenshot of the GUI:
+
+![GUI](res/GUIScreenShot.PNG)
+
 ## Design Changes
 
 ### Assignment 5

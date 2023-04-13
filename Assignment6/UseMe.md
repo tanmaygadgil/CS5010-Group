@@ -1,4 +1,4 @@
-# USE Me
+# USEMe
 
 This file will outline the necessary step to use this application, all accepted commands 
 and a few sample commands to run the files 
@@ -61,7 +61,7 @@ This mode accepts a script to run. This script is a text file which lists out al
 commands that can be given in the terminal. To add a comment add in text following a ```#```
 character
 
-To run the application script mode attach the -s flag to the command line arguments
+To run the application script mode attach the -file flag to the command line arguments
 
 
 
@@ -90,7 +90,7 @@ Run these sample scripts for the following use cases
 First execute
 
 ```shell
->>> java -jar Assignment5.jar
+>>> java -jar Assignment5.jar -text
 ```
 
 Then execute the following commands **one at a time**

@@ -66,7 +66,7 @@ public class TextInputView extends AbstractTextView {
 
   @Override
   public void reset() {
-
+    throw new UnsupportedOperationException("This type of view will not have a reset");
   }
 
 

@@ -8,15 +8,15 @@ import java.io.OutputStream;
 /**
  * This interface represents possible actions to be done on a PPM file.
  */
-public interface Model extends ViewModel{
+public interface Model extends ViewModel {
 
   /**
    * Reads an image file from the specified filePath, converts it to a three-dimensional array of
    * integers, and stores it in the imageMap with the specified destImage name.
    *
-   * @param in  path of image to read.
+   * @param in        path of image to read.
    * @param destImage name of the new image to store.
-   * @param format The file format to be saved or read
+   * @param format    The file format to be saved or read
    * @throws FileNotFoundException if file does not exist.
    */
   void load(InputStream in, String destImage, String format) throws FileNotFoundException;
@@ -24,9 +24,9 @@ public interface Model extends ViewModel{
   /**
    * Writes the specified image to the specified filePath in PPM format.
    *
-   * @param out  path to save the image file to.
+   * @param out       path to save the image file to.
    * @param imageName name of the image to save.
-   * @param format The file format to be saved or read
+   * @param format    The file format to be saved or read
    * @throws IOException if there is an error writing the file.
    */
   void save(OutputStream out, String imageName, String format) throws IOException;

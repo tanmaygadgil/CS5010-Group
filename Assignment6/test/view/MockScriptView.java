@@ -67,7 +67,7 @@ public class MockScriptView implements View {
 
   @Override
   public void reset() {
-
+    //Used as a placeholder for the mock.
   }
 
   private ArrayList<String> loadFile(String fileName) throws IOException {

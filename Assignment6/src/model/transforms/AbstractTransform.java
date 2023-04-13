@@ -1,5 +1,8 @@
 package model.transforms;
 
+/**
+ * An abstract implementation of an image transform.
+ */
 public class AbstractTransform implements ImageTransforms {
 
   double[][] matrix;
@@ -30,7 +33,7 @@ public class AbstractTransform implements ImageTransforms {
       sum += vec1[i] * vec2[i];
     }
 
-    if(sum > 255) {
+    if (sum > 255) {
       return 255;
     } else if (sum < 0) {
       return 0;

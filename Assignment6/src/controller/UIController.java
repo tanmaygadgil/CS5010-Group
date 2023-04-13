@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+/**
+ * A UIController that implements all given features and extends the abstract controller.
+ */
 public class UIController extends AbstractController implements Features {
 
   private InputStream in;
@@ -67,7 +70,8 @@ public class UIController extends AbstractController implements Features {
   /*
   Apply button sends the text currently in the combobox to the controller and the
   relevant command is passed to callModel
-   */ public void callCommand(String command) throws IOException {
+  */
+  public void callCommand(String command) throws IOException {
     String[] commandArgs;
     switch (command) {
       case "darken":
