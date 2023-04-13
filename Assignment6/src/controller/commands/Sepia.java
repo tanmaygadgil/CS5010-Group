@@ -27,7 +27,9 @@ public class Sepia implements ImageProcessingCommand {
 
   @Override
   public void run(ModelV2 m) throws IOException {
+
     ImageTransforms sepia = new SepiaTransform();
+    //ImageTransforms sepia = (ImageTransforms) new SepiaTransform();
     m.callTransform(sepia, this.imageName, this.destImage);
 
   }
