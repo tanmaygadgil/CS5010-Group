@@ -1,15 +1,7 @@
 # USE Me
 
-This file will outline the necessary step to use this application, all accepted commands
-and a few sample commands to run the files
-
-This program runs in three modes
-
-- Text mode: Here twe input the command in the terminal. Commands are highlighted below. This mode
-  will be accessed with the -text flag
-- Script mode: here the package expects a script file after a flag -file
-- UI mode: Spins up a simple UI that can be used to modify a single image displayed in the UI. The
-  UI also renders histogram values for the chart.
+This file will outline the necessary step to use this application, all accepted commands 
+and a few sample commands to run the files 
 
 ## Commands
 
@@ -29,6 +21,9 @@ Here is a list of accepted commands for both the command mode and the script mod
 10. sepia <image-name> <dest-image-name>
 11. gaussian-blur <image-name> <dest-image-name>
 12. sharpen <image-name> <dest-image-name>
+13. darken <increment_value> <image-name> <dest-image-name>
+
+The GUI application also supports all of the above operations. 
 
 The main script of this application is run using the Main.java class found in the src/ folder
 
@@ -53,8 +48,9 @@ To compile the code
 In this mode the app runs when the user gives command line inputs into the terminal
 To run the script:
 
+
 ```shell
-java -jar Assignment5.jar
+java -jar Assignment6.jar -text
 ```
 
 To exit the application enter the command ```exit``` or use ```ctrl-c```
@@ -67,8 +63,22 @@ character
 
 To run the application script mode attach the -s flag to the command line arguments
 
+
+
 ```shell
-java -jar Assignment5.jar -s <location of script file.txt>
+java -jar Assignment5.jar -file <location of script file.txt>
+```
+
+**Graphical User Interface**
+
+In this mode, the app is run through a graphical interface in which you will be able to see the 
+changes you make in real time. This graphical interface also displays the histograms of each 
+component of the image as well as the intensity. 
+
+To run the application with the GUI: 
+
+```shell
+java -jar Assignment6.jar 
 ```
 
 ### Sample Scripts
