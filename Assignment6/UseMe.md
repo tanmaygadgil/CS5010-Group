@@ -47,7 +47,7 @@ To run the script:
 
 
 ```shell
-java -jar Assignment5.jar
+java -jar Assignment6.jar -text
 ```
 
 To exit the application enter the command ```exit``` or use ```ctrl-c```
@@ -61,8 +61,21 @@ character
 To run the application script mode attach the -s flag to the command line arguments
 
 
+
 ```shell
-java -jar Assignment5.jar -s <location of script file.txt>
+java -jar Assignment5.jar -file <location of script file.txt>
+```
+
+**Graphical User Interface**
+
+In this mode, the app is run through a graphical interface in which you will be able to see the 
+changes you make in real time. This graphical interface also displays the histograms of each 
+component of the image as well as the intensity. 
+
+To run the application with the GUI: 
+
+```shell
+java -jar Assignment6.jar 
 ```
 
 ### Sample Scripts

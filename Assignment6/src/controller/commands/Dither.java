@@ -1,7 +1,7 @@
 package controller.commands;
 
 import java.io.IOException;
-import model.ImageTransforms;
+import model.transforms.ImageTransforms;
 import model.ModelV2;
 import model.operations.ImageOperations;
 import model.operations.DitherGreyscaleOperation;

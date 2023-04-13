@@ -2,6 +2,7 @@ package model;
 
 import model.filters.ImageFilter;
 import model.operations.ImageOperations;
+import model.transforms.ImageTransforms;
 
 /**
  * This class extends the ModelImpl class, and provides all functionality from the previous model as
