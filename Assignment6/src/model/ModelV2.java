@@ -2,6 +2,7 @@ package model;
 
 import model.filters.ImageFilter;
 import model.operations.ImageOperations;
+import model.transforms.ImageTransforms;
 
 /**
  * An enhanced model package which can call encapsulated operations like

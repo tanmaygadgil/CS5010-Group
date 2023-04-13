@@ -3,7 +3,7 @@ package model.transforms;
 /**
  * This class represents the greyscale transformations to be done on images.
  */
-public class GreyscaleTransform implements model.ImageTransforms {
+public class GreyscaleTransform implements ImageTransforms {
 
   @Override
   public int[][][] transform(int[][][] image) {

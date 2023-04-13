@@ -1,8 +1,9 @@
 package controller.commands;
 
 import java.io.IOException;
-import model.ImageTransforms;
+
 import model.ModelV2;
+import model.transforms.ImageTransforms;
 import model.transforms.SepiaTransform;
 
 /**
@@ -29,7 +30,7 @@ public class Sepia implements ImageProcessingCommand {
   public void run(ModelV2 m) throws IOException {
 
     ImageTransforms sepia = new SepiaTransform();
-    //ImageTransforms sepia = (ImageTransforms) new SepiaTransform();
+
     m.callTransform(sepia, this.imageName, this.destImage);
 
   }

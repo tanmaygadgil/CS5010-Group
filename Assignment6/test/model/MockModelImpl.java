@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import model.filters.ImageFilter;
 import model.operations.ImageOperations;
+import model.transforms.ImageTransforms;
 
 /**
  * The MockModelImpl class is an implementation of the MockModel interface, which provides methods

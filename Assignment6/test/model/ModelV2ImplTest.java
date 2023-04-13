@@ -18,6 +18,7 @@ import model.loaders.PPMImageLoader;
 import model.operations.ImageOperations;
 import model.operations.DitherGreyscaleOperation;
 import model.transforms.GreyscaleTransform;
+import model.transforms.ImageTransforms;
 import model.transforms.SepiaTransform;
 import org.junit.Test;
 

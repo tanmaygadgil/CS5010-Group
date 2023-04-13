@@ -1,11 +1,12 @@
 package controller.commands;
 
 import java.io.IOException;
-import model.ImageTransforms;
+
 import model.ModelV2;
 import model.operations.ImageOperations;
 import model.operations.DitherGreyscaleOperation;
 import model.transforms.GreyscaleTransform;
+import model.transforms.ImageTransforms;
 
 /**
  * This class allows the controller to call the dither command.
