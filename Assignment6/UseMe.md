@@ -30,24 +30,6 @@ The main script of this application is run using the Main.java class found in th
 The first step is to compile the classes to ensure that they run in the terminal
 To compile the code
 
-### GUI
-In order to apply the commands to the images, there are four main components on the left hand 
-side of the window: a button to open a file, a button to save a file, a dropdown menu to 
-select the command to apply and an apply button to apply the command to the loaded image.
-
-The pane in the middle will hold the image and the pane on the right will display four 
-histograms showing the intensity, red, green and blue components. 
-
-The open a file button will allow you to open an image. 
-
-The save a file button will allow you to save the current image on your screen to your computer. 
-
-The dropdown menu determines which command to apply. Clicking the dropdown menu will 
-show the supported commands. The currently selected command will be the one applied 
-to the current image. 
-
-The apply button applies whatever command is currently shown in the dropdown box. 
-
 #### Before running the script:
 
 1. First be in the [src/](src) directory
@@ -84,7 +66,7 @@ To run the application script mode attach the -s flag to the command line argume
 
 
 ```shell
-java -jar Assignment5.jar -file <location of script file.txt>
+java -jar Assignment6.jar -file <location of script file.txt>
 ```
 
 **Graphical User Interface**
@@ -108,7 +90,7 @@ Run these sample scripts for the following use cases
 First execute
 
 ```shell
->>> java -jar Assignment5.jar
+>>> java -jar Assignment6.jar
 ```
 
 Then execute the following commands **one at a time**
@@ -164,6 +146,24 @@ save res/sharptanzania.jpg sharptanzania
 #### Running in script mode
 
 ```shell
->>> java -jar Assignment5.jar -s res/commands.txt
+>>> java -jar Assignment6.jar -file res/commands.txt
 ```
+
+#### Using the GUI
+In order to apply the commands to the images, there are four main components on the left hand
+side of the window: a button to open a file, a button to save a file, a dropdown menu to
+select the command to apply and an apply button to apply the command to the loaded image.
+
+The pane in the middle will hold the image and the pane on the right will display four
+histograms showing the intensity, red, green and blue components.
+
+The open a file button will allow you to open an image.
+
+The save a file button will allow you to save the current image on your screen to your computer.
+
+The dropdown menu determines which command to apply. Clicking the dropdown menu will
+show the supported commands. The currently selected command will be the one applied
+to the current image.
+
+The apply button applies whatever command is currently shown in the dropdown box.
 
