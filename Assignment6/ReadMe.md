@@ -1,4 +1,4 @@
-# Assignment 5
+# Assignment 6
 
 ## Group Members
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-This is an image processing application that aims to accept user commands either via command line
+This builds on top of the previous assignment and is an image processing application that aims to accept user commands either via command line
 or by script to perform operations on a PPM image. The design is written as an MVC application.
 Details of each component are described below. This version of the application can only handle PPM
 images but can be extended for other formats in the future.
