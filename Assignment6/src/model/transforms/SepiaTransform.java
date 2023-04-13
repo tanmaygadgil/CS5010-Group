@@ -5,6 +5,9 @@ package model.transforms;
  */
 public class SepiaTransform extends AbstractTransform implements ImageTransforms{
 
+  /**
+   * Defines the kernel for a sepia transform.
+   */
   public SepiaTransform(){
     this.matrix = new double[][] {
         {0.393, 0.769, 0.189},
