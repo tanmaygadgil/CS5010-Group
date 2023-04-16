@@ -1,0 +1,4 @@
+load res/fox.ppm test
+rgb-split test testR testG testB
+rgb-combine testC testR testG testB
+save ppmScripts/RGBCombineToPNG.png testC

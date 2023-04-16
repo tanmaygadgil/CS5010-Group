@@ -1,0 +1,5 @@
+load res/fox.png test
+rgb-split test testR testG testB
+save pngScripts/RedSplit.png testR
+save pngScripts/GreenSplit.png testG
+save pngScripts/BlueSplit.png testB

@@ -1,0 +1,8 @@
+load res/fox.ppm test
+greyscale red-component test testR
+brighten 50 testR testBr
+save res/LGSRedBr.ppm testBr
+
+# Overwriting imageIOHandler name
+horizontal-flip testR testR
+save res/LGSRedHF.ppm testR

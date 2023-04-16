@@ -1,0 +1,15 @@
+load res/fox.ppm test
+greyscale red-component test testR
+greyscale green-component test testG
+greyscale blue-component test testB
+greyscale value-component test testV
+greyscale intensity-component test testI
+greyscale luma-component test testL
+greyscale test testW
+save res/redGreyScaleThroughScript.ppm testR
+save res/greenGreyScaleThroughScript.ppm testG
+save res/blueGreyScaleThroughScript.ppm testB
+save res/valueGreyScaleThroughScript.ppm testV
+save res/intensityGreyScaleThroughScript.ppm testI
+save res/lumaGreyScaleThroughScript.ppm testL
+save res/WithoutImageNameGreyScaleThroughScript.ppm testW

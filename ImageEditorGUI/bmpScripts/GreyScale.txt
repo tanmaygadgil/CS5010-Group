@@ -1,0 +1,15 @@
+load res/fox.bmp test
+greyscale red-component test testR
+greyscale green-component test testG
+greyscale blue-component test testB
+greyscale value-component test testV
+greyscale intensity-component test testI
+greyscale luma-component test testL
+greyscale test testW
+save bmpScripts/RedGreyScale.bmp testR
+save bmpScripts/GreenGreyScale.bmp testG
+save bmpScripts/BlueGreyScale.bmp testB
+save bmpScripts/ValueGreyScale.bmp testV
+save bmpScripts/IntensityGreyScale.bmp testI
+save bmpScripts/LumaGreyScale.bmp testL
+save bmpScripts/WithoutComponent.bmp testW

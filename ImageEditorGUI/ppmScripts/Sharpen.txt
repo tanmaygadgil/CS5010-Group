@@ -1,0 +1,3 @@
+load res/fox.ppm fox
+sharpen fox foxSharpen
+save ppmScripts/Sharpen.ppm foxSharpen

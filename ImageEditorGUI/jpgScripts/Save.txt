@@ -1,0 +1,2 @@
+load res/foxJPGSave.jpg test
+save jpgScripts/foxSave.jpg test

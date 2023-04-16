@@ -1,0 +1,4 @@
+load res/fox.ppm mtn
+brighten abc mtn mtn-bright
+load res/fox.ppm mtn
+brighten 10.0 mtn mtn

@@ -16,14 +16,16 @@ public class InputFileChooser extends JFileChooser {
    */
   public InputFileChooser(String title) {
     super(".");
-    FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg",
-        "gif");
+    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+        "ASCII PPM and Conventional Images", "jpg",
+        "gif", "ppm", "bmp", "png");
     this.setFileFilter(filter);
     this.setDialogTitle(title);
   }
 
   /**
    * Gets the input of the file.
+   *
    * @return the entered filepath
    */
   public String getInput() {

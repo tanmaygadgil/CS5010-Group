@@ -1,0 +1,5 @@
+load res/fox.jpg test
+brighten 100 test testB
+brighten -100 test testD
+save jpgScripts/Brightened.jpg testB
+save jpgScripts/Darkened.jpg testD

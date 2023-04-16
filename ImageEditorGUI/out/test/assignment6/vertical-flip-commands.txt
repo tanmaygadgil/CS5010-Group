@@ -1,0 +1,11 @@
+# vertical flip commands
+load res/fox.ppm test
+
+#comment
+vertical-flip test testV
+
+
+
+
+
+save res/foxFlippedVerticallyThroughScript.ppm testV

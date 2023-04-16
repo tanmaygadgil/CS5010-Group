@@ -1,0 +1,6 @@
+horizontal-flip image1 image2
+vertical-flip image1 image3
+brighten 100 image3 image4
+rgb-split image5 image1 image2 imag3
+rgb-combine image9 image6 image7 image8
+greyscale red-component image9 image4

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
+import java.util.Map;
 import model.loaders.ConventionalImageLoader;
 import model.loaders.PPMImageLoader;
 import model.savers.ConventionalImageSaver;
@@ -18,7 +19,7 @@ import model.savers.PPMImageSaver;
  */
 public class ModelImpl implements Model {
 
-  HashMap<String, int[][][]> imageMap;
+  Map<String, int[][][]> imageMap;
   int width;
   int height;
 

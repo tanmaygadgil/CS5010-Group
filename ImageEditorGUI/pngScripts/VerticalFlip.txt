@@ -1,0 +1,3 @@
+load res/fox.png test
+vertical-flip test testV
+save pngScripts/VerticalFlip.png testV

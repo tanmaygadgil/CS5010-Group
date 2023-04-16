@@ -1,0 +1,3 @@
+load res/mountains.ppm mtn
+rgb-split mtn mtnr mtng mtnb
+rgb-comvine mtncombined mtnr mtng mtnb

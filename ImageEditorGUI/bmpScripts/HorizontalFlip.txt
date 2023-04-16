@@ -1,0 +1,3 @@
+load res/fox.bmp test
+horizontal-flip test testH
+save bmpScripts/HorizontalFlip.bmp testH

@@ -1,0 +1,5 @@
+load res/fox.bmp test
+rgb-split test testR testG testB
+save bmpScripts/RedSplit.bmp testR
+save bmpScripts/GreenSplit.bmp testG
+save bmpScripts/BlueSplit.bmp testB
