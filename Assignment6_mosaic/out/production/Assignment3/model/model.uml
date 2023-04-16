@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="35.599079224235936" y="-32.17379001631239">model.Model</node>
+    <node x="35.599079224235936" y="276.03006908585166">model.ModelPPM</node>
+    <node x="-189.4685462367533" y="-32.17379001631239">model.Axes</node>
+    <node x="-227.46854623675324" y="77.82620998368762">model.ImageComponents</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="model.ModelPPM" target="model.Model" relationship="REALIZATION">
+      <point x="156.0" y="-173.5" />
+      <point x="175.94793825401152" y="283.53006908585166" />
+      <point x="175.94793825401152" y="73.53006908585158" />
+      <point x="-156.0" y="12.70385910216396" />
+    </edge>
+    <edge source="model.Axes" target="model.Model" relationship="REALIZATION">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="1.5" showDependencies="false" x="307.66666666666663" y="214.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

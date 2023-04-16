@@ -47,7 +47,7 @@ public class ControllerCommandLineV2Test extends ControllerCommandLineTest {
         + "sepia koala koalaSepia\n" + "exit\n";
     String outputString = "In function load with arguments koala, ppm\n"
         + "In function callTransform with arguments Greyscale Transform, koala, koalaGrey\n"
-        + "In function callTransform with arguments SepiaTransform, koala, koalaSepia\n";
+        + "In function callTransform with arguments Sepia Transform, koala, koalaSepia\n";
     Scanner scanner = new Scanner(new StringReader(input));
     View v = new MockScriptView(scanner);
     MockModel m = new MockModelImpl();
