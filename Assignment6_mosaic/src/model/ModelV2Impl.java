@@ -84,30 +84,26 @@ public class ModelV2Impl extends ModelImpl implements ModelV2 {
 
     for (List<Point2D> point2DS : map.values()) {
       int listSize = point2DS.size();
-      if (listSize == 0)
-        continue;
 
-      int avgRed = 0;
-      int avgGreen = 0;
-      int avgBlue = 0;
+      int[] averages = new int[image.length];
 
       //sum the red, green and blue values
       for (Point2D point2D : point2DS) {
-        avgRed += image[0][point2D.get(1)][point2D.get(0)];
-        avgGreen += image[1][point2D.get(1)][point2D.get(0)];
-        avgBlue += image[2][point2D.get(1)][point2D.get(0)];
+        for(int i = 0; i < averages.length; i++) {
+          averages[i] += image[i][point2D.get(1)][point2D.get(0)];
+        }
       }
 
       //divide to get average
-      avgRed = avgRed / listSize;
-      avgGreen = avgGreen / listSize;
-      avgBlue = avgBlue / listSize;
+      for(int i = 0; i < averages.length; i++) {
+        averages[i] = averages[i] / listSize;
+      }
 
       //set everything to the average
       for (Point2D point2D : point2DS) {
-        image[0][point2D.get(1)][point2D.get(0)] = avgRed;
-        image[1][point2D.get(1)][point2D.get(0)] = avgGreen;
-        image[2][point2D.get(1)][point2D.get(0)] = avgBlue;
+        for(int i = 0; i < averages.length; i++) {
+          image[i][point2D.get(1)][point2D.get(0)] = averages[i];
+        }
       }
     }
 
