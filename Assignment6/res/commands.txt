@@ -1,45 +1,45 @@
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 brighten 50 tanzania brightentanzania
-save res/brightentanzania.jpg brightentanzania
+save brightentanzania.jpg brightentanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 darken 100 tanzania darkentanzania
-save res/darkentanzania.jpg darkentanzania
+save darkentanzania.jpg darkentanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 horizontal-flip tanzania horizontaltanzania
-save res/horizontaltanzania.jpg horizontaltanzania
+save horizontaltanzania.jpg horizontaltanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 vertical-flip tanzania verticaltanzania
-save res/verticaltanzania.jpg verticaltanzania
+save verticaltanzania.jpg verticaltanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 greyscale tanzania greytanzania
-save res/greytanzania.jpg greytanzania
+save greytanzania.jpg greytanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 rgb-split tanzania redtanzania greentanzania bluetanzania
-save res/redtanzania.jpg redtanzania
-save res/greentanzania.jpg greentanzania
-save res/bluetanzania.jpg bluetanzania
+save redtanzania.jpg redtanzania
+save greentanzania.jpg greentanzania
+save bluetanzania.jpg bluetanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 rgb-combine combinetanzania redtanzania greentanzania bluetanzania
-save res/combinetanzania.jpg combinetanzania
+save combinetanzania.jpg combinetanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 dither tanzania dithertanzania
-save res/dithertanzania.jpg dithertanzania
+save dithertanzania.jpg dithertanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 sepia tanzania sepiatanzania
-save res/sepiatanzania.jpg sepiatanzania
+save sepiatanzania.jpg sepiatanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 gaussian-blur tanzania gaussian-blurtanzania
-save res/gaussian-blurtanzania.jpg gaussian-blurtanzania
+save gaussian-blurtanzania.jpg gaussian-blurtanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 sharpen tanzania sharptanzania
-save res/sharptanzania.jpg sharptanzania
+save sharptanzania.jpg sharptanzania

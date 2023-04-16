@@ -1,0 +1,4 @@
+load res/test.ppm test
+load res/fox.ppm testfox
+load res/test.ppm testfox
+save res/savedFile.ppm testfox

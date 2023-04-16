@@ -1,0 +1,3 @@
+load res/fox.bmp fox
+sharpen fox foxSharpen
+save bmpScripts/Sharpen.bmp foxSharpen

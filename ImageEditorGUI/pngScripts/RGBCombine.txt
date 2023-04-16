@@ -1,0 +1,4 @@
+load res/fox.png test
+rgb-split test testR testG testB
+rgb-combine testC testR testG testB
+save pngScripts/RGBCombine.png testC

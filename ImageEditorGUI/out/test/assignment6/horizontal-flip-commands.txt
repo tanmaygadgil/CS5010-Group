@@ -1,0 +1,11 @@
+# horizontal flip commands
+load res/fox.ppm test
+
+#comment
+horizontal-flip test testH
+
+
+
+
+
+save res/foxFlippedHorizontallyThroughScript.ppm testH

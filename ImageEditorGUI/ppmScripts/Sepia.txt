@@ -1,0 +1,3 @@
+load res/fox.ppm fox
+sepia fox foxSepia
+save ppmScripts/Sepia.ppm foxSepia

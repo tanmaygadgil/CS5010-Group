@@ -1,0 +1,4 @@
+load res/fox.jpg test
+rgb-split test testR testG testB
+rgb-combine testCombine testR testG testB
+save jpgScripts/RGBCombineToPPM.ppm testCombine

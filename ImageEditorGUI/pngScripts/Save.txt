@@ -1,0 +1,2 @@
+load res/fox.png test
+save pngScripts/foxSave.png test

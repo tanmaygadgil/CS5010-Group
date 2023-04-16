@@ -1,0 +1,3 @@
+loadnew res/mountains.ppm mtn
+rotate mtn mtn-rotated
+zoom 20 mtn mtn-zoomed

@@ -1,0 +1,3 @@
+load res/fox.png fox
+sharpen fox foxSharpen
+save pngScripts/Sharpen.png foxSharpen

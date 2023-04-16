@@ -1,0 +1,5 @@
+load res/fox.bmp test
+brighten 100 test testB
+brighten -100 test testD
+save bmpScripts/Brightened.bmp testB
+save bmpScripts/Darkened.bmp testD

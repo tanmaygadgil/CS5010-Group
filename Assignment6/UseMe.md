@@ -1,7 +1,7 @@
 # USEMe
 
-This file will outline the necessary step to use this application, all accepted commands 
-and a few sample commands to run the files 
+This file will outline the necessary step to use this application, all accepted commands
+and a few sample commands to run the files
 
 ## Commands
 
@@ -66,7 +66,6 @@ The apply button applies whatever command is currently shown in the dropdown box
 In this mode the app runs when the user gives command line inputs into the terminal
 To run the script:
 
-
 ```shell
 java -jar Assignment6.jar -text
 ```
@@ -81,23 +80,34 @@ character
 
 To run the application script mode attach the -file flag to the command line arguments
 
-
-
 ```shell
-java -jar Assignment5.jar -file <location of script file.txt>
+java -jar Assignment6.jar -file <location of script file.txt>
 ```
 
 **Graphical User Interface**
 
-In this mode, the app is run through a graphical interface in which you will be able to see the 
-changes you make in real time. This graphical interface also displays the histograms of each 
-component of the image as well as the intensity. 
+In this mode, the app is run through a graphical interface in which you will be able to see the
+changes you make in real time. This graphical interface also displays the histograms of each
+component of the image as well as the intensity.
 
-To run the application with the GUI: 
+To run the application with the GUI:
 
 ```shell
 java -jar Assignment6.jar 
 ```
+
+The GUI gives the following options
+
+- Load: this button lets you load an image from the local file system
+- Save: this button lest you save the currently displayed image
+- Call operation: To call an operation, select the appropriate operation and hit apply. Some
+  operations require additional inputs. Some special considerations are:
+    - Darken and Brighten: A dialog box will appear which will ask for an integer value.
+    - RGB Split: Splits the current image into three parts. You will have to select three files in
+      the following order: The red, the green and the blue component
+    - RGB Combine: This will nto display anything in the image panel. You will have to give 4
+      files - the red comp, the green comp, the blue comp and finally the location where the
+      combined file is saved.
 
 ### Sample Scripts
 
@@ -108,62 +118,62 @@ Run these sample scripts for the following use cases
 First execute
 
 ```shell
->>> java -jar Assignment5.jar -text
+>>> java -jar Assignment6.jar -text
 ```
 
 Then execute the following commands **one at a time**
 
 ```shell
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 brighten 50 tanzania brightentanzania
-save res/brightentanzania.jpg brightentanzania
+save brightentanzania.jpg brightentanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 darken 100 tanzania darkentanzania
-save res/darkentanzania.jpg darkentanzania
+save darkentanzania.jpg darkentanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 horizontal-flip tanzania horizontaltanzania
-save res/horizontaltanzania.jpg horizontaltanzania
+save horizontaltanzania.jpg horizontaltanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 vertical-flip tanzania verticaltanzania
-save res/verticaltanzania.jpg verticaltanzania
+save verticaltanzania.jpg verticaltanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 greyscale tanzania greytanzania
-save res/greytanzania.jpg greytanzania
+save greytanzania.jpg greytanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 rgb-split tanzania redtanzania greentanzania bluetanzania
-save res/redtanzania.jpg redtanzania
-save res/greentanzania.jpg greentanzania
-save res/bluetanzania.jpg bluetanzania
+save redtanzania.jpg redtanzania
+save greentanzania.jpg greentanzania
+save bluetanzania.jpg bluetanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 rgb-combine combinetanzania redtanzania greentanzania bluetanzania
-save res/combinetanzania.jpg combinetanzania
+save combinetanzania.jpg combinetanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 dither tanzania dithertanzania
-save res/dithertanzania.jpg dithertanzania
+save dithertanzania.jpg dithertanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 sepia tanzania sepiatanzania
-save res/sepiatanzania.jpg sepiatanzania
+save sepiatanzania.jpg sepiatanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 gaussian-blur tanzania gaussian-blurtanzania
-save res/gaussian-blurtanzania.jpg gaussian-blurtanzania
+save gaussian-blurtanzania.jpg gaussian-blurtanzania
 
-load res/tanzania.jpg tanzania
+load tanzania.jpg tanzania
 sharpen tanzania sharptanzania
-save res/sharptanzania.jpg sharptanzania
+save sharptanzania.jpg sharptanzania
 ```
 
 #### Running in script mode
 
 ```shell
->>> java -jar Assignment5.jar -s res/commands.txt
+>>> java -jar Assignment6.jar -s  commands.txt
 ```
 

@@ -1,0 +1,4 @@
+load res/fox.ppm fox
+
+greyscale value-compnent fox foxgrey
+greyscale value fox foxgrey

@@ -1,0 +1,3 @@
+load res/fox.png test
+horizontal-flip test testH
+save pngScripts/HorizontalFlip.png testH

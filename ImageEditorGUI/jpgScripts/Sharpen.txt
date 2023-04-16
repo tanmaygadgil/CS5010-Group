@@ -1,0 +1,3 @@
+load res/fox.jpg fox
+sharpen fox foxSharpen
+save jpgScripts/Sharpen.jpg foxSharpen

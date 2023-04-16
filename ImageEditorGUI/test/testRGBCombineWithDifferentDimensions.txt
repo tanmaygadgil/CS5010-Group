@@ -1,0 +1,4 @@
+load res/redGreyScale.ppm red
+load res/snakeBlueScale.ppm blue
+load res/greenGreyScale.ppm green
+rgb-combine RGB red blue green

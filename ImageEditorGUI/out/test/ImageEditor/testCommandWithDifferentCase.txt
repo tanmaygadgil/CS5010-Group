@@ -1,0 +1,5 @@
+load res/mountains.ppm mtn
+Load res/mountains.ppm mtn
+LOad ReS/mOUntaiNs.pPM mtn1
+LOAd res/Mountains.ppm mtn2
+LOAD RES/MOUNTAINS.PPM mtn3

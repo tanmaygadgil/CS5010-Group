@@ -1,0 +1,2 @@
+load res/mountains.ppm mtn
+rgn-split mtn mtnr mtng mtnb

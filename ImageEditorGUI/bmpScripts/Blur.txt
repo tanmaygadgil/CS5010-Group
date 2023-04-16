@@ -1,0 +1,3 @@
+load res/fox.bmp fox
+blur fox foxBlur
+save bmpScripts/Blur.bmp foxBlur

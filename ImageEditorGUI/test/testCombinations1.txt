@@ -1,0 +1,14 @@
+load res/fox.ppm test
+horizontal-flip test testH
+rgb-split testH testR testG testB
+save res/LHSRed.ppm testR
+save res/LHSGreen.ppm testG
+save res/LHSBlue.ppm testB
+
+# Load same imageIOHandler with different imageIOHandler name
+load res/fox.ppm test1
+vertical-flip test1 testV
+brighten 50 testV testBr
+save res/LVB.ppm testBr
+brighten -50 testBr testD
+save res/LVBD.ppm testD

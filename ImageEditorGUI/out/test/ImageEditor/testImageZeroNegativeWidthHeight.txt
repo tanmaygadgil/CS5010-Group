@@ -1,0 +1,4 @@
+load res/zeroWidthImage.ppm test
+load res/negativeWidthImage.ppm test
+load res/zeroHeightImage.ppm test
+load res/negativeHeightImage.ppm test

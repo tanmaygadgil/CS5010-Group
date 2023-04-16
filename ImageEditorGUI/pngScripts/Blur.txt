@@ -1,0 +1,3 @@
+load res/fox.png fox
+blur fox foxBlur
+save pngScripts/Blur.png foxBlur
