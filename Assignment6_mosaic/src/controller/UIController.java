@@ -81,7 +81,7 @@ public class UIController extends AbstractController implements Features {
         String res = null;
         String error = null;
         try {
-          InputDialog db = new InputDialog((JFrame) view, "Please input the amount to brighten by");
+          InputDialog db = new InputDialog((JFrame) view, "Please input the amount to " + command + " by");
           commandValue = db.getInputAndWait();
           commandArgs = new String[]{command, commandValue, "image", "image"};
           res = this.callModel(commandArgs);
