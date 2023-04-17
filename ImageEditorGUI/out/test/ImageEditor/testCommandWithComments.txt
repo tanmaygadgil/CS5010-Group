@@ -1,0 +1,4 @@
+#load res/mountains.ppm mtn
+LOad res/MouNTains.ppm mtn1
+#horizontal flipping
+horizontal-flip mtn1 mtn2-flipped

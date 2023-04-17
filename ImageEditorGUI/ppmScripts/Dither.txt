@@ -1,0 +1,3 @@
+load res/fox.ppm fox
+dither fox foxDither
+save ppmScripts/Dither.ppm foxDither

@@ -1,0 +1,14 @@
+load res/mountains.ppm mtn
+greyscale valu-component mtn mtngrey
+load res/mountains.ppm mtn
+greyscale lume-component mtn mtngrey
+load res/mountains.ppm mtn
+greyscale intensty-component mtn mtngrey
+load res/mountains.ppm mtn
+greyscale value-compoent mtn mtngrey
+load res/mountains.ppm mtn
+greyscale redd-component mtn mtngrey
+load res/mountains.ppm mtn
+greyscale freen-component mtn mtngrey
+load res/mountains.ppm mtn
+greyscale blu-component mtn mtngrey

@@ -1,0 +1,20 @@
+load res/fox.ppm fox
+
+rgb-split fox redsplitThroughScript greensplitThroughScript bluesplitThroughScript
+save res/greensplitThroughScript.ppm greensplitThroughScript
+
+rgb-combine RedCombineThroughScript redsplitThroughScript greensplitThroughScript bluesplitThroughScript
+save res/RedCombineThroughScript.ppm RedCombineThroughScript
+
+brighten -30 fox fox-dark
+save res/decreaseBrightnessThroughScript.ppm fox-dark
+
+greyscale value-component fox fox-value-greyscale
+save res/valueGreyScaleThroughScript.ppm fox-value-greyscale
+greyscale red-component fox fox-red-greyscale
+save res/redGreyScaleThroughScript.ppm fox-red-greyscale
+
+horizontal-flip fox fox-horizontal
+vertical-flip fox fox-vertical
+save res/foxFlippedHorizontallyThroughScript.ppm fox-horizontal
+save res/foxFlippedVerticallyThroughScript.ppm fox-vertical

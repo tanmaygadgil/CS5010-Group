@@ -7,7 +7,6 @@ package imgeditor.model;
  */
 class ImageData {
 
-  //width height channel
   private final int[][][] pixels;
 
   /**

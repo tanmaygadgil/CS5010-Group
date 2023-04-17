@@ -1,0 +1,2 @@
+load res/mountains.ppm mtn
+brigthen 100 mtn mtn

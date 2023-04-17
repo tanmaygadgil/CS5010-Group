@@ -1,0 +1,2 @@
+load res/mountains.ppm mtn
+gorizontal-flip mtn mtn

@@ -1,0 +1,3 @@
+load res/fox.png fox
+dither fox foxDither
+save pngScripts/Dither.png foxDither

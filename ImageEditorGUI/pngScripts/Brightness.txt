@@ -1,0 +1,5 @@
+load res/fox.png test
+brighten 100 test testB
+brighten -100 test testD
+save pngScripts/Brightened.png testB
+save pngScripts/Darkened.png testD

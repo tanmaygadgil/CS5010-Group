@@ -1,0 +1,5 @@
+load OI/OriginalRedGreyScale.ppm testR
+load OI/OriginalGreenGreyScale.ppm testG
+load OI/OriginalBlueGreyScale.ppm testB
+rgb-combine testC testR testG testB
+save res/RedCombineThroughScript.ppm testC

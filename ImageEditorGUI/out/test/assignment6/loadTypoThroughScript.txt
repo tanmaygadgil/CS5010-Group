@@ -1,0 +1,1 @@
+laod res/mountains.ppm mtn

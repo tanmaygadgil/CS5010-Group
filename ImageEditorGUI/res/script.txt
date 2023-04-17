@@ -1,0 +1,96 @@
+# Load
+load fox.ppm foxppm
+load fox.jpg foxjpg
+load fox.png foxpng
+load fox.bmp foxbmp
+
+
+# Save
+save scriptOutput/foxSaved.ppm foxppm
+save scriptOutput/foxSaved.jpg foxppm
+save scriptOutput/foxSaved.png foxppm
+save scriptOutput/foxSaved.bmp foxppm
+
+save scriptOutput/foxSaved.ppm foxjpg
+save scriptOutput/foxSaved.jpg foxjpg
+save scriptOutput/foxSaved.png foxjpg
+save scriptOutput/foxSaved.bmp foxjpg
+
+save scriptOutput/foxSaved.ppm foxpng
+save scriptOutput/foxSaved.jpg foxpng
+save scriptOutput/foxSaved.png foxpng
+save scriptOutput/foxSaved.bmp foxpng
+
+save scriptOutput/foxSaved.ppm foxbmp
+save scriptOutput/foxSaved.jpg foxbmp
+save scriptOutput/foxSaved.png foxbmp
+save scriptOutput/foxSaved.bmp foxbmp
+
+
+# Blur
+blur foxjpg fox-blur
+save scriptOutput/foxBlur.png fox-blur
+
+
+# Sharpen
+sharpen foxbmp fox-sharp
+save scriptOutput/foxSharpen.jpg fox-sharp 
+
+
+# Greyscale
+greyscale foxppm fox-grey
+save scriptOutput/foxgrey.bmp fox-grey 
+
+
+# Sepia
+sepia foxpng fox-sepia
+save scriptOutput/foxsepia.ppm fox-sepia
+
+
+# Dither
+dither foxpng fox-dither
+save scriptOutput/foxdither.jpg fox-dither
+
+
+# RGB Split
+rgb-split foxpng redsplitThroughScript greensplitThroughScript bluesplitThroughScript
+save scriptOutput/greensplitThroughScript.bmp greensplitThroughScript
+
+# RGB Combine
+rgb-combine RedCombineThroughScript redsplitThroughScript greensplitThroughScript bluesplitThroughScript
+save scriptOutput/RedCombineThroughScript.jpg RedCombineThroughScript
+
+# Brighten
+brighten 50 foxjpg fox-bright
+save scriptOutput/increaseBrightnessThroughScript.ppm fox-bright
+
+brighten -30 foxppm fox-dark
+save scriptOutput/decreaseBrightnessThroughScript.png fox-dark
+
+# Greyscale
+greyscale value-component foxjpg fox-value-greyscale
+save scriptOutput/valueGreyScaleThroughScript.jpg fox-value-greyscale
+
+greyscale red-component foxpng fox-red-greyscale
+save scriptOutput/redGreyScaleThroughScript.png fox-red-greyscale
+
+greyscale green-component foxbmp fox-green-greyscale
+save scriptOutput/greenGreyScaleThroughScript.bmp fox-green-greyscale
+
+greyscale blue-component foxppm fox-blue-greyscale
+save scriptOutput/blueGreyScaleThroughScript.png fox-blue-greyscale
+
+greyscale intensity-component foxbmp fox-intensity-greyscale
+save scriptOutput/intensityGreyScaleThroughScript.jpg fox-intensity-greyscale
+
+greyscale luma-component foxpng fox-luma-greyscale
+save scriptOutput/lumaGreyScaleThroughScript.ppm fox-luma-greyscale
+
+
+# Horizontal Flip
+horizontal-flip foxppm fox-horizontal
+save scriptOutput/foxFlippedHorizontallyThroughScript.png fox-horizontal
+
+# Vertical Flip
+vertical-flip foxpng fox-vertical
+save scriptOutput/foxFlippedVerticallyThroughScript.ppm fox-vertical

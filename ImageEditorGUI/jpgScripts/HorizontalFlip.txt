@@ -1,0 +1,3 @@
+load res/fox.jpg test
+horizontal-flip test testH
+save jpgScripts/HorizontalFlip.jpg testH

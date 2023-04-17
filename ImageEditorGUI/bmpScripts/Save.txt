@@ -1,0 +1,2 @@
+load res/fox.bmp test
+save bmpScripts/foxSave.bmp test

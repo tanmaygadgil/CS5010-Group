@@ -1,0 +1,2 @@
+load                     res/mountains.ppm           mtn
+save            res/savedMountains.ppm                             mtn

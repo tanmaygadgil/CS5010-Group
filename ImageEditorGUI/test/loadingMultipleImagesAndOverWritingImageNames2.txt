@@ -1,0 +1,5 @@
+load res/fox.ppm test
+brighten 50 test testBr
+load res/snake.ppm test
+vertical-flip test testV
+load res/snake.ppm test1

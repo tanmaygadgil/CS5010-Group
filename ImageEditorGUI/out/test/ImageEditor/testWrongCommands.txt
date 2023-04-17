@@ -1,0 +1,3 @@
+loadnew koala.ppm koala
+load res/fox.ppm mtn
+rotate koala

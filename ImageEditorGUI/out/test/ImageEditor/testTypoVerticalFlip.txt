@@ -1,0 +1,2 @@
+load res/mountains.ppm mtn
+vertixal-flup mtn mtn

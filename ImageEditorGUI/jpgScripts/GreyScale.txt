@@ -1,0 +1,15 @@
+load res/fox.jpg test
+greyscale red-component test testR
+greyscale green-component test testG
+greyscale blue-component test testB
+greyscale value-component test testV
+greyscale intensity-component test testI
+greyscale luma-component test testL
+greyscale test testW
+save jpgScripts/RedGreyScale.jpg testR
+save jpgScripts/GreenGreyScale.jpg testG
+save jpgScripts/BlueGreyScale.jpg testB
+save jpgScripts/ValueGreyScale.jpg testV
+save jpgScripts/IntensityGreyScale.jpg testI
+save jpgScripts/LumaGreyScale.jpg testL
+save jpgScripts/WithoutComponent.jpg testW

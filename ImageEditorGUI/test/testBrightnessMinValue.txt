@@ -1,0 +1,3 @@
+load OI/fox.ppm fox
+brighten -3500 fox fox-minbright
+save res/fox-minbright.ppm fox-minbright

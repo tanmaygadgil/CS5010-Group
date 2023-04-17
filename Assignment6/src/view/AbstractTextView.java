@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * The AbstractTextView class is an abstract implementation of the View interface that provides some
@@ -52,7 +53,7 @@ public abstract class AbstractTextView implements View {
 
   class StringGenerator implements Iterator<String> {
 
-    private ArrayList<String> stringList;
+    private List<String> stringList;
     private int index;
 
     public StringGenerator(ArrayList<String> list) {

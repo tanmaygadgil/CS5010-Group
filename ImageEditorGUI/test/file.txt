@@ -1,0 +1,1 @@
+run test/horizontal-flip-commands.txt

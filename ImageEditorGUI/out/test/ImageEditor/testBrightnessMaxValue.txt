@@ -1,0 +1,3 @@
+load OI/fox.ppm fox
+brighten 1000 fox fox-maxbright
+save res/fox-maxbright.ppm fox-maxbright

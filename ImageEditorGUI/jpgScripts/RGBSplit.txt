@@ -1,0 +1,5 @@
+load res/fox.jpg test
+rgb-split test testR testG testB
+save jpgScripts/RedSplit.jpg testR
+save jpgScripts/GreenSplit.jpg testG
+save jpgScripts/BlueSplit.jpg testB
