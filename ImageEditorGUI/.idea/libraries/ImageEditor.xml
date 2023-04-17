@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ImageEditor">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/ImageEditor_jar/ImageEditor.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
