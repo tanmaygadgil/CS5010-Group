@@ -10,24 +10,21 @@ import java.util.Map;
 
 public class ImageMosaicking extends AbstractImageOperations {
 
-  private int seeds;
-  private PickStrategy strategy;
-
-  public ImageMosaicking(PickStrategy strategy){
-    this.seeds = seeds;
-    this.strategy = strategy;
-
-  }
   @Override
   public List<ImageData> perform(List<ImageData> imageData, String... operationArgs) {
-
+    //operationargs[0] contains the strat, operationargs[1] contains the numseeds
+    int numSeeds = Integer.valueOf(operationArgs[1]);
     int[][][] pixels = imageData.get(0).getPixels();
     int width = pixels.length;
     int height = pixels[0].length;
 
-    strategy.setParameters(new );
+    //we might want to change this to expand better
+    PickStrategy strategy = null;
+    if(operationArgs[0].equals("random")) {
+      strategy = new RandomUniformPick(numSeeds, width, height);
+    }
 
-    List<Point2D> seeds = this.strategy.generate();
+    List<Point2D> seeds = strategy.generate();
 
     SetOfPoints tree = new PointKDTree(seeds);
     Map<Point2D, List<Point2D>> clusterMap = new HashMap<>();

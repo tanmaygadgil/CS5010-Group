@@ -1,6 +1,5 @@
 package imgeditor.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,6 +14,4 @@ public interface PickStrategy<T> {
    * @return a list oof points with a generic type
    */
   List<T> generate();
-
-  void setParameters(ArrayList<String> params);
 }

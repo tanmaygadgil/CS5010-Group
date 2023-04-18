@@ -40,6 +40,7 @@ class ImageProcessingFactory {
     imageOperationsMap.put("sharpen", i -> new Filter());
     imageOperationsMap.put("sepia", i -> new ColorTransformation());
     imageOperationsMap.put("dither", i -> new Dither());
+    imageOperationsMap.put("mosaic", i -> new ImageMosaicking());
 
     imageIOHandlerMap = new HashMap<>();
     imageIOHandlerMap.put(".ppm", i -> new PPMImageIOHandler());

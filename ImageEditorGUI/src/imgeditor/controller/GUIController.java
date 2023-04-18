@@ -75,4 +75,9 @@ public interface GUIController {
    * The types of color transformation supported are dependent on the implementation.
    */
   void colorTransformation();
+
+  /**
+   * Apply a mosaic effect on the image that is being currently displayed on the GUI.
+   */
+  void mosaic();
 }

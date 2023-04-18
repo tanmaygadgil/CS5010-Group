@@ -55,6 +55,7 @@ public class GUIViewImpl extends JFrame implements GUIView {
   private JButton horizontalFlipButton;
   private JButton verticalFlipButton;
   private JButton greyscaleButton;
+  private JButton mosaicButton;
   private JPanel innerNorthPanel;
   private JPanel imagePanel;
   private JPanel executionMessagePanel;
@@ -198,6 +199,11 @@ public class GUIViewImpl extends JFrame implements GUIView {
     filterButton.setActionCommand("filter");
     buttonPanel.add(filterButton);
 
+    //Mosaic Button
+    mosaicButton = new JButton("Mosaic");
+    mosaicButton.setActionCommand("mosaic");
+    buttonPanel.add(mosaicButton);
+
     gbc.fill = GridBagConstraints.BOTH;
     gbc.weightx = 1;
     gbc.weighty = 0.1;
@@ -211,7 +217,7 @@ public class GUIViewImpl extends JFrame implements GUIView {
   private void setButtonsVisibility(boolean isVisible) {
     JButton[] buttons = {saveButton, brightenButton, filterButton, ditherButton, greyscaleButton,
         horizontalFlipButton, verticalFlipButton, rgbCombineButton, rgbSplitButton,
-        colorTransformationButton};
+        colorTransformationButton, mosaicButton};
 
     for (JButton button : buttons) {
       button.setEnabled(isVisible);
@@ -232,7 +238,7 @@ public class GUIViewImpl extends JFrame implements GUIView {
     String labelMessage = null;
     if (command.equals("greyscale")) {
       components = new String[]{"red-component", "green-component", "blue-component",
-        "value-component", "intensity-component", "luma-component"};
+          "value-component", "intensity-component", "luma-component"};
       labelMessage = "Select a component";
     } else if (command.equals("rgb-split")) {
       components = new String[]{"red-component", "green-component", "blue-component"};
@@ -251,6 +257,18 @@ public class GUIViewImpl extends JFrame implements GUIView {
   public String getBrightnessValue() {
     return JOptionPane.showInputDialog(outerPanel, "Enter brightness value:",
             "Adjust Brightness By", JOptionPane.PLAIN_MESSAGE);
+  }
+
+  @Override
+  public String getValue(){
+    return JOptionPane.showInputDialog(outerPanel, "Enter amount of seeds: ",
+        "Amount Of Seeds", JOptionPane.PLAIN_MESSAGE);
+  }
+
+  @Override
+  public String getStrategy(){
+    return JOptionPane.showInputDialog(outerPanel, "Enter seed generation strategy:",
+        "Choose Strategy", JOptionPane.PLAIN_MESSAGE);
   }
 
   private void setFileFilter(JFileChooser fileChooser) {
@@ -326,6 +344,7 @@ public class GUIViewImpl extends JFrame implements GUIView {
     rgbCombineButton.addActionListener(evt -> features.rgbCombine());
     horizontalFlipButton.addActionListener(evt -> features.horizontalFlip());
     verticalFlipButton.addActionListener(evt -> features.verticalFlip());
+    mosaicButton.addActionListener(evt -> features.mosaic());
   }
 
   @Override

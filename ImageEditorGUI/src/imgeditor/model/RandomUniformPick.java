@@ -27,18 +27,7 @@ public class RandomUniformPick implements PickStrategy {
     this.height = height;
     this.width = width;
   }
-  public RandomUniformPick(int seeds){
-    this.seeds = seeds;
-    this.height = null;
-    this.width = null;
-  }
 
-  @Override
-  public void setParameters(ArrayList<String> params){
-
-    this.height = Integer.parseInt(params.get(0));
-    this.width = Integer.parseInt(params.get(0));
-  }
   @Override
   public List<Point2D> generate() {
     Random r = new Random();

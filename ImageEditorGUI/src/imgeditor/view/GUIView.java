@@ -27,6 +27,10 @@ public interface GUIView {
    */
   String getBrightnessValue();
 
+  String getValue();
+
+  String getStrategy();
+
   /**
    * Display a browse popup window for opening a file from disk.
    * @return the file path selected by the user.

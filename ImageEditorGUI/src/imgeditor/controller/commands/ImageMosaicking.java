@@ -1,5 +1,6 @@
-package imgeditor.controller;
+package imgeditor.controller.commands;
 
+import imgeditor.controller.Command;
 import imgeditor.model.Model;
 import imgeditor.model.PickStrategy;
 import imgeditor.model.RandomUniformPick;
@@ -27,6 +28,7 @@ public class ImageMosaicking implements Command {
   public ImageMosaicking(String imageName, String resultImageName, int seeds) {
     this.imageNames = new ArrayList<>();
     this.imageNames.add(imageName);
+    this.seeds = seeds;
     this.resultImageNames = new ArrayList<>();
     this.resultImageNames.add(resultImageName);
   }
@@ -34,8 +36,6 @@ public class ImageMosaicking implements Command {
 
   @Override
   public void execute(Model m) throws IOException {
-    PickStrategy strategy = new RandomUniformPick(seeds);
-
     m.operate("mosaic", this.imageNames, this.resultImageNames);
   }
 }
