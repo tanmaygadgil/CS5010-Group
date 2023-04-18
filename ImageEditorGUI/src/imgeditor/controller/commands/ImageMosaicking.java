@@ -15,8 +15,8 @@ public class ImageMosaicking implements Command {
 
   private final List<String> imageNames;
   private final List<String> resultImageNames;
-
-  private final int seeds;
+  private final String strategy;
+  private final String seeds;
 
   /**
    * Construct a HorizontalFlip object.
@@ -25,9 +25,10 @@ public class ImageMosaicking implements Command {
    * @param resultImageName the image name in which the horizontally flipped
    *                        image data is to be stored
    */
-  public ImageMosaicking(String imageName, String resultImageName, int seeds) {
+  public ImageMosaicking(String imageName, String resultImageName, String strategy, String seeds) {
     this.imageNames = new ArrayList<>();
     this.imageNames.add(imageName);
+    this.strategy = strategy;
     this.seeds = seeds;
     this.resultImageNames = new ArrayList<>();
     this.resultImageNames.add(resultImageName);
@@ -36,6 +37,6 @@ public class ImageMosaicking implements Command {
 
   @Override
   public void execute(Model m) throws IOException {
-    m.operate("mosaic", this.imageNames, this.resultImageNames);
+    m.operate("mosaic", this.imageNames, this.resultImageNames, strategy, seeds);
   }
 }

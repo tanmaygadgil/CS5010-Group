@@ -1,5 +1,6 @@
 package imgeditor.controller;
 
+import imgeditor.controller.commands.ImageMosaicking;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -74,6 +75,8 @@ public class ImageEditorController implements Controller {
     knownCommands.put("sharpen", s -> new Sharpen(s.next(), s.next()));
     knownCommands.put("sepia", s -> new Sepia(s.next(), s.next()));
     knownCommands.put("dither", s -> new Dither(s.next(), s.next()));
+    //imagename, resultimagename, strategy, seeds
+    knownCommands.put("mosaic", s -> new ImageMosaicking(s.next(), s.next(), s.next(), s.next()));
   }
 
   @Override
