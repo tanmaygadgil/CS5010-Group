@@ -1,0 +1,8 @@
+load res/mountains.ppm mtn
+horizontal-flip abc abc
+horizontal-flip xyz xyznew
+vertical-flip xyznew xyznewvert
+greyscale blue-component mtns mtns-grey
+rgb-split fox foxR foxG foxB
+rgb-combine foxRGB foxR foxG foxB
+save res/savedImage.ppm foxABC

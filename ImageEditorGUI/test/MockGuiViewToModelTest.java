@@ -100,6 +100,16 @@ public class MockGuiViewToModelTest {
     }
 
     @Override
+    public String getValue() {
+      return null;
+    }
+
+    @Override
+    public String getStrategy() {
+      return null;
+    }
+
+    @Override
     public String filter() {
       if (filterNumber == 0) {
         filterNumber++;

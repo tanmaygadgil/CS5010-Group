@@ -1,0 +1,2 @@
+load res/fox.ppm fox
+save res/savedFox.ppm fox
