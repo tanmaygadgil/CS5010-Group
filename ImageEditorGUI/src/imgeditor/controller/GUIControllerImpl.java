@@ -245,7 +245,8 @@ public class GUIControllerImpl implements GUIController {
     String seeds = guiView.getValue();
     try {
       if (strategy.isEmpty()) {
-        guiView.displayWarningPopup("Strategy must not be empty");
+        guiView.displayWarningPopup(
+            "Strategy must not be empty - 'random' is the only supported strategy ");
         guiView.setExecutionMessage("Operation failed. Strategy value must be a non empty string");
         return;
       }

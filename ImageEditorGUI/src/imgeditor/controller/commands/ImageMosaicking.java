@@ -25,10 +25,10 @@ public class ImageMosaicking implements Command {
    * @param resultImageName the image name in which the horizontally flipped
    *                        image data is to be stored
    */
-  public ImageMosaicking(String imageName, String resultImageName, String strategy, String seeds) {
+  public ImageMosaicking( String seeds, String imageName, String resultImageName) {
     this.imageNames = new ArrayList<>();
     this.imageNames.add(imageName);
-    this.strategy = strategy;
+    this.strategy = "random";
     this.seeds = seeds;
     this.resultImageNames = new ArrayList<>();
     this.resultImageNames.add(resultImageName);

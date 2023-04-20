@@ -67,6 +67,16 @@ public class GUIViewImplMockTest {
     }
 
     @Override
+    public String getValue() {
+      return null;
+    }
+
+    @Override
+    public String getStrategy() {
+      return null;
+    }
+
+    @Override
     public String filter() {
       mockLog.append("Filter By mockLog");
       return null;

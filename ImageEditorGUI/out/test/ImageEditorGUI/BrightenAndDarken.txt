@@ -1,0 +1,5 @@
+load res/fox.ppm test
+brighten 50 test testIB
+brighten -50 test testDB
+save res/increaseBrightnessThroughScript.ppm testIB
+save res/decreaseBrightnessThroughScript.ppm testDB

@@ -8,6 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * An image mosaicking operation that extends the AbstractImageOperations.
+ * The seeds are generated using a random picking strategy.
+ */
 public class ImageMosaicking extends AbstractImageOperations {
 
   @Override

@@ -76,7 +76,7 @@ public class ImageEditorController implements Controller {
     knownCommands.put("sepia", s -> new Sepia(s.next(), s.next()));
     knownCommands.put("dither", s -> new Dither(s.next(), s.next()));
     //imagename, resultimagename, strategy, seeds
-    knownCommands.put("mosaic", s -> new ImageMosaicking(s.next(), s.next(), s.next(), s.next()));
+    knownCommands.put("mosaic", s -> new ImageMosaicking(s.next(), s.next(), s.next()));
   }
 
   @Override
