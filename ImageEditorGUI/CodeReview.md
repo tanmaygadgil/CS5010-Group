@@ -2,10 +2,17 @@
 
 ## Design Critique
 
-- How well does the design meet the requirements and goals of the project? -
-  This design is a good implementation of the
-- How modular, extensible, and maintainable is the design?
-- Are there any design patterns or principles that could have been implemented better?
+- The design overall is very modular and easy to extends.
+- The model is designed well. Each of the operations has been given its own class and extends a
+  common
+  abstract class. this allows for increased extensibility.
+- The text controller follows the command design pattern, and it is fairly easy to add new commands
+  to the model.
+- The controller for the GUI and the view are very heavily coupled though.
+- The GUI can use more modularity. All of the components are implemented in a single java class
+  which gives it too much responsibility.
+- Also, the decision to use buttons for each operation make it a little difficult to add any new
+  operations ot the GUI.
 
 ## Implementation Critique
 
@@ -16,16 +23,17 @@
 
 ## Documentation Critique
 
-- How clear, concise, and comprehensive is the documentation?
-- Does the documentation cover all aspects of the project, such as installation, configuration,
-  usage, and troubleshooting?
-- Is the documentation up-to-date with the latest changes and features?
+- The Documentation provided is clear and concise
+- All public facing functions are well documented and required little or no input to understand
+- The readme and useme files are well written and are describe the working of the code well.
 
 ## Design/Code Strengths
 
-- What are the positive aspects of the design and/or code?
-- Are there any innovative or clever solutions implemented?
-- What are some examples of well-designed or well-implemented features?
+- The design of the model is very strong. With a well modularized code, it is easy to extends and
+  add features to it.
+- It also accounts for multiple images to be passed with a variable number of command line arguments
+  allowing for a more diverse set of function that can be added without changing or extending the
+  model interface.
 
 ## Design/Code Limitations
 
