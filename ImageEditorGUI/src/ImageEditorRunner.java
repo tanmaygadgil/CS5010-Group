@@ -23,15 +23,16 @@ import imgeditor.view.TextViewImpl;
  * This class is the runner for the Image Editor. The program execution begins here.
  */
 public class ImageEditorRunner {
+
   /**
-   * Main method for running the program. This method calls the controller and begins the
-   * processing of commands through the command line.
-   * This method creates a HashMap of all the command line arguments passed which begin with '-'.
-   * If no command line arguments are passed, the GUI will be opened.
-   * If the -file argument followed by a file path is passed, the program will run the commands
-   * in the file and exit immediately afterwards.
-   * If the -text argument is passed, the program will run in interactive scripting mode
-   * where the user can type in commands via the command line.
+   * Main method for running the program. This method calls the controller and begins the processing
+   * of commands through the command line. This method creates a HashMap of all the command line
+   * arguments passed which begin with '-'. If no command line arguments are passed, the GUI will be
+   * opened. If the -file argument followed by a file path is passed, the program will run the
+   * commands in the file and exit immediately afterwards. If the -text argument is passed, the
+   * program will run in interactive scripting mode where the user can type in commands via the
+   * command line.
+   *
    * @param args default main args
    */
   public static void main(String[] args) {
@@ -88,16 +89,14 @@ public class ImageEditorRunner {
           in = new StringReader("run " + args[1] + "\nq");
           controller = new ImageEditorController(in, model, textView);
         }
-      }
-      else {
+      } else {
         System.err.println("Invalid arguments passed. Supported arguments: -file, -text");
         System.exit(1);
       }
 
       try {
         controller.execute();
-      }
-      catch (FileNotFoundException e) {
+      } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
     }

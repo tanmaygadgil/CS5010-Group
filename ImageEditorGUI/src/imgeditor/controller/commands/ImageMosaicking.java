@@ -2,8 +2,6 @@ package imgeditor.controller.commands;
 
 import imgeditor.controller.Command;
 import imgeditor.model.Model;
-import imgeditor.model.PickStrategy;
-import imgeditor.model.RandomUniformPick;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,20 +13,18 @@ public class ImageMosaicking implements Command {
 
   private final List<String> imageNames;
   private final List<String> resultImageNames;
-  private final String strategy;
   private final String seeds;
 
   /**
    * Construct a HorizontalFlip object.
    *
    * @param imageName       the name of the existing image to be flipped horizontally
-   * @param resultImageName the image name in which the horizontally flipped
-   *                        image data is to be stored
+   * @param resultImageName the image name in which the horizontally flipped image data is to be
+   *                        stored
    */
-  public ImageMosaicking(String imageName, String resultImageName, String strategy, String seeds) {
+  public ImageMosaicking(String seeds, String imageName, String resultImageName) {
     this.imageNames = new ArrayList<>();
     this.imageNames.add(imageName);
-    this.strategy = strategy;
     this.seeds = seeds;
     this.resultImageNames = new ArrayList<>();
     this.resultImageNames.add(resultImageName);
@@ -37,6 +33,6 @@ public class ImageMosaicking implements Command {
 
   @Override
   public void execute(Model m) throws IOException {
-    m.operate("mosaic", this.imageNames, this.resultImageNames, strategy, seeds);
+    m.operate("mosaic", this.imageNames, this.resultImageNames, seeds);
   }
 }

@@ -27,9 +27,8 @@ import imgeditor.view.TextView;
 
 /**
  * This class represents an implementation of the Controller interface for the Image Editor program.
- * It takes input from the user and executes the correct commands based on the input.
- * It uses the model for performing the operations and
- * uses the view to display success or error messages.
+ * It takes input from the user and executes the correct commands based on the input. It uses the
+ * model for performing the operations and uses the view to display success or error messages.
  */
 public class ImageEditorController implements Controller {
 
@@ -41,14 +40,14 @@ public class ImageEditorController implements Controller {
   /**
    * Construct an ImageEditorController object.
    *
-   * @param in    input to the controller representing the commands
-   * @param model object of the model which the controller calls for performing operations
-   * @param textView  object of the textView which the controller uses for displaying
-   *                  success or error messages
+   * @param in       input to the controller representing the commands
+   * @param model    object of the model which the controller calls for performing operations
+   * @param textView object of the textView which the controller uses for displaying success or
+   *                 error messages
    * @throws IllegalArgumentException if any of the arguments are null
    */
   public ImageEditorController(Readable in, Model model, TextView textView)
-          throws IllegalArgumentException {
+      throws IllegalArgumentException {
     if (in == null) {
       throw new IllegalArgumentException("Controller input cannot be null.");
     }
@@ -75,8 +74,7 @@ public class ImageEditorController implements Controller {
     knownCommands.put("sharpen", s -> new Sharpen(s.next(), s.next()));
     knownCommands.put("sepia", s -> new Sepia(s.next(), s.next()));
     knownCommands.put("dither", s -> new Dither(s.next(), s.next()));
-    //imagename, resultimagename, strategy, seeds
-    knownCommands.put("mosaic", s -> new ImageMosaicking(s.next(), s.next(), s.next(), s.next()));
+    knownCommands.put("mosaic", s -> new ImageMosaicking(s.next(), s.next(), s.next()));
   }
 
   @Override
@@ -106,11 +104,10 @@ public class ImageEditorController implements Controller {
   known commands list and executes that command if found. Otherwise, it throws an exception.
    */
   private boolean executeCommand(Scanner scanner, Model model)
-          throws FileNotFoundException, IllegalArgumentException {
+      throws FileNotFoundException, IllegalArgumentException {
     Command c;
     String in = scanner.next().toLowerCase();
-    if (in.equalsIgnoreCase("q") || in.equalsIgnoreCase("quit")
-            || in.equalsIgnoreCase("exit")) {
+    if (in.equalsIgnoreCase("q") || in.equalsIgnoreCase("quit") || in.equalsIgnoreCase("exit")) {
       return true;
     } else if (in.charAt(0) == '#') {
       scanner.nextLine();

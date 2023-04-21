@@ -100,6 +100,11 @@ public class MockGuiViewToModelTest {
     }
 
     @Override
+    public String getValue() {
+      return "1000";
+    }
+
+    @Override
     public String filter() {
       if (filterNumber == 0) {
         filterNumber++;

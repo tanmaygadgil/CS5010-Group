@@ -12,21 +12,17 @@ public class ImageMosaicking extends AbstractImageOperations {
 
   @Override
   public List<ImageData> perform(List<ImageData> imageData, String... operationArgs) {
-    int numSeeds = Integer.valueOf(operationArgs[1]);
+    int numSeeds = Integer.valueOf(operationArgs[0]);
     int[][][] pixels = imageData.get(0).getPixels();
     int width = pixels.length;
     int height = pixels[0].length;
 
-    //we might want to change this to expand better
-    PickStrategy strategy = null;
-    if(operationArgs[0].equals("random")) {
-      strategy = new RandomUniformPick(numSeeds, width, height);
-    }
+    PickStrategy strategy = new RandomUniformPick(numSeeds, width, height);
 
     List<Point2D> seeds = strategy.generate();
     Map<Point2D, List<Point2D>> clusterMap = new HashMap<>();
 
-    for(Point2D point : seeds) {
+    for (Point2D point : seeds) {
       clusterMap.put(point, new ArrayList<>());
     }
 
@@ -52,12 +48,12 @@ public class ImageMosaicking extends AbstractImageOperations {
         }
       }
 
-      for(int i = 0; i < averages.length; i++) {
+      for (int i = 0; i < averages.length; i++) {
         averages[i] = averages[i] / listSize;
       }
 
       for (Point2D point2D : point2DS) {
-        for(int i = 0; i < averages.length; i++) {
+        for (int i = 0; i < averages.length; i++) {
           pixels[point2D.get(0)][point2D.get(1)][i] = averages[i];
         }
       }

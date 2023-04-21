@@ -35,11 +35,12 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 /**
- * This class represents an implementation of the GUIView.
- * It contains methods for setting up the GUI frames and panels, along with methods for
- * displaying dialogs and menus for each operation along with displaying the image and histogram.
+ * This class represents an implementation of the GUIView. It contains methods for setting up the
+ * GUI frames and panels, along with methods for displaying dialogs and menus for each operation
+ * along with displaying the image and histogram.
  */
 public class GUIViewImpl extends JFrame implements GUIView {
+
   private final ReadOnlyModel rModel;
   private final JPanel outerPanel;
   private ImageIcon imageIcon;
@@ -227,7 +228,7 @@ public class GUIViewImpl extends JFrame implements GUIView {
   @Override
   public void displayWarningPopup(String messageAfterExecution) {
     JOptionPane.showMessageDialog(outerPanel, messageAfterExecution, "Alert Message",
-            JOptionPane.WARNING_MESSAGE);
+        JOptionPane.WARNING_MESSAGE);
   }
 
   @Override
@@ -246,7 +247,7 @@ public class GUIViewImpl extends JFrame implements GUIView {
     }
 
     Object selectionObject = JOptionPane.showInputDialog(outerPanel, labelMessage, "Menu",
-            JOptionPane.PLAIN_MESSAGE, null, components, components[0]);
+        JOptionPane.PLAIN_MESSAGE, null, components, components[0]);
     if (selectionObject == null) {
       return null;
     }
@@ -256,19 +257,13 @@ public class GUIViewImpl extends JFrame implements GUIView {
   @Override
   public String getBrightnessValue() {
     return JOptionPane.showInputDialog(outerPanel, "Enter brightness value:",
-            "Adjust Brightness By", JOptionPane.PLAIN_MESSAGE);
+        "Adjust Brightness By", JOptionPane.PLAIN_MESSAGE);
   }
 
   @Override
-  public String getValue(){
-    return JOptionPane.showInputDialog(outerPanel, "Enter amount of seeds: ",
-        "Amount Of Seeds", JOptionPane.PLAIN_MESSAGE);
-  }
-
-  @Override
-  public String getStrategy(){
-    return JOptionPane.showInputDialog(outerPanel, "Enter seed generation strategy:",
-        "Choose Strategy", JOptionPane.PLAIN_MESSAGE);
+  public String getValue() {
+    return JOptionPane.showInputDialog(outerPanel, "Enter amount of seeds: ", "Amount Of Seeds",
+        JOptionPane.PLAIN_MESSAGE);
   }
 
   private void setFileFilter(JFileChooser fileChooser) {
@@ -277,8 +272,7 @@ public class GUIViewImpl extends JFrame implements GUIView {
     String[] fileTypes = {".ppm", ".bmp", ".jpg", ".png"};
     String[] fileExtensions = {"ppm", "bmp", "jpg", "png"};
     for (int i = 0; i < fileTypes.length; i++) {
-      filter = new FileNameExtensionFilter(
-              fileTypes[i], fileExtensions[i]);
+      filter = new FileNameExtensionFilter(fileTypes[i], fileExtensions[i]);
       fileChooser.setFileFilter(filter);
     }
   }
@@ -300,8 +294,8 @@ public class GUIViewImpl extends JFrame implements GUIView {
     setFileFilter(fileChooser);
     int result = fileChooser.showSaveDialog(outerPanel);
     if (result == JFileChooser.APPROVE_OPTION) {
-      return fileChooser.getSelectedFile().getAbsolutePath()
-              + fileChooser.getFileFilter().getDescription();
+      return fileChooser.getSelectedFile().getAbsolutePath() + fileChooser.getFileFilter()
+          .getDescription();
     }
     return null;
   }
@@ -311,7 +305,7 @@ public class GUIViewImpl extends JFrame implements GUIView {
     String[] filters = new String[]{"blur", "sharpen"};
     String labelMessage = "Select a filter";
     Object selectionObject = JOptionPane.showInputDialog(outerPanel, labelMessage, "Filter",
-            JOptionPane.PLAIN_MESSAGE, null, filters, filters[0]);
+        JOptionPane.PLAIN_MESSAGE, null, filters, filters[0]);
     if (selectionObject == null) {
       return null;
     }
@@ -323,8 +317,7 @@ public class GUIViewImpl extends JFrame implements GUIView {
     String[] colorTransform = new String[]{"sepia", "greyscale"};
     String labelMessage = "Select a color transformation technique";
     Object selectionObject = JOptionPane.showInputDialog(outerPanel, labelMessage,
-            "Color Transformation",
-            JOptionPane.PLAIN_MESSAGE, null, colorTransform, colorTransform[0]);
+        "Color Transformation", JOptionPane.PLAIN_MESSAGE, null, colorTransform, colorTransform[0]);
     if (selectionObject == null) {
       return null;
     }
@@ -354,7 +347,7 @@ public class GUIViewImpl extends JFrame implements GUIView {
     int[][][] pixels = rModel.getImagePixels(imageNameToBeDisplayed);
 
     BufferedImage image = new BufferedImage(pixels.length, pixels[0].length,
-            BufferedImage.TYPE_INT_RGB);
+        BufferedImage.TYPE_INT_RGB);
 
     for (int i = 0; i < pixels[0].length; i++) {
       for (int j = 0; j < pixels.length; j++) {
@@ -470,8 +463,8 @@ public class GUIViewImpl extends JFrame implements GUIView {
       dataset.addSeries(series);
 
     }
-    JFreeChart chart = ChartFactory.createXYLineChart("", xAxisLabel,
-            yAxisLabel, dataset, orientation, true, false, false);
+    JFreeChart chart = ChartFactory.createXYLineChart("", xAxisLabel, yAxisLabel, dataset,
+        orientation, true, false, false);
     chart.setBackgroundPaint(Color.WHITE);
 
     XYPlot plot = chart.getXYPlot();
@@ -488,18 +481,17 @@ public class GUIViewImpl extends JFrame implements GUIView {
       renderer.setSeriesPaint(1, Color.GRAY);
       renderer.setSeriesPaint(2, Color.GRAY);
       renderer.setSeriesPaint(3, Color.GRAY);
-    }
-    else {
+    } else {
       renderer.setSeriesPaint(0, Color.RED);
       renderer.setSeriesPaint(1, Color.GREEN);
       renderer.setSeriesPaint(2, Color.BLUE);
       renderer.setSeriesPaint(3, Color.GRAY);
     }
 
-    renderer.setSeriesShapesVisible(0,  false);
-    renderer.setSeriesShapesVisible(1,  false);
-    renderer.setSeriesShapesVisible(2,  false);
-    renderer.setSeriesShapesVisible(3,  false);
+    renderer.setSeriesShapesVisible(0, false);
+    renderer.setSeriesShapesVisible(1, false);
+    renderer.setSeriesShapesVisible(2, false);
+    renderer.setSeriesShapesVisible(3, false);
 
     plot.setRenderer(renderer);
 

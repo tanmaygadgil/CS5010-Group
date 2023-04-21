@@ -1,0 +1,7 @@
+load Koala.ppm koala
+horizontal-flip koala koalaHF
+vertical-flip koalaHF koalaVF
+brighten 50 koalaVF koalaBr
+greyscale red-component koalaBr koalaBrRed
+rgb-split koalaBrRed koalaBrRedRed koalaBrRedGreen koalaBrRedBlue
+rgb-combine koalaCombine koalaBrRedRed koalaBrRedGreen koalaBrRedBlue

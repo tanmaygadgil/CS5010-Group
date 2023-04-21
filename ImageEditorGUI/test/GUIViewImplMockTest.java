@@ -15,8 +15,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 /**
- * JUnit test class for the GUIViewImpl class.
- * Contains mock tests for the GUIView.
+ * JUnit test class for the GUIViewImpl class. Contains mock tests for the GUIView.
  */
 public class GUIViewImplMockTest {
 
@@ -26,6 +25,8 @@ public class GUIViewImplMockTest {
   public static class MockGUIView implements GUIView {
 
     int brighten = 0;
+
+    int value = 0;
 
     private final StringBuilder mockLog;
 
@@ -61,6 +62,16 @@ public class GUIViewImplMockTest {
       if (brighten == 0) {
         mockLog.append("Adjust Brightness By mockLog");
         brighten++;
+        return null;
+      }
+      return "";
+    }
+
+    @Override
+    public String getValue() {
+      if (value == 0) {
+        mockLog.append("Set Seeds By mockLog");
+        value++;
         return null;
       }
       return "";
@@ -124,8 +135,8 @@ public class GUIViewImplMockTest {
     // test load without parameter
     try {
       controller.load();
-      mockLogExpected = "Load Your File"
-        + " Execution Message:User Cancelled Operation. Display Not Changed.";
+      mockLogExpected =
+          "Load Your File" + " Execution Message:User Cancelled Operation. Display Not Changed.";
       assertEquals(mockLogExpected, mockLog.toString());
     } catch (Exception e) {
       fail();
@@ -135,7 +146,7 @@ public class GUIViewImplMockTest {
     try {
       controller.save();
       mockLogExpected = mockLogExpected + "Save Your File"
-        + " Execution Message:User Cancelled Operation. Display Not Changed.";
+          + " Execution Message:User Cancelled Operation. Display Not Changed.";
       assertEquals(mockLogExpected, mockLog.toString());
     } catch (NullPointerException e) {
       fail();
@@ -145,7 +156,7 @@ public class GUIViewImplMockTest {
     try {
       controller.greyscale();
       mockLogExpected = mockLogExpected + "The command passed is: greyscale"
-        + " Execution Message:User Cancelled Operation. Display Not Changed.";
+          + " Execution Message:User Cancelled Operation. Display Not Changed.";
       assertEquals(mockLogExpected, mockLog.toString());
     } catch (NullPointerException e) {
       fail();
@@ -155,7 +166,7 @@ public class GUIViewImplMockTest {
     try {
       controller.rgbSplit();
       mockLogExpected = mockLogExpected + "The command passed is: rgb-split"
-        + " Execution Message:User Cancelled Operation. Display Not Changed.";
+          + " Execution Message:User Cancelled Operation. Display Not Changed.";
       assertEquals(mockLogExpected, mockLog.toString());
     } catch (NullPointerException e) {
       fail();
@@ -165,7 +176,7 @@ public class GUIViewImplMockTest {
     try {
       controller.adjustBrightness();
       mockLogExpected = mockLogExpected + "Adjust Brightness By mockLog"
-        + " Execution Message:User Cancelled Operation. Display Not Changed.";
+          + " Execution Message:User Cancelled Operation. Display Not Changed.";
       assertEquals(mockLogExpected, mockLog.toString());
     } catch (NullPointerException e) {
       fail();
@@ -175,7 +186,7 @@ public class GUIViewImplMockTest {
     try {
       controller.filter();
       mockLogExpected = mockLogExpected + "Filter By mockLog"
-        + " Execution Message:User Cancelled Operation. Display Not Changed.";
+          + " Execution Message:User Cancelled Operation. Display Not Changed.";
       assertEquals(mockLogExpected, mockLog.toString());
     } catch (Exception e) {
       fail();
@@ -185,7 +196,7 @@ public class GUIViewImplMockTest {
     try {
       controller.colorTransformation();
       mockLogExpected = mockLogExpected + "Color Transformation By mockLog"
-        + " Execution Message:User Cancelled Operation. Display Not Changed.";
+          + " Execution Message:User Cancelled Operation. Display Not Changed.";
       assertEquals(mockLogExpected, mockLog.toString());
     } catch (NullPointerException e) {
       fail();
@@ -204,12 +215,20 @@ public class GUIViewImplMockTest {
     try {
       controller.adjustBrightness();
       mockLogExpected = mockLogExpected + "Warning:Brightness value must be an integer "
-        + "Execution Message:Operation failed. Brightness value must be an integer";
+          + "Execution Message:Operation failed. Brightness value must be an integer";
       assertEquals(mockLogExpected, mockLog.toString());
     } catch (NullPointerException e) {
       fail();
     }
 
+    try {
+      controller.mosaic();
+      mockLogExpected = mockLogExpected
+          + "Set Seeds By mockLog Execution Message:User Cancelled Operation. Display Not Changed.";
+      assertEquals(mockLogExpected, mockLog.toString());
+    } catch (NullPointerException e) {
+      fail();
+    }
 
   }
 

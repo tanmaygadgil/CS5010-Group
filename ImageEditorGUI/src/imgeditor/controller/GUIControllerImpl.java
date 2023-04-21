@@ -241,15 +241,8 @@ public class GUIControllerImpl implements GUIController {
 
   @Override
   public void mosaic() {
-    String strategy = guiView.getStrategy();
     String seeds = guiView.getValue();
     try {
-      if (strategy.isEmpty()) {
-        guiView.displayWarningPopup("Strategy must not be empty");
-        guiView.setExecutionMessage("Operation failed. Strategy value must be a non empty string");
-        return;
-      }
-
       if (seeds.isEmpty()) {
         guiView.displayWarningPopup("Seed value must be an integer");
         guiView.setExecutionMessage("Operation failed. Seed value must be an integer");
@@ -260,11 +253,10 @@ public class GUIControllerImpl implements GUIController {
       return;
     }
     try {
-      operationHelper("mosaic", strategy, seeds);
+      operationHelper("mosaic", seeds);
     } catch (NumberFormatException e) {
-      guiView.displayWarningPopup("Strategy must not be empty and seed value must be an integer");
-      guiView.setExecutionMessage(
-          "Operation failed. Strategy must not be empty and seed value must be an integer");
+      guiView.displayWarningPopup("Seed value must be an integer");
+      guiView.setExecutionMessage("Operation failed. Seed value must be an integer");
       return;
     }
     guiView.setExecutionMessage("Mosaic Applied Successfully");
