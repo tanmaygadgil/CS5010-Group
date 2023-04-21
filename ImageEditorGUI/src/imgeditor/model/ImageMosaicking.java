@@ -12,12 +12,18 @@ public class ImageMosaicking extends AbstractImageOperations {
 
   @Override
   public List<ImageData> perform(List<ImageData> imageData, String... operationArgs) {
-    int numSeeds = Integer.valueOf(operationArgs[0]);
+    int numSeeds = Integer.parseInt(operationArgs[0]);
     int[][][] pixels = imageData.get(0).getPixels();
     int width = pixels.length;
     int height = pixels[0].length;
 
-    PickStrategy strategy = new RandomUniformPick(numSeeds, width, height);
+    PickStrategy strategy = new RandomUniformPick(numSeeds, height, width);
+
+    if (operationArgs.length >= 2) {
+      if (operationArgs[1].equals("four-corners")) {
+        strategy = new FourCornersPick(height, width);
+      }
+    }
 
     List<Point2D> seeds = strategy.generate();
     Map<Point2D, List<Point2D>> clusterMap = new HashMap<>();

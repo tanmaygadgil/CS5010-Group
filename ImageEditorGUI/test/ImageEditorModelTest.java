@@ -36,7 +36,7 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
 
   @Test
   public void testLoad() throws IOException {
-    
+
     InputStream ppmIn = new FileInputStream("res/fox.ppm");
     InputStream jpgIn = new FileInputStream("res/fox.jpg");
     InputStream pngIn = new FileInputStream("res/fox.png");
@@ -135,9 +135,9 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
       throw new RuntimeException(e);
     }
     InputStream in = new FileInputStream("res/fox.png");
-    
+
     OutputStream out = new BufferedOutputStream(new FileOutputStream(tempFilePath));
-    
+
     model.load(in, ".png", "fox");
     List<String> imgName = new ArrayList<>();
     imgName.add("fox");
@@ -148,8 +148,7 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
 
     assertTrue(compareIOFiles(tempFilePath, "bmpScripts/Blur.bmp"));
 
-    assertTrue(compareIOPixels(testModel.getImagePixels("foxB"),
-            "bmpScripts/Blur.bmp"));
+    assertTrue(compareIOPixels(testModel.getImagePixels("foxB"), "bmpScripts/Blur.bmp"));
   }
 
   @Test
@@ -161,9 +160,9 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
       throw new RuntimeException(e);
     }
     InputStream in = new FileInputStream("res/fox.bmp");
-    
+
     OutputStream out = new BufferedOutputStream(new FileOutputStream(tempFilePath));
-    
+
     model.load(in, ".bmp", "fox");
     List<String> imgName = new ArrayList<>();
     imgName.add("fox");
@@ -174,8 +173,7 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
 
     assertTrue(compareIOFiles(tempFilePath, "pngScripts/Sharpen.png"));
 
-    assertTrue(compareIOPixels(testModel.getImagePixels("foxB"),
-            "pngScripts/Sharpen.png"));
+    assertTrue(compareIOPixels(testModel.getImagePixels("foxB"), "pngScripts/Sharpen.png"));
   }
 
   @Test
@@ -187,7 +185,7 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
       throw new RuntimeException(e);
     }
     InputStream in = new FileInputStream("res/fox.bmp");
-    
+
     model.load(in, ".bmp", "fox");
 
     List<String> imgName = new ArrayList<>();
@@ -197,13 +195,12 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
     model.operate("sepia", imgName, destImgName, "sepia");
 
     OutputStream out = new BufferedOutputStream(new FileOutputStream(tempFilePath));
-    
+
     model.save(out, ".ppm", "foxB");
 
     assertTrue(checkImageEqual(tempFilePath, "ppmScripts/Sepia.ppm"));
 
-    assertTrue(compareImageData(testModel.getImagePixels("foxB"),
-            "ppmScripts/Sepia.ppm"));
+    assertTrue(compareImageData(testModel.getImagePixels("foxB"), "ppmScripts/Sepia.ppm"));
   }
 
   @Test
@@ -215,7 +212,7 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
       throw new RuntimeException(e);
     }
     InputStream in = new FileInputStream("res/fox.ppm");
-    
+
     model.load(in, ".ppm", "fox");
 
     List<String> imgName = new ArrayList<>();
@@ -225,13 +222,12 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
     model.operate("dither", imgName, destImgName, "");
 
     OutputStream out = new BufferedOutputStream(new FileOutputStream(tempFilePath));
-    
+
     model.save(out, ".bmp", "foxB");
 
     assertTrue(compareIOFiles(tempFilePath, "bmpScripts/Dither.bmp"));
 
-    assertTrue(compareIOPixels(testModel.getImagePixels("foxB"),
-            "bmpScripts/Dither.bmp"));
+    assertTrue(compareIOPixels(testModel.getImagePixels("foxB"), "bmpScripts/Dither.bmp"));
   }
 
   @Test
@@ -247,7 +243,7 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
       throw new RuntimeException(e);
     }
     InputStream in = new FileInputStream("res/fox.bmp");
-    
+
     model.load(in, ".bmp", "fox");
 
     List<String> imgName = new ArrayList<>();
@@ -261,7 +257,7 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
     OutputStream out = new BufferedOutputStream(new FileOutputStream(tempFilePath1));
     OutputStream out1 = new BufferedOutputStream(new FileOutputStream(tempFilePath2));
     OutputStream out2 = new BufferedOutputStream(new FileOutputStream(tempFilePath3));
-    
+
     model.save(out, ".png", "foxB");
     model.save(out1, ".png", "foxB1");
     model.save(out2, ".png", "foxB2");
@@ -270,14 +266,11 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
     assertTrue(compareIOFiles(tempFilePath2, "pngScripts/GreenSplit.png"));
     assertTrue(compareIOFiles(tempFilePath3, "pngScripts/BlueSplit.png"));
 
-    assertTrue(compareIOPixels(testModel.getImagePixels("foxB"),
-            "pngScripts/RedSplit.png"));
+    assertTrue(compareIOPixels(testModel.getImagePixels("foxB"), "pngScripts/RedSplit.png"));
 
-    assertTrue(compareIOPixels(testModel.getImagePixels("foxB1"),
-            "pngScripts/GreenSplit.png"));
+    assertTrue(compareIOPixels(testModel.getImagePixels("foxB1"), "pngScripts/GreenSplit.png"));
 
-    assertTrue(compareIOPixels(testModel.getImagePixels("foxB2"),
-            "pngScripts/BlueSplit.png"));
+    assertTrue(compareIOPixels(testModel.getImagePixels("foxB2"), "pngScripts/BlueSplit.png"));
   }
 
   @Test
@@ -310,12 +303,10 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
     model.operate("rgb-combine", imgName, destImgName, "");
 
     OutputStream out = new BufferedOutputStream(new FileOutputStream(tempFilePath));
-    
+
     model.save(out, ".png", "foxC");
 
-
-    assertTrue(compareIOFiles(tempFilePath,
-            "OI/OriginalRGBCombinePNG.png"));
+    assertTrue(compareIOFiles(tempFilePath, "OI/OriginalRGBCombinePNG.png"));
 
     //pixels testing
     int[][][] imageColor = testModel.getImagePixels("foxC");
@@ -333,8 +324,7 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
 
     InputStream in = new FileInputStream("res/fox.bmp");
     OutputStream out = new BufferedOutputStream(new FileOutputStream(tempFilePath));
-    
-    
+
     model.load(in, ".bmp", "fox");
     List<String> imgName = new ArrayList<>();
     imgName.add("fox");
@@ -361,8 +351,7 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
 
     InputStream in = new FileInputStream("res/fox.bmp");
     OutputStream out = new BufferedOutputStream(new FileOutputStream(tempFilePath));
-    
-    
+
     model.load(in, ".bmp", "fox");
     List<String> imgName = new ArrayList<>();
     imgName.add("fox");
@@ -416,7 +405,7 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
 
     InputStream in = new FileInputStream("res/fox.png");
     OutputStream out = new BufferedOutputStream(new FileOutputStream(tempFilePath));
-    
+
     model.load(in, ".png", "fox");
     List<String> imgName = new ArrayList<>();
     imgName.add("fox");
@@ -443,7 +432,7 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
 
     InputStream in = new FileInputStream("res/fox.bmp");
     OutputStream out = new BufferedOutputStream(new FileOutputStream(tempFilePath));
-    
+
     model.load(in, ".bmp", "fox");
     List<String> imgName = new ArrayList<>();
     imgName.add("fox");
@@ -470,8 +459,7 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
 
     InputStream in = new FileInputStream("res/fox.ppm");
     OutputStream out = new BufferedOutputStream(new FileOutputStream(tempFilePath));
-    
-    
+
     model.load(in, ".ppm", "fox");
     List<String> imgName = new ArrayList<>();
     imgName.add("fox");
@@ -498,15 +486,13 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
 
     InputStream in = new FileInputStream("res/fox.bmp");
     OutputStream out = new BufferedOutputStream(new FileOutputStream(tempFilePath));
-    
-    
+
     model.load(in, ".bmp", "fox");
     List<String> imgName = new ArrayList<>();
     imgName.add("fox");
     List<String> destImgName = new ArrayList<>();
     destImgName.add("fox-grey-intensity");
-    model.operate("greyscale", imgName, destImgName,
-            "intensity-component");
+    model.operate("greyscale", imgName, destImgName, "intensity-component");
     model.save(out, ".png", "fox-grey-intensity");
 
     try {
@@ -527,8 +513,7 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
 
     InputStream in = new FileInputStream("res/fox.png");
     OutputStream out = new BufferedOutputStream(new FileOutputStream(tempFilePath));
-    
-    
+
     model.load(in, ".png", "fox");
     List<String> imgName = new ArrayList<>();
     imgName.add("fox");
@@ -555,8 +540,7 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
     }
     InputStream in = new FileInputStream("res/fox.ppm");
     OutputStream out = new BufferedOutputStream(new FileOutputStream(tempFilePath));
-    
-    
+
     model.load(in, ".ppm", "fox");
     List<String> imgName = new ArrayList<>();
     imgName.add("fox");
@@ -582,8 +566,7 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
     }
     InputStream in = new FileInputStream("res/fox.png");
     OutputStream out = new BufferedOutputStream(new FileOutputStream(tempFilePath));
-    
-    
+
     model.load(in, ".png", "fox");
     List<String> imgName = new ArrayList<>();
     imgName.add("fox");
@@ -594,6 +577,32 @@ public class ImageEditorModelTest extends AbstractImageEditorTest {
 
     try {
       assertTrue(checkImageEqual(tempFilePath, "OI/OriginalVertical.ppm"));
+    } catch (IllegalArgumentException e) {
+      fail();
+    }
+  }
+
+  @Test
+  public void testMosaic() throws IOException {
+    String tempFilePath;
+    try {
+      tempFilePath = getTempFilePath(".ppm");
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+    InputStream in = new FileInputStream("res/fox.png");
+    OutputStream out = new BufferedOutputStream(new FileOutputStream(tempFilePath));
+
+    model.load(in, ".png", "fox");
+    List<String> imgName = new ArrayList<>();
+    imgName.add("fox");
+    List<String> destImgName = new ArrayList<>();
+    destImgName.add("fox-mosaic");
+    model.operate("mosaic", imgName, destImgName, "0", "four-corners");
+    model.save(out, ".ppm", "fox-mosaic");
+
+    try {
+      assertTrue(checkImageEqual(tempFilePath, "OI/OriginalMosaicFourCorners.ppm"));
     } catch (IllegalArgumentException e) {
       fail();
     }
