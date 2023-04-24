@@ -1,18 +1,26 @@
 package imgeditor.model;
 
 import imgeditor.model.kdtree.Point2D;
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class FourCornersPick implements PickStrategy{
+/**
+ * Picks the four corners in a rectangular region.
+ */
+public class FourCornersPick implements PickStrategy {
 
   private Integer height;
   private Integer width;
 
-  public FourCornersPick(int height, int width){
+  /**
+   * Creates an instance of four corners pick.
+   *
+   * @param height height of the image.
+   * @param width  width of the image.
+   */
+  public FourCornersPick(int height, int width) {
     this.height = height;
     this.width = width;
   }
