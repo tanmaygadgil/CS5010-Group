@@ -1,4 +1,5 @@
 package imgeditor.model.kdtree;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
