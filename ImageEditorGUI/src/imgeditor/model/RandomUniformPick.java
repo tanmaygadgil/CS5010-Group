@@ -41,7 +41,7 @@ public class RandomUniformPick implements PickStrategy {
     while (i < this.seeds) {
       Point2D point = new Point2D(r.nextInt(width), r.nextInt(height));
       pointSet.add(point);
-      i = pointSet.size();
+      i++;
     }
 
     return new ArrayList<>(pointSet);

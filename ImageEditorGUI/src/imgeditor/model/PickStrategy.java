@@ -11,7 +11,7 @@ public interface PickStrategy<T> {
   /**
    * Generates the list of points.
    *
-   * @return a list oof points with a generic type
+   * @return a list oof points with a generic type.
    */
   List<T> generate();
 }
