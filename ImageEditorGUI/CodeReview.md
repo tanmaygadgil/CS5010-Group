@@ -16,6 +16,9 @@
   get these inputs may be helpful when adding more operations.
 - Also, the decision to use buttons for each operation make it a little difficult to add any new
   operations ot the GUI.
+- The controller has many commands that already call the model for various operations. It seems the
+  GUI controller just makes new calls instead of reusing existing
+  commands. This results in redundant code.
 
 ## Implementation Critique
 
@@ -24,10 +27,8 @@
 - The code is formatted well and the java style of the received code adheres to the standards set in
   this course.
 - Variable names were descriptive and succinct.
-- How efficient, scalable, and error-free is the code?
 - The controller and model are quite scalable. There are very few lines which need to be changed
   when adding a new operation.
-- Are there any performance bottlenecks or security vulnerabilities?
 
 ## Documentation Critique
 
@@ -48,8 +49,10 @@
 ## Design/Code Limitations
 
 - In the view, since every operation has its own button, it will get cumbersome to add many more new
+  features. This could also result in cluttering of the UI and a large amount of code changes to add
   features.
--
+- All the files were placed in a single folder for model, controller and view. There were no
+  packages to logically order the operations and elements.
 
 ## Suggestions for Improvement
 
@@ -58,5 +61,8 @@
 - Make the methods for additional inputs in the GUI more general, for example the method for getting
   the brightness value might be more useful as just a general get value method which you can set the
   text for.
-- 
-
+- Make sure to combine your classes into packages which can make it much easier to read and
+  understand your code.
+- The code for the text based controller was modular and extensible but the UI is very tightly
+  coupled with its controller. Make sure to add only the features that the UI needs to perform and
+  have the controller take car of orchestrating them
