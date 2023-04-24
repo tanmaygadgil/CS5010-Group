@@ -57,5 +57,6 @@
   operations.
 - Make the methods for additional inputs in the GUI more general, for example the method for getting
   the brightness value might be more useful as just a general get value method which you can set the
-  text for. 
+  text for.
+- 
 
